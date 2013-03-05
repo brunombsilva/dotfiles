@@ -1,0 +1,96 @@
+[submodule "git-flow-completion"]
+    path = "git-flow-completion"
+	url = https://github.com/bobthecow/git-flow-completion.git
+
+[submodule "powerline-consolas"]
+    path = "powerline-consolas"
+	url = https://github.com/nicolalamacchia/powerline-consolas.git
+
+[submodule "powerline-fontes"]
+    path = "powerline-fonts"
+	url = https://github.com/Lokaltog/powerline-fonts.git
+
+[submodule "tmux-colors-solarized"]
+    path = "tmux-colors-solarized"
+	url = https://github.com/seebi/tmux-colors-solarized.git
+
+[submodule "DBGp-client"]
+    path = "vim/_vim/bundle/DBGp-client"
+	url = https://github.com/vim-scripts/DBGp-client.git
+
+[submodule "JavaScript-syntax"]
+    path = "vim/_vim/bundle/JavaScript-syntax"
+	url = https://github.com/vim-scripts/JavaScript-syntax.git
+
+[submodule "SudoEdit.vim"]
+    path = "vim/_vim/bundle/SudoEdit.vim"
+	url = https://github.com/chrisbra/SudoEdit.vim
+
+[submodule "SyntaxComplete"]
+    path = "vim/_vim/bundle/SyntaxComplete"
+	url = https://github.com/vim-scripts/SyntaxComplete.git
+
+[submodule "bufexplorer.zip"]
+    path = "vim/_vim/bundle/bufexplorer.zip"
+	url = https://github.com/vim-scripts/bufexplorer.zip
+
+[submodule "changesPlugin"]
+    path = "vim/_vim/bundle/changesPlugin"
+	url = https://github.com/chrisbra/changesPlugin.git
+
+[submodule "css3-mod"]
+    path = "vim/_vim/bundle/css3-mod"
+	url = https://github.com/vim-scripts/css3-mod.git
+
+[submodule "ctrlp.vim"]
+    path = "vim/_vim/bundle/ctrlp.vim"
+	url = https://github.com/kien/ctrlp.vim.git
+
+[submodule "grep.vim"]
+    path = "vim/_vim/bundle/grep.vim"
+	url = https://github.com/vim-scripts/grep.vim
+
+[submodule "html-source-explorer"]
+    path = "vim/_vim/bundle/html-source-explorer"
+	url = git@github.com:brunosilva/html-source-explorer.git
+
+[submodule "neocomplcache"]
+    path = "vim/_vim/bundle/neocomplcache"
+	url = https://github.com/Shougo/neocomplcache.git
+
+[submodule "nerdcommenter"]
+    path = "vim/_vim/bundle/nerdcommenter"
+	url = https://github.com/scrooloose/nerdcommenter.git
+
+[submodule "nerdtree"]
+    path = "vim/_vim/bundle/nerdtree"
+	url = https://github.com/scrooloose/nerdtree.git
+
+[submodule "psearch.vim"]
+    path = "vim/_vim/bundle/psearch.vim"
+	url = https://github.com/gcmt/psearch.vim.git
+
+[submodule "rainbow_parentheses.vim"]
+    path = "vim/_vim/bundle/rainbow_parentheses.vim"
+	url = https://github.com/kien/rainbow_parentheses.vim.git
+
+[submodule "snipmate-snippets"]
+    path = "vim/_vim/bundle/snipmate-snippets"
+	url = https://github.com/honza/snipmate-snippets.git
+
+[submodule "syntastic"]
+    path = "vim/_vim/bundle/syntastic"
+	url = https://github.com/scrooloose/syntastic.git
+
+[submodule "tagbar"]
+    path = "vim/_vim/bundle/tagbar"
+	url = git://github.com/majutsushi/tagbar
+
+[submodule "tlib_vim"]
+    path = "vim/_vim/bundle/tlib_vim"
+	url = https://github.com/tomtom/tlib_vim.git
+
+[submodule "vim-addon-mw-utils"]
+    path = "vim/_vim/bundle/vim-addon-mw-utils"
+	url = https://github.com/MarcWeber/vim-addon-mw-utils.git
+
