@@ -1,0 +1,15 @@
+line 123 column 74 - Warning: discarding invalid character code 129
+line 123 column 188 - Warning: discarding invalid character code 129
+line 225 column 76 - Warning: unescaped & or unknown entity "&cb"
+line 225 column 154 - Warning: unescaped & or unknown entity "&cb"
+line 225 column 167 - Warning: unescaped & or unknown entity "&n"
+line 268 column 97 - Warning: unescaped & or unknown entity "&cb"
+line 268 column 177 - Warning: unescaped & or unknown entity "&cb"
+line 268 column 191 - Warning: unescaped & or unknown entity "&n"
+line 440 column 108 - Warning: unescaped & or unknown entity "&date"
+line 497 column 89 - Warning: unescaped & or unknown entity "&cb"
+line 497 column 165 - Warning: unescaped & or unknown entity "&cb"
+line 497 column 178 - Warning: unescaped & or unknown entity "&n"
+line 541 column 73 - Warning: unescaped & or unknown entity "&cb"
+line 541 column 150 - Warning: unescaped & or unknown entity "&cb"
+line 541 column 164 - Warning: unescaped & or unknown entity "&n"

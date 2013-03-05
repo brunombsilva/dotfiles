@@ -1,0 +1,18 @@
+# ~/.tmuxinator/comunidades.yml
+
+project_name: Praias
+project_root: ~/workspace/praias.dev.sapo.pt
+socket_name: praias
+tabs:
+  - editor:
+      layout: main-vertical
+      panes:
+        - vim -c NERDTree
+        - git status
+        - tmux resize-pan -R 100 &&  mysql -u root -p sapopraias
+  - logs: 
+      layout: even-vertical
+      panes: 
+        - tail -f /var/log/apache2/error_praias.dev.sapo.pt.log
+        
+

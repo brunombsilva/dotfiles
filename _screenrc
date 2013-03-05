@@ -1,0 +1,3 @@
+termcapinfo xterm ti@:te@
+bind s split 
+bind v split -v 

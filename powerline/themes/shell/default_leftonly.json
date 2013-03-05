@@ -1,0 +1,28 @@
+{
+	"default_module": "powerline.segments.common",
+	"segments": {
+		"left": [
+			{
+				"name": "virtualenv",
+				"before": "ⓔ  "
+			},
+			{
+				"name": "branch",
+				"before": " "
+			},
+			{
+				"name": "cwd",
+				"args": {
+                    "dir_shorten_len": 1,
+					"dir_limit_depth": 3
+				},
+				"divider_highlight_group": "cwd:divider"
+			},
+			{
+				"name": "last_status",
+				"highlight_group": ["exit_fail"],
+				"module": "powerline.segments.shell"
+			}
+		]
+	}
+}

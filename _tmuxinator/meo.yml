@@ -1,0 +1,22 @@
+# ~/.tmuxinator/comunidades.yml
+
+project_name: MEO
+project_root: ~/workspace/meo
+socket_name: meo
+tabs:
+  - frontend:
+      layout: main-vertical
+      panes:
+        - cd MEO && vim -c NERDTree
+        - cd MEO && tmux resize-pan -R 60 && git pull origin
+  - backoffice:
+      layout: main-vertical
+      panes:
+        - cd backoffice.meo.local && vim -c NERDTree
+        - cd backoffice.meo.local && tmux resize-pan -R 60 && git pull origin
+  - stuff:
+      layout: even-horizontal
+      panes:
+        - 
+        - 
+
