@@ -94,3 +94,43 @@
     path = "vim/_vim/bundle/vim-addon-mw-utils"
 	url = https://github.com/MarcWeber/vim-addon-mw-utils.git
 
+[submodule "vim-colors-solarized"]
+    path = "vim/_vim/bundle/vim-colors-solarized"
+	url = https://github.com/altercation/vim-colors-solarized
+
+[submodule "vim-fugitive"]
+    path = "vim/_vim/bundle/vim-fugitive"
+	url = git://github.com/tpope/vim-fugitive.git
+
+[submodule "vim-gitgutter"]
+    path = "vim/_vim/bundle/vim-gitgutter"
+	url = https://github.com/airblade/vim-gitgutter.git
+
+[submodule "vim-json"]
+    path = "vim/_vim/bundle/vim-json"
+	url = https://github.com/rogerz/vim-json.git
+
+[submodule "vim-pathogen"]
+    path = "vim/_vim/bundle/vim-pathogen"
+	url = https://github.com/tpope/vim-pathogen.git
+
+[submodule "vim-php-cs-fixer"]
+    path = "vim/_vim/bundle/vim-php-cs-fixer"
+	url = https://github.com/stephpy/vim-php-cs-fixer.git
+
+[submodule "vim-session"]
+    path = "vim/_vim/bundle/vim-session"
+	url = https://github.com/xolox/vim-session.git
+
+[submodule "vim-snipmate"]
+    path = "vim/_vim/bundle/vim-snipmate"
+	url = git://github.com/garbas/vim-snipmate.git
+
+[submodule "xmledit"]
+    path = "vim/_vim/bundle/xmledit"
+	url = https://github.com/sukima/xmledit.git
+
+[submodule "zoomwintab.vim"]
+    path = "vim/_vim/bundle/zoomwintab.vim"
+	url = https://github.com/troydm/zoomwintab.vim.git
+
