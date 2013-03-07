@@ -134,3 +134,11 @@
     path = "vim/_vim/bundle/zoomwintab.vim"
 	url = https://github.com/troydm/zoomwintab.vim.git
 
+[submodule "multiselect"]
+    path = "vim/_vim/bundle/multiselect"
+	url = https://github.com/vim-scripts/multiselect.git
+
+[submodule "genutils"]
+    path = "vim/_vim/bundle/genutils"
+	url = https://github.com/vim-scripts/genutils.git
+
