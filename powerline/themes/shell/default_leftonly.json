@@ -14,7 +14,7 @@
 				"name": "cwd",
 				"args": {
                     "dir_shorten_len": 1,
-					"dir_limit_depth": 3
+					"dir_limit_depth": 1
 				},
 				"divider_highlight_group": "cwd:divider"
 			},

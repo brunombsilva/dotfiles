@@ -269,9 +269,9 @@ nmap <leader>csu  :!find . -iname '*.php' -o -iname '*.tpl' > cscope.files<CR>
   \:!cscope -b -i cscope.files -f cscope.out<CR>
   \:cs reset<CR>
 
-vmap <C-c> "+y
-nmap <C-v> p
-imap <C-v> <Esc><C-v>a
+"vmap <C-c> "+y
+"nmap <C-v> p
+"imap <C-v> <Esc><C-v>a
 
 " XML
 autocmd FileType xml setlocal foldmethod=syntax
@@ -440,4 +440,6 @@ imap <C-@> <C-Space>
 set completeopt=longest,menu,preview
 
 "let g:neocomplcache_enable_at_startup = 1
+
+autocmd FileType smarty let b:match_words = '<:>,<\@<=[ou]l\>[^>]*\%(>\|$\):<\@<=li\>:<\@<=/[ou]l>,<\@<=dl\>[^>]*\%(>\|$\):<\@<=d[td]\>:<\@<=/dl>,<\@<=\([^/][^ \t>]*\)[^>]*\%(>\|$\):<\@<=/\1>'
 
