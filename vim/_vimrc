@@ -1,22 +1,31 @@
 "let $pwd = getcwd() 
-
+if !exists('$POWERLINE_PATH')
+    if has('win32') || has('win64')
+        let $POWERLINE_PATH = $VIMRUNTIME.'\\..\\..\\..\\..\\..\\Programs\\powerline'
+    else
+        let $POWERLINE_PATH = '~/Dropbox/Programs/powerline'
+    endif
+endif
+if !exists('$PATHOGEN_PATH')
+    if has('win32') || has('win64')
+        let $PATHOGEN_PATH = $VIMRUNTIME.'\\..\\..\\..\\..\\..\\Config\\vim\\_vim\\bundle'
+    else
+        let $PATHOGEN_PATH = '$HOME/.vim/bundle'
+    endif
+endif
 let g:pathogen_disabled = ['DBGp-client']
 
 if has('win32') || has('win64')
     set runtimepath=$VIMRUNTIME\\..\\..\\..\\..\\..\\Config\\vim\\_vim,$VIMRUNTIME\\..\\..\\..\\..\\..\\Config\\vim\\_vim\\plugin,$VIMRUNTIME
-    runtime bundle/vim-pathogen/autoload/pathogen.vim
-    call pathogen#infect($VIMRUNTIME.'\\..\\..\\..\\..\\..\\Config\\vim\\_vim\\bundle') 
-    set rtp+=$VIMRUNTIME\\..\\..\\..\\..\\..\\Programs\\powerline\\powerline\\bindings\\vim
 else
-    runtime bundle/vim-pathogen/autoload/pathogen.vim
-    call pathogen#infect('$HOME/.vim/bundle') 
     set term=screen-256color
-    set rtp+=~/Dropbox/Programs/powerline/powerline/bindings/vim
 endif
-"cd $pwd
-"call pathogen#runtime_append_all_bundles()
-"silent! call pathogen#helptags()
 
+runtime bundle/vim-pathogen/autoload/pathogen.vim
+call pathogen#infect($PATHOGEN_PATH) 
+set runtimepath+=$POWERLINE_PATH/powerline/bindings/vim
+
+"silent! call pathogen#helptags()
 
 set nocompatible                  " Must come first because it changes other options.
 
@@ -381,7 +390,7 @@ au Syntax * RainbowParenthesesLoadBraces
 
 let g:syntastic_auto_loc_list=1
 let g:syntastic_loc_list_height=3
-let g:syntastic_quiet_warnings=1
+"let g:syntastic_quiet_warnings=1
 let g:syntastic_php_phpmd_post_args = 'design,unusedcode'
 let g:syntastic_php_phpcs_args = '--standard=PSR2'
 
@@ -442,4 +451,9 @@ set completeopt=longest,menu,preview
 "let g:neocomplcache_enable_at_startup = 1
 
 autocmd FileType smarty let b:match_words = '<:>,<\@<=[ou]l\>[^>]*\%(>\|$\):<\@<=li\>:<\@<=/[ou]l>,<\@<=dl\>[^>]*\%(>\|$\):<\@<=d[td]\>:<\@<=/dl>,<\@<=\([^/][^ \t>]*\)[^>]*\%(>\|$\):<\@<=/\1>'
+
+let g:tagbar_left = 1
+
+map <leader>ide :NERDTree<cr>:TagbarOpen<cr><C-w>t<C-w>s:buffer NERD_tree_1<cr><C-w>t<C-w>l<C-w>c<C-w>t
+
 

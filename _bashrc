@@ -220,9 +220,16 @@ alias php_syntax='find ./ -type f -name \*.php -exec php -l {} \; | grep -v "^No
 alias lolcat='/var/lib/gems/1.8/bin/lolcat'
 #alias dramalho='sudo'
 
-PATH=$PATH:.
-fortune riddles | lolcat
-export MANPAGER="less -X"
+export PATH=$PATH:.
+
+if which fortune >/dev/null; then
+    if [[ -e /var/lib/gems/1.8/bin/lolcat ]]; then
+        fortune riddles | lolcat
+    else
+        fortune
+    fi
+fi
+
 #export HISTIGNORE="ls:ls *:cd:cd -:pwd;exit:date:* --help:fg"
 export HISTIGNORE="pwd;exit:date:* --help:fg"
 export EDITOR="vim"
@@ -249,23 +256,28 @@ shopt -s cdspell
 # Highlight section titles in manual pages
 export LESS_TERMCAP_md="$ORANGE"
 
-alias vim-update='cd ~/.vim/bundle ; update.sh ; cd --'
-
 [[ -s /user/local/bin/tmuxinator ]] && source .user/local/bin/tmuxinator
 
-alias push-all='for i in `git remote`; do git push $i; done;'
-alias pull-all='for i in `git remote`; do git pull $i; done;'
-source ~/Dropbox/Config/git-flow-completion/git-flow-completion.bash
-#eval `ssh-agent`
 
-export PAGER=~/Dropbox/Programs/vimpager/vimpager
-export CAT=~/Dropbox/Programs/vimpager/vimcat
-#alias less=$PAGER
-#alias zless=$PAGER
-alias cat=$CAT
+[ -z "$VIMPAGER_PATH" ] && export VIMPAGER_PATH=~/Dropbox/Programs/vimpager
 
-export PATH=$PATH:~/Dropbox/Programs/powerline/scripts/
-export PYTHONPATH=~/Dropbox/Programs/powerline/build/lib
-. ~/Dropbox/Programs/powerline/powerline/bindings/bash/powerline.sh
+if [[ -e "$VIMPAGER_PATH" ]]; then
+    export PAGER=$VIMPAGER_PATH/vimpager
+    export CAT=$VIMPAGER_PATH/vimcat
+    export MANPAGER="$VIMPAGER_PATH/vimpager"
+    alias cat=$CAT
+    #alias less=$PAGER
+    #alias zless=$PAGER
+else
+    export MANPAGER="less -X"
+fi
+
+
+if ! [[ -n "$POWERLINE_DISABLED" ]]; then
+    [ -z "$POWERLINE_PATH" ] && export POWERLINE_PATH=~/Dropbox/Programs/powerline
+    export PATH=$PATH:$POWERLINE_PATH/scripts/
+    export PYTHONPATH=$POWERLINE_PATH/build/lib
+    . $POWERLINE_PATH/powerline/bindings/bash/powerline.sh
+fi
 
 #sudo phpcs --config-set default_standard PSR2
