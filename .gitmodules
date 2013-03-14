@@ -142,3 +142,7 @@
     path = "vim/_vim/bundle/genutils"
 	url = https://github.com/vim-scripts/genutils.git
 
+[submodule "vim-voogle"]
+    path = "vim/_vim/bundle/vim-voogle"
+	url = https://github.com/g3orge/vim-voogle.git
+
