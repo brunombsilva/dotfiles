@@ -146,3 +146,7 @@
     path = "vim/_vim/bundle/vim-voogle"
 	url = https://github.com/g3orge/vim-voogle.git
 
+[submodule "phpcomplete.vim"]
+    path = "vim/_vim/bundle/phpcomplete.vim"
+	url = https://github.com/shawncplus/phpcomplete.vim.git
+

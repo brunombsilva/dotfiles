@@ -1,26 +1,32 @@
 {
 	"default_module": "powerline.segments.common",
+	"segment_data": {
+		"hostname": {
+			"before": " ",
+			"args": {
+				"only_if_ssh": true
+			}
+		},
+		"virtualenv": {
+			"before": "ⓔ  "
+		},
+		"branch": {
+			"before": " "
+		}
+	},
 	"segments": {
 		"left": [
 			{
-				"name": "virtualenv",
-				"before": "ⓔ  "
-			},
-			{
-				"name": "branch",
-				"before": " "
+				"name": "branch"
 			},
 			{
 				"name": "cwd",
 				"args": {
-                    "dir_shorten_len": 1,
 					"dir_limit_depth": 1
-				},
-				"divider_highlight_group": "cwd:divider"
+				}
 			},
 			{
 				"name": "last_status",
-				"highlight_group": ["exit_fail"],
 				"module": "powerline.segments.shell"
 			}
 		]
