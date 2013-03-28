@@ -50,10 +50,6 @@
     path = "vim/_vim/bundle/grep.vim"
 	url = https://github.com/vim-scripts/grep.vim
 
-[submodule "html-source-explorer"]
-    path = "vim/_vim/bundle/html-source-explorer"
-	url = git@github.com:brunosilva/html-source-explorer.git
-
 [submodule "neocomplcache"]
     path = "vim/_vim/bundle/neocomplcache"
 	url = https://github.com/Shougo/neocomplcache.git
@@ -150,3 +146,26 @@
     path = "vim/_vim/bundle/phpcomplete.vim"
 	url = https://github.com/shawncplus/phpcomplete.vim.git
 
+[submodule "vim/_vim/bundle/vim-puppet"]
+	path = vim/_vim/bundle/vim-puppet
+	url = git://github.com/rodjek/vim-puppet.git
+
+[submodule "vim/_vim/bundle/vim-ruby"]
+	path = vim/_vim/bundle/vim-ruby
+	url = https://github.com/vim-ruby/vim-ruby.git 
+
+[submodule "vim/_vim/bundle/vim-rails"]
+	path = vim/_vim/bundle/vim-ruby
+	url = https://github.com/tpope/vim-rails.git 
+
+[submodule "vim/_vim/bundle/vim-bundler"]
+	path = vim/_vim/bundle/vim-bundler
+	url = https://github.com/tpope/vim-bundler.git 
+
+[submodule "vim/_vim/bundle/vim-gitgutter"]
+	path = vim/_vim/bundle/vim-gitgutter
+	url = https://github.com/airblade/vim-gitgutter.git 
+
+[submodule "vim/_vim/bundle/vim-git-log"]
+	path = vim/_vim/bundle/vim-git-log
+	url = https://github.com/kablamo/vim-git-log.git 

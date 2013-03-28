@@ -272,6 +272,7 @@ else
     export MANPAGER="less -X"
 fi
 
+export POWERLINE_DISABLED=1
 
 if ! [[ -n "$POWERLINE_DISABLED" ]]; then
     [ -z "$POWERLINE_PATH" ] && export POWERLINE_PATH=~/Dropbox/Programs/powerline
@@ -281,3 +282,5 @@ if ! [[ -n "$POWERLINE_DISABLED" ]]; then
 fi
 
 #sudo phpcs --config-set default_standard PSR2
+export PATH="$HOME/.rbenv/bin:$PATH"
+eval "$(rbenv init -)"
