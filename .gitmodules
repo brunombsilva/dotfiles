@@ -155,7 +155,7 @@
 	url = https://github.com/vim-ruby/vim-ruby.git 
 
 [submodule "vim/_vim/bundle/vim-rails"]
-	path = "vim/_vim/bundle/vim-ruby"
+	path = "vim/_vim/bundle/vim-rails"
 	url = https://github.com/tpope/vim-rails.git 
 
 [submodule "vim/_vim/bundle/vim-bundler"]
