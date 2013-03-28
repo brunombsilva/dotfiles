@@ -22,7 +22,7 @@ else
 endif
 
 runtime bundle/vim-pathogen/autoload/pathogen.vim
-call pathogen#infect($PATHOGEN_PATH) 
+call pathogen#infect($PATHOGEN_PATH.'/{}') 
 set runtimepath+=$POWERLINE_PATH/powerline/bindings/vim
 
 "silent! call pathogen#helptags()
