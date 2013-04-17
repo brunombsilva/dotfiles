@@ -1,11 +1,11 @@
 "let $pwd = getcwd() 
-if !exists('$POWERLINE_PATH')
-    if has('win32') || has('win64')
-        let $POWERLINE_PATH = $VIMRUNTIME.'\\..\\..\\..\\..\\..\\Programs\\powerline'
-    else
-        let $POWERLINE_PATH = '~/Dropbox/Programs/powerline'
-    endif
-endif
+"if !exists('$POWERLINE_PATH')
+    "if has('win32') || has('win64')
+        "let $POWERLINE_PATH = $VIMRUNTIME.'\\..\\..\\..\\..\\..\\Programs\\powerline'
+    "else
+        "let $POWERLINE_PATH = '~/Dropbox/Programs/powerline'
+    "endif
+"endif
 if !exists('$PATHOGEN_PATH')
     if has('win32') || has('win64')
         let $PATHOGEN_PATH = $VIMRUNTIME.'\\..\\..\\..\\..\\..\\Config\\vim\\_vim\\bundle'
@@ -23,7 +23,7 @@ endif
 
 runtime bundle/vim-pathogen/autoload/pathogen.vim
 call pathogen#infect($PATHOGEN_PATH.'/{}') 
-set runtimepath+=$POWERLINE_PATH/powerline/bindings/vim
+"set runtimepath+=$POWERLINE_PATH/powerline/bindings/vim
 
 "silent! call pathogen#helptags()
 
