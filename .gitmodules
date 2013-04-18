@@ -165,3 +165,6 @@
 [submodule "vim/_vim/bundle/vim-git-log"]
 	path = "vim/_vim/bundle/vim-git-log"
 	url = https://github.com/kablamo/vim-git-log.git 
+[submodule "vim/_vim/bundle/vim-powerline"]
+	path = vim/_vim/bundle/vim-powerline
+	url = https://github.com/Lokaltog/vim-powerline.git
