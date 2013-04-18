@@ -70,10 +70,6 @@
     path = "vim/_vim/bundle/rainbow_parentheses.vim"
 	url = https://github.com/kien/rainbow_parentheses.vim.git
 
-[submodule "snipmate-snippets"]
-    path = "vim/_vim/bundle/snipmate-snippets"
-	url = https://github.com/scrooloose/snipmate-snippets.git
-
 [submodule "syntastic"]
     path = "vim/_vim/bundle/syntastic"
 	url = https://github.com/scrooloose/syntastic.git
