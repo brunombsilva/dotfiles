@@ -284,3 +284,5 @@ fi
 #sudo phpcs --config-set default_standard PSR2
 export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"
+
+alias mem-used="top -b -n 1 | grep -Po '(?<=Mem:).*free' | sed 's/ *\([0-9]*\)k total, *\([0-9]*\)k used, *\([0-9]*\)k free/Mem: \3 \/ \1/'"
