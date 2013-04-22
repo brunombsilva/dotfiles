@@ -167,3 +167,6 @@
 [submodule "vim/_vim/bundle/vim-multiple-cursors"]
 	path = vim/_vim/bundle/vim-multiple-cursors
 	url = https://github.com/terryma/vim-multiple-cursors.git
+[submodule "vim/_vim/bundle/git-time-lapse"]
+	path = vim/_vim/bundle/git-time-lapse
+	url = https://github.com/vim-scripts/git-time-lapse.git
