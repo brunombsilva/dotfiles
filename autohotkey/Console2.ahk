@@ -1,5 +1,15 @@
 GroupAdd, TargetWindow, ahk_class Console_2_Main
 
+#Esc::
+    IfWinExist ahk_group TargetWindow
+    {
+        IfWinNotActive ahk_group TargetWindow
+        {
+            WinHide ahk_group TargetWindow
+        }
+    }
+    return
+    
 #Space::
     DetectHiddenWindows, on
     IfWinExist ahk_group TargetWindow
@@ -14,6 +24,7 @@ GroupAdd, TargetWindow, ahk_class Console_2_Main
         }
         else
         {
+            DetectHiddenWindows, on
             WinSet, Style, -0x800000, ahk_group TargetWindow  ; hide thin-line border
             WinSet, Style, -0x400000, ahk_group TargetWindow  ; hide dialog frame
             WinSet, Style, -0x40000, ahk_group TargetWindow  ; hide thickframe/sizebox
