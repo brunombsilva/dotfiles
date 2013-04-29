@@ -135,7 +135,7 @@ function parse_git_branch {
   git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\ \[\1\]/'
 }
 
-PS1="\[\033[0;32m\]\h:\W \u\[\033[0;33m\]\$(parse_git_branch)\[\033[0;32m\]\$ \[\033[0m\]"
+PS1="\n\[\033[0m\]\u@\h \[\033[0;32m\]\w \[\033[0;33m\] \$(parse_git_branch)\[\033[0;32m\]\n\$ \[\033[0m\]"
 
 if [[ $COLORTERM = gnome-* && $TERM = xterm ]] && infocmp gnome-256color >/dev/null 2>&1; then
    export TERM=gnome-256color
