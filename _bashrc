@@ -130,12 +130,62 @@ export GIT_AUTHOR_EMAIL='bruno.b.silva@co.sapo.pt'
 # p4merge
 alias rmorig="find . -name *.orig -exec /bin/rm -f '{}' \;"
 
-# GIT branch on prompt
-function parse_git_branch {
-  git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\ \[\1\]/'
+working_directory() {
+    dir=`pwd`
+    in_home=0
+    if [[ `pwd` =~ ^$HOME($|\/) ]]; then
+        dir="~${dir#$HOME}"
+        in_home=1
+    fi
+
+    if [[ `tput cols` -lt 100 ]]; then  # <-- Checking the term width
+        first="/`echo $dir | cut -d / -f 2`"
+        letter=${first:0:2}
+        if [[ $in_home == 1 ]]; then
+            letter="~$letter"
+        fi
+        proj=`echo $dir | cut -d / -f 3`
+        beginning="$letter/$proj"
+        end=`echo "$dir" | rev | cut -d / -f1 | rev`
+
+        if [[ $proj == "" ]]; then
+            echo $dir
+        elif [[ $proj == "~" ]]; then
+            echo $dir
+        elif [[ $dir =~ "$first/$proj"$ ]]; then
+            echo $beginning
+        elif [[ $dir =~ "$first/$proj/$end"$ ]]; then
+            echo "$beginning/$end"
+        else
+            echo "$beginning/…/$end"
+        fi
+    else
+        echo $dir
+    fi
 }
 
-PS1="\[\033[0;32m\]\h:\W \u\[\033[0;33m\]\$(parse_git_branch)\[\033[0;32m\]\$ \[\033[0m\]"
+# GIT branch on prompt
+parse_git_branch() {
+   branch=`git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e "s/* \(.*\)/\1/"`
+
+    if [[ `tput cols` -lt 100 ]]; then  # <---- Again checking the term width
+        branch=`echo $branch | sed s/feature/f/1`
+        branch=`echo $branch | sed s/hotfix/h/1`
+        branch=`echo $branch | sed s/release/\r/1`
+        branch=`echo $branch | sed s/master/mstr/1`
+        branch=`echo $branch | sed s/develop/dev/1`
+    fi
+
+    if [[ $branch != "" ]]; then
+        echo "($branch) "
+    fi
+}
+
+#function parse_git_branch {
+  #git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\ \[\1\]/'
+#}
+
+PS1="\n\[\033[0m\]\u@\h \[\033[0;32m\]\$(working_directory) \[\033[0;33m\]\$(parse_git_branch)\[\033[0;32m\]\n\$ \[\033[0m\]"
 
 if [[ $COLORTERM = gnome-* && $TERM = xterm ]] && infocmp gnome-256color >/dev/null 2>&1; then
    export TERM=gnome-256color
@@ -178,9 +228,9 @@ function parse_git_dirty() {
    [[ $(git status 2> /dev/null | tail -n1) != "nothing to commit (working directory clean)" ]] && echo "*"
 }
 
-function parse_git_branch() {
-   git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e "s/* \(.*\)/\1/"
-}
+#function parse_git_branch() {
+   #git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e "s/* \(.*\)/\1/"
+#}
 
 function _git_prompt() {
     local git_status="`git status -unormal 2>&1`"
