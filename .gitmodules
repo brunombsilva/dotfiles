@@ -170,3 +170,9 @@
 [submodule "vim/_vim/bundle/git-time-lapse"]
 	path = vim/_vim/bundle/git-time-lapse
 	url = https://github.com/vim-scripts/git-time-lapse.git
+[submodule "vim/_vim/bundle/ctrlp-funky"]
+	path = vim/_vim/bundle/ctrlp-funky
+	url = git://github.com/tacahiroy/ctrlp-funky.git
+[submodule "vim/_vim/bundle/ctrlp-git-log"]
+	path = vim/_vim/bundle/ctrlp-git-log
+	url = https://github.com/kaneshin/ctrlp-git-log.git

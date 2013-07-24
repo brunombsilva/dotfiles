@@ -457,3 +457,8 @@ let g:tagbar_left = 1
 map <leader>ide :NERDTree<cr>:TagbarOpen<cr><C-w>t<C-w>s:buffer NERD_tree_1<cr><C-w>t<C-w>l<C-w>c<C-w>t
 
 map <leader>gt :call TimeLapse() <cr>
+
+let g:ctrlp_extensions = ['funky', 'git-log']
+nnoremap <Leader>fu :CtrlPFunky<Cr>
+" narrow the list down with a word under cursor
+nnoremap <Leader>fU :execute 'CtrlPFunky ' . expand('<cword>')<Cr>
