@@ -462,3 +462,5 @@ let g:ctrlp_extensions = ['funky', 'git-log']
 nnoremap <Leader>fu :CtrlPFunky<Cr>
 " narrow the list down with a word under cursor
 nnoremap <Leader>fU :execute 'CtrlPFunky ' . expand('<cword>')<Cr>
+
+let g:clam_winpos = 'botright'
