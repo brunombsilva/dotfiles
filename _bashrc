@@ -36,7 +36,7 @@ esac
 # uncomment for a colored prompt, if the terminal has the capability; turned
 # off by default to not distract the user: the focus in a terminal window
 # should be on the output of commands, not on the prompt
-#force_color_prompt=yes
+force_color_prompt=yes
 
 if [ -n "$force_color_prompt" ]; then
     if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
@@ -65,6 +65,7 @@ unset color_prompt force_color_prompt
     #;;
 #esac
 
+alias ls='ls --color=auto'
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
@@ -133,12 +134,14 @@ alias rmorig="find . -name *.orig -exec /bin/rm -f '{}' \;"
 working_directory() {
     dir=`pwd`
     in_home=0
-    if [[ `pwd` =~ ^$HOME($|\/) ]]; then
+    #if [[ `pwd` =~ ^$HOME($|\/) ]]; then
+    if echo `pwd` | grep -E "^$HOME($|\/)" > /dev/null
+    then
         dir="~${dir#$HOME}"
         in_home=1
     fi
 
-    if [[ `tput cols` -lt 100 ]]; then  # <-- Checking the term width
+    if [[ `tput cols &> /dev/null` -lt 100 ]]; then  # <-- Checking the term width
         first="/`echo $dir | cut -d / -f 2`"
         letter=${first:0:2}
         if [[ $in_home == 1 ]]; then
@@ -146,15 +149,20 @@ working_directory() {
         fi
         proj=`echo $dir | cut -d / -f 3`
         beginning="$letter/$proj"
+
         end=`echo "$dir" | rev | cut -d / -f1 | rev`
 
         if [[ $proj == "" ]]; then
             echo $dir
         elif [[ $proj == "~" ]]; then
             echo $dir
-        elif [[ $dir =~ "$first/$proj"$ ]]; then
+        #elif [[ $dir =~ "$first/$proj"$ ]]; then
+        elif echo $dir | grep -E "$first/$proj"$ > /dev/null
+        then
             echo $beginning
-        elif [[ $dir =~ "$first/$proj/$end"$ ]]; then
+        #elif [[ $dir =~ "$first/$proj/$end"$ ]]; then
+        elif echo $dir | grep -E "$first/$proj/$end$" > /dev/null
+        then
             echo "$beginning/$end"
         else
             echo "$beginning/…/$end"
@@ -168,7 +176,7 @@ working_directory() {
 parse_git_branch() {
    branch=`git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e "s/* \(.*\)/\1/"`
 
-    if [[ `tput cols` -lt 100 ]]; then  # <---- Again checking the term width
+    if [[ `tput cols &> /dev/null` -lt 100 ]]; then  # <---- Again checking the term width
         branch=`echo $branch | sed s/feature/f/1`
         branch=`echo $branch | sed s/hotfix/h/1`
         branch=`echo $branch | sed s/release/\r/1`
@@ -185,7 +193,7 @@ parse_git_branch() {
   #git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\ \[\1\]/'
 #}
 
-PS1="\n\[\033[0m\]\u@\h \[\033[0;32m\]\$(working_directory) \[\033[0;33m\]\$(parse_git_branch)\[\033[1;30m\]\nλ \[\033[0m\]"
+PS1="\n\[\033[0m\]\u@\h \[\033[0;32m\]\$(working_directory) \[\033[0;33m\]\$(parse_git_branch)\[\033[1;35m\]\nλ \[\033[0m\]"
 
 if [[ $COLORTERM = gnome-* && $TERM = xterm ]] && infocmp gnome-256color >/dev/null 2>&1; then
    export TERM=gnome-256color
@@ -234,15 +242,23 @@ function parse_git_dirty() {
 
 function _git_prompt() {
     local git_status="`git status -unormal 2>&1`"
-    if ! [[ "$git_status" =~ Not\ a\ git\ repo ]]; then
-        if [[ "$git_status" =~ nothing\ to\ commit ]]; then
+    #if ! [[ "$git_status" =~ Not\ a\ git\ repo ]]; then
+    if ! echo "$git_status" | grep -E "Not\ a\ git\ repo" > /dev/null 
+    then
+        #if [[ "$git_status" =~ nothing\ to\ commit ]]; then
+        if echo "$git_status" | grep -E "nothing\ to\ commit" > /dev/null 
+        then
             local ansi=43
-        elif [[ "$git_status" =~ nothing\ added\ to\ commit\ but\ untracked\ files\ present ]]; then
+        #elif [[ "$git_status" =~ nothing\ added\ to\ commit\ but\ untracked\ files\ present ]]; then
+        elif echo "$git_status" | grep -E "nothing\ added\ to\ commit\ but\ untracked\ files\ present" 
+        then
             local ansi=43
         else
             local ansi=45
         fi
-        if [[ "$git_status" =~ On\ branch\ ([^[:space:]]+) ]]; then
+        #if [[ "$git_status" =~ On\ branch\ ([^[:space:]]+) ]]; then
+        if echo "$git_status" | grep -E "On\ branch\ ([^[:space:]]+)" 
+        then
             branch=${BASH_REMATCH[1]}
             test "$branch" != master || branch=' '
             branch=' ' #don't show branch
@@ -272,13 +288,13 @@ alias lolcat='/var/lib/gems/1.8/bin/lolcat'
 
 export PATH=$PATH:.
 
-if which fortune >/dev/null; then
-    if [[ -e /var/lib/gems/1.8/bin/lolcat ]]; then
-        fortune riddles | lolcat
-    else
-        fortune
-    fi
-fi
+#if which fortune >/dev/null; then
+    #if [[ -e /var/lib/gems/1.8/bin/lolcat ]]; then
+        #fortune riddles | lolcat
+    #else
+        #fortune
+    #fi
+#fi
 
 #export HISTIGNORE="ls:ls *:cd:cd -:pwd;exit:date:* --help:fg"
 export HISTIGNORE="pwd;exit:date:* --help:fg"
@@ -333,7 +349,7 @@ fi
 
 #sudo phpcs --config-set default_standard PSR2
 export PATH="$HOME/.rbenv/bin:$PATH"
-eval "$(rbenv init -)"
+#eval "$(rbenv init -)"
 
 alias mem-used="top -b -n 1 | grep -Po '(?<=Mem:).*free' | sed 's/ *\([0-9]*\)k total, *\([0-9]*\)k used, *\([0-9]*\)k free/Mem: \3 \/ \1/'"
 
@@ -357,3 +373,5 @@ tmup ()
     echo "Done"
 }
 
+#TODO: check windows environment
+export PATH="$PATH:/c/Dropbox/Programs/util-linux-ng-2.14.1-bin/bin"
