@@ -1,4 +1,4 @@
-#case $- in *i*) . ~/.bashrc;; esac
+case $- in *i*) . ~/.bashrc;; esac
 
 # Link this session's agent
 #umask 77
