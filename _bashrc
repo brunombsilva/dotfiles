@@ -375,3 +375,5 @@ tmup ()
 
 #TODO: check windows environment
 export PATH="$PATH:/c/Dropbox/Programs/util-linux-ng-2.14.1-bin/bin"
+export PATH="$PATH:/c/Dropbox/Programs/Kitty"
+export GIT_SSH="klink"
