@@ -390,5 +390,6 @@ if [ $TERM = 'cygwin' ]; then
     export LIBEXECDIR="$base/findutils/libexec"
     alias updatedb="$base/findutils/bin/updatedb --output=/c/Dropbox/Programs/findutils/var/locatedb"
     alias vim="$base/gVimPortable/App/vim/vim73/vim --cmd 'set encoding=utf8' -c 'colorscheme default'"
+    alias gvim="$base/gVimPortable/gVimPortable"
 
 fi
