@@ -374,6 +374,21 @@ tmup ()
 }
 
 #TODO: check windows environment
-export PATH="$PATH:/c/Dropbox/Programs/util-linux-ng-2.14.1-bin/bin"
-export PATH="$PATH:/c/Dropbox/Programs/Kitty"
-export GIT_SSH="klink"
+if [ $TERM = 'cygwin' ]; then 
+    base='/c/Dropbox/Programs'
+
+    export PATH="$PATH:$base/util-linux-ng/bin"
+    export PATH="$PATH:$base/Kitty"
+    export PATH="$PATH:$base/unzip/bin"
+    export PATH="$PATH:$base/wget/bin"
+    export PATH="$PATH:$base/unrar/bin"~
+
+    export GIT_SSH="klink"
+
+    alias locate="$base/findutils/bin/locate --database='$base/findutils/var/locatedb'"
+    export BINDIR="$base/findutils/bin"
+    export LIBEXECDIR="$base/findutils/libexec"
+    alias updatedb="$base/findutils/bin/updatedb --output=/c/Dropbox/Programs/findutils/var/locatedb"
+    alias vim="$base/gVimPortable/App/vim/vim73/vim --cmd 'set encoding=utf8' -c 'colorscheme default'"
+
+fi
