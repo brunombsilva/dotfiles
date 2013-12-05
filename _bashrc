@@ -403,7 +403,7 @@ if [ $TERM = 'cygwin' ]; then
         #d*) use="doSomething" ;;
         #n*) use="nowDoSomethingElse" ;;
       #esac
-      COMPREPLY=( $( compgen -W "$(ls $base/Programs/kitty/Sessions)" -- $cur ) )
+      COMPREPLY=( $( compgen -W "$(ls $base/kitty/Sessions | sed '/Default%20Settings/d')" -- $cur ) )
      #fi
     }
 
