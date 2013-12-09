@@ -373,6 +373,33 @@ tmup ()
     echo "Done"
 }
 
+vg () 
+{
+    cd ~/Vagrant/$1 > /dev/null 2>&1
+    if [ $? != 0 ]; then
+        echo 'Invalid Vagrant Project'
+        return -1
+    fi
+    shift
+    vagrant $@
+    cd - > /dev/null
+}
+
+_vg()
+{
+    cur=${COMP_WORDS[COMP_CWORD]}
+    prev=${COMP_WORDS[COMP_CWORD-1]}
+    case "$COMP_CWORD" in
+        1) words=`ls -p ~/Vagrant/ | sed '/puppet\|template\|.*[^\/]$/d' | tr -d '/'`;;
+        2) words='box destroy halt help init package plugin provision reload resume ssh ssh-config status suspend up';;
+        *) words='';;
+    esac
+    COMPREPLY=( $( compgen -W "$words" -- $cur ) )
+}
+complete -o default -o nospace -F _vg vg
+alias vagrant=vg
+complete -o default -o nospace -F _vg vagrant
+
 #TODO: check windows environment
 if [ $TERM = 'cygwin' ]; then 
     base='/c/Dropbox/Programs'
@@ -392,21 +419,30 @@ if [ $TERM = 'cygwin' ]; then
     alias vim="$base/gVimPortable/App/vim/vim73/vim --cmd 'set encoding=utf8' -c 'colorscheme default'"
     alias gvim="$base/gVimPortable/gVimPortable"
 
-    alias kitty="kitty -load"
-
     _kitty()
     {
      cur=${COMP_WORDS[COMP_CWORD]}
      prev=${COMP_WORDS[COMP_CWORD-1]}
-     #if [ "${prev}" = '-load' ];then
-      #case "${cur}" in
-        #d*) use="doSomething" ;;
-        #n*) use="nowDoSomethingElse" ;;
-      #esac
-      COMPREPLY=( $( compgen -W "$(ls $base/kitty/Sessions | sed '/Default%20Settings/d')" -- $cur ) )
-     #fi
+     COMPREPLY=( $( compgen -W "$(ls $base/kitty/Sessions | sed '/Default%20Settings/d')" -- $cur ) )
     }
-
     complete -o default -o nospace -F _kitty kitty
+
+    auto_alias() {
+        folder=$1
+        exclude=$2
+        if [ -z $exclude ]; then
+            exclude='^$'
+        fi
+        aliases=`ls "$folder"/*/*.exe | \
+                 sed 's/\.exe//Ig' | \
+                 sed "/$exclude/Id" | \
+                 awk -F "/" '{alias=$NF; sub(/ /,"", alias); print alias "() \{ \"" $0 ".exe\" \$@; \};"  }'`
+        eval $aliases
+    }
+    auto_alias $base 
+    auto_alias '/c/Program Files' 'instal\|Setup\|uninst\|config'
+    auto_alias '/c/Program Files (x86)' 'instal\|Setup\|uninst\|config\|Mouse\|Defender'
+
+    alias kitty="kitty -load"
 
 fi
