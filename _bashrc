@@ -189,11 +189,13 @@ parse_git_branch() {
     fi
 }
 
-#function parse_git_branch {
-  #git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\ \[\1\]/'
-#}
+git_status_color() {
+   [[ $(git status 2> /dev/null | tail -n1) != "nothing to commit (working directory clean)" ]] && \
+   echo -e "\033[0;33m" || \
+   echo -e "\033[1;30m"
+}
 
-PS1="\n\[\033[0m\]\u@\h \[\033[0;32m\]\$(working_directory) \[\033[0;33m\]\$(parse_git_branch)\[\033[0;31m\]\nλ \[\033[0m\]"
+PS1="\n\[\033[1;30m\]\u@\h \[\033[0;32m\]\$(working_directory) \$(git_status_color)\$(parse_git_branch)\[\033[1;31m\]\nλ \[\033[0m\]"
 
 if [[ $COLORTERM = gnome-* && $TERM = xterm ]] && infocmp gnome-256color >/dev/null 2>&1; then
    export TERM=gnome-256color
@@ -230,49 +232,6 @@ export GREEN
 export WHITE
 export BOLD
 export RESET
-
-function parse_git_dirty() {
-    #exit 
-   [[ $(git status 2> /dev/null | tail -n1) != "nothing to commit (working directory clean)" ]] && echo "*"
-}
-
-#function parse_git_branch() {
-   #git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e "s/* \(.*\)/\1/"
-#}
-
-function _git_prompt() {
-    local git_status="`git status -unormal 2>&1`"
-    #if ! [[ "$git_status" =~ Not\ a\ git\ repo ]]; then
-    if ! echo "$git_status" | grep -E "Not\ a\ git\ repo" > /dev/null 
-    then
-        #if [[ "$git_status" =~ nothing\ to\ commit ]]; then
-        if echo "$git_status" | grep -E "nothing\ to\ commit" > /dev/null 
-        then
-            local ansi=43
-        #elif [[ "$git_status" =~ nothing\ added\ to\ commit\ but\ untracked\ files\ present ]]; then
-        elif echo "$git_status" | grep -E "nothing\ added\ to\ commit\ but\ untracked\ files\ present" 
-        then
-            local ansi=43
-        else
-            local ansi=45
-        fi
-        #if [[ "$git_status" =~ On\ branch\ ([^[:space:]]+) ]]; then
-        if echo "$git_status" | grep -E "On\ branch\ ([^[:space:]]+)" 
-        then
-            branch=${BASH_REMATCH[1]}
-            test "$branch" != master || branch=' '
-            branch=' ' #don't show branch
-        else
-            # Detached HEAD.  (branch=HEAD is a faster alternative.)
-            branch="(`git describe --all --contains --abbrev=4 HEAD 2> /dev/null ||
-                echo HEAD`)"
-        fi
-        echo -n '\[\e[0;37;'"$ansi"';1m\]'"$branch"'\[\e[0m\] '
-    fi
-}
-
-#PS1="`_git_prompt`""\[${BOLD}${GREEN}\]\u\[$WHITE\] @ \[$PURPLE\]\h\[$WHITE\]:\[$GREEN\]\w\[$WHITE\]\$([[ -n \$(git branch 2> /dev/null) ]] && echo \" (\")\[$ORANGE\]\$(parse_git_branch)\[$WHITE\]\$([[ -n \$(git branch 2> /dev/null) ]] && echo \")\")\n\$ \[$RESET\]"
-
 
 # SVN messages editor
 export SVN_EDITOR='vim'
