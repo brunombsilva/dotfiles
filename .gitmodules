@@ -185,3 +185,6 @@
 [submodule "vim/_vim/bundle/clam.vim"]
 	path = vim/_vim/bundle/clam.vim
 	url = https://github.com/sjl/clam.vim.git
+[submodule "vim/_vim/bundle/vim-ctrlspace"]
+	path = vim/_vim/bundle/vim-ctrlspace
+	url = https://github.com/szw/vim-ctrlspace
