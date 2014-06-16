@@ -187,3 +187,6 @@
 [submodule "vim/_vim/bundle/vim-twig"]
 	path = vim/_vim/bundle/vim-twig
 	url = https://github.com/evidens/vim-twig.git
+[submodule "vim/_vim/bundle/csv.vim"]
+	path = vim/_vim/bundle/csv.vim
+	url = https://github.com/chrisbra/csv.vim.git
