@@ -185,7 +185,7 @@ let g:php_folding=0
 "autocmd FileType html set omnifunc=htmlcomplete#CompleteTag
 "autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
 
-autocmd FileType php set keywordprg=pman
+autocmd FileType php set keywordprg="/servers/apache/php/bin/pman"
 au BufRead,BufNewFile *.tpl set filetype=smarty
 
 "let g:manpageview_pgm_php = "pman"

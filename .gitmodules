@@ -62,10 +62,6 @@
     path = "vim/_vim/bundle/nerdtree"
 	url = https://github.com/scrooloose/nerdtree.git
 
-[submodule "psearch.vim"]
-    path = "vim/_vim/bundle/psearch.vim"
-	url = https://github.com/gcmt/psearch.vim.git
-
 [submodule "rainbow_parentheses.vim"]
     path = "vim/_vim/bundle/rainbow_parentheses.vim"
 	url = https://github.com/kien/rainbow_parentheses.vim.git
@@ -185,3 +181,15 @@
 [submodule "vim/_vim/bundle/clam.vim"]
 	path = vim/_vim/bundle/clam.vim
 	url = https://github.com/sjl/clam.vim.git
+[submodule "vim/_vim/bundle/vim-ctrlspace"]
+	path = vim/_vim/bundle/vim-ctrlspace
+	url = https://github.com/szw/vim-ctrlspace
+[submodule "vim/_vim/bundle/vim-twig"]
+	path = vim/_vim/bundle/vim-twig
+	url = https://github.com/evidens/vim-twig.git
+[submodule "vim/_vim/bundle/csv.vim"]
+	path = vim/_vim/bundle/csv.vim
+	url = https://github.com/chrisbra/csv.vim.git
+[submodule "vim/_vim/bundle/vim-phpmanual"]
+	path = vim/_vim/bundle/vim-phpmanual
+	url = git@github.com:alvan/vim-phpmanual

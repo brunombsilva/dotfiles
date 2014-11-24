@@ -5,7 +5,7 @@
     # View the SHA, description, and history graph of the latest 20 commits 
     l = log --pretty=oneline -n 20 --graph
     # View the current working tree status using the short format
-    s = status -s
+    s = status -sb
     # Diff
     d = diff --patch-with-stat
     # Pull in remote changes for the current repository and all its submodules
@@ -18,8 +18,16 @@
     go = checkout -B
     # Undo a `git push`
     undopush = push -f origin HEAD^:master
+    delete-merged-branches = "!f() { git checkout --quiet master && git branch --merged | grep --invert-match '\\*' | xargs -n 1 git branch --delete; git checkout --quiet @{-1}; }; f" 
 
-    lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+    ls = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+    ll = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --numstat
+    ld = log --pretty=format:"%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=relative
+    dl = "!git ll -1"
+    la = "!git config -l | grep alias | cut -c 7-"
+    brunch = "!f() { branches=`git branch $@ |sed s/^..//`; for k in $branches;do echo `git log -1 --pretty=format:\"%C(yellow)%cr%Creset\" \"$k\"`\\\t\"$k\";done; }; f "
+    
+    ;branch-history= "!git for-each-ref --sort=-committerdate --format='%1B[0;33m%(committerdate:relative)%09%1B[m%(refname:short)'| tac"
 
 
 [apply]
@@ -33,6 +41,7 @@
     # Treat spaces before tabs, lines that are indented with 8 or more spaces, and all kinds of trailing whitespace as an error
     whitespace = space-before-tab,indent-with-non-tab,trailing-space
     autocrlf = false
+    fileMode = false
 
 [color]
     # Use colors in Git commands that are capable of colored output when outputting to the terminal
@@ -72,3 +81,6 @@
     pushInsteadOf = "git://gist.github.com/"
 [url "git://gist.github.com/"]
     insteadOf = "gist:"
+
+[gui]
+    encoding = utf-8
