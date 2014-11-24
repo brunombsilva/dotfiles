@@ -6,7 +6,7 @@ set main-view	= line-number:no,interval=5 id:no date:relative author:full commit
 # *color* 'area' 'fgcolor' 'bgcolor' '[attributes]'
 
 # general
-color   default                 15      256
+color   default                 15      default
 color   cursor                  15      241
 color   title-focus             242     221
 color   title-blur              242     221
