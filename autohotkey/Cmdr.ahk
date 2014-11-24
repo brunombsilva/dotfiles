@@ -1,4 +1,4 @@
-GroupAdd, TargetWindow, ahk_class Console_2_Main
+GroupAdd, TargetWindow, ahk_class VirtualConsoleClass
 
 #Esc::
     IfWinExist ahk_group TargetWindow
@@ -47,7 +47,7 @@ GroupAdd, TargetWindow, ahk_class Console_2_Main
     }
     else
     {	
-      Run C:\Dropbox\Programs\Console2\Console.exe, C:\Dropbox\Programs\Console2\
+      Run C:\Users\Bruno\Dropbox\Programs\cmder\Cmder.bat, C:\Users\Bruno\Dropbox\Programs\cmder\
     }
     DetectHiddenWindows, off
     return
