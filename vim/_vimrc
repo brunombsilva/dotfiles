@@ -165,8 +165,8 @@ hi TabNumSel term=underline cterm=underline ctermfg=239 ctermbg=187 gui=bold
 "imap <C-t> <ESC>:tabnew<cr>i
 "map <C-w> :tabclose<cr>
 
-imap <leader>fl <Esc><leader>fl
-map <leader>fl :TlistToggle<cr><C-w>h<C-w>h<C-w>h
+"imap <leader>fl <Esc><leader>fl
+"map <leader>fl :TlistToggle<cr><C-w>h<C-w>h<C-w>h
 
 imap <leader>nt <Esc><leader>nt
 map <leader>nt :NERDTreeToggle<cr>
@@ -454,7 +454,8 @@ autocmd FileType smarty let b:match_words = '<:>,<\@<=[ou]l\>[^>]*\%(>\|$\):<\@<
 
 let g:tagbar_left = 1
 
-map <leader>ide :NERDTree<cr>:TagbarOpen<cr><C-w>t<C-w>s:buffer NERD_tree_1<cr><C-w>t<C-w>l<C-w>c<C-w>t
+imap <leader>ide <Esc><leader>ide
+map <leader>ide :NERDTreeClose<cr>:TagbarClose<cr>:NERDTree<cr>:TagbarOpen<cr><C-w>t<C-w>s:buffer NERD_tree_1<cr><C-w>t<C-w>l<C-w>c<C-w>t
 
 map <leader>gt :call TimeLapse() <cr>
 
@@ -462,5 +463,10 @@ let g:ctrlp_extensions = ['funky', 'git-log']
 nnoremap <Leader>fu :CtrlPFunky<Cr>
 " narrow the list down with a word under cursor
 nnoremap <Leader>fU :execute 'CtrlPFunky ' . expand('<cword>')<Cr>
+"let g:ctrlp_funky_syntax_highlight = 1
+let g:ctrlp_funky_matchtype = 'path'
+
+nnoremap <C-y> :CtrlPYankring<cr>
+nnoremap <C-c>l :CtrlPCmdline<cr>
 
 let g:clam_winpos = 'botright'
