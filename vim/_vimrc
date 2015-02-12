@@ -466,7 +466,20 @@ nnoremap <Leader>fU :execute 'CtrlPFunky ' . expand('<cword>')<Cr>
 "let g:ctrlp_funky_syntax_highlight = 1
 let g:ctrlp_funky_matchtype = 'path'
 
-nnoremap <C-y> :CtrlPYankring<cr>
+        nnoremap <C-y> :CtrlPYankring<cr>
 nnoremap <C-c>l :CtrlPCmdline<cr>
 
 let g:clam_winpos = 'botright'
+
+    "changesPlugin
+au VimEnter * EC
+
+map - <C-W>-
+map + <C-W>+
+map º <C-W>>
+map ç <c-W><
+
+let g:session_autosave = 'no'
+
+let g:investigate_use_command_for_php = 1
+let g:investigate_command_for_php = '^i:call system(''midori -a "http://php.net/search.php?show=quickref&pattern=^s"'')'
