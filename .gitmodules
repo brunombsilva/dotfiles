@@ -180,3 +180,9 @@
 [submodule "vim/_vim/bundle/ctrlp-extensions.vim"]
 	path = vim/_vim/bundle/ctrlp-extensions.vim
 	url = https://github.com/sgur/ctrlp-extensions.vim.git
+[submodule "vim/_vim/bundle/vim-misc"]
+	path = vim/_vim/bundle/vim-misc
+	url = https://github.com/xolox/vim-misc.git
+[submodule "vim/_vim/bundle/investigate.vim"]
+	path = vim/_vim/bundle/investigate.vim
+	url = https://github.com/Keithbsmiley/investigate.vim.git
