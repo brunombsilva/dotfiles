@@ -20,15 +20,18 @@
     undopush = push -f origin HEAD^:master
     delete-merged-branches = "!f() { git checkout --quiet master && git branch --merged | grep --invert-match '\\*' | xargs -n 1 git branch --delete; git checkout --quiet @{-1}; }; f" 
 
+    # pretty log with graph
     ls = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+    # log with changed files per commit
     ll = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --numstat
+    # log with relative date
     ld = log --pretty=format:"%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=relative
+    # last commit changed files
     dl = "!git ll -1"
+    # list git aliases
     la = "!git config -l | grep alias | cut -c 7-"
+    # list of branches with last modification date
     brunch = "!f() { branches=`git branch $@ |sed s/^..//`; for k in $branches;do echo `git log -1 --pretty=format:\"%C(yellow)%cr%Creset\" \"$k\"`\\\t\"$k\";done; }; f "
-    
-    ;branch-history= "!git for-each-ref --sort=-committerdate --format='%1B[0;33m%(committerdate:relative)%09%1B[m%(refname:short)'| tac"
-
 
 [apply]
     # Detect whitespace errors when applying a patch
@@ -67,6 +70,11 @@
 [branch "master"]
     remote = origin
     merge = refs/heads/master
+
+# Use `origin` as the default remote on the `develop` branch in all cases
+[branch "develop"]
+    remote = origin
+    merge = refs/heads/develop
 
 # URL shorthands
 [url "git@github.com:"]
