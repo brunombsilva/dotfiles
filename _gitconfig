@@ -19,6 +19,8 @@
     # Undo a `git push`
     undopush = push -f origin HEAD^:master
     delete-merged-branches = "!f() { git checkout --quiet master && git branch --merged | grep --invert-match '\\*' | xargs -n 1 git branch --delete; git checkout --quiet @{-1}; }; f" 
+    # updated submodules regardless of being on the default branch.
+    update-submodules = "!f() { git submodule init && git submodule update && git submodule foreach 'git fetch origin; git checkout $(git rev-parse --abbrev-ref HEAD); git reset --hard origin/$(git rev-parse --abbrev-ref HEAD); git submodule update --recursive; git clean -dfx'; }; f"
 
     # pretty log with graph
     ls = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
