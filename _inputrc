@@ -1,6 +1,12 @@
+# use arrows to search command history after starting typing current command
 "\e[A": history-search-backward
 "\e[B": history-search-forward
-set show-all-if-ambiguous on
+
 set completion-ignore-case on
+
+# show ALL THE THINGS
+set show-all-if-ambiguous on
+
+# readline treats hyphens ('-') and underscores ('_')
 set completion-map-case on
 
