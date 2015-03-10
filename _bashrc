@@ -77,10 +77,14 @@ export PATH=$PATH:.
 export EDITOR="vim"
 export SVN_EDITOR='vim'
 
-#TODO: Review From Here
+# git author data comes from .gitconfig and is saved as environment variables
+# that are sent to ssh connections to maintain you identity across machines
+export GIT_AUTHOR_NAME=`git config user.name`
+export GIT_AUTHOR_EMAIL=`git config user.email`
+export GIT_COMMITTER_NAME="$GIT_AUTHOR_NAME"
+export GIT_COMMITTER_EMAIL="$GIT_AUTHOR_EMAIL"
 
-# RVM
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
+#TODO: Review From Here
 
 working_directory() {
     dir=`pwd`
@@ -213,19 +217,6 @@ else
     export MANPAGER="less -X"
 fi
 
-export POWERLINE_DISABLED=1
-
-if ! [[ -n "$POWERLINE_DISABLED" ]]; then
-    [ -z "$POWERLINE_PATH" ] && export POWERLINE_PATH=~/Dropbox/Programs/powerline
-    export PATH=$PATH:$POWERLINE_PATH/scripts/
-    export PYTHONPATH=$POWERLINE_PATH/build/lib
-    . $POWERLINE_PATH/powerline/bindings/bash/powerline.sh
-fi
-
-#sudo phpcs --config-set default_standard PSR2
-export PATH="$HOME/.rbenv/bin:$PATH"
-#eval "$(rbenv init -)"
-
 tmup () 
 { 
     echo -n "Updating to latest tmux environment...";
@@ -265,6 +256,7 @@ _vg()
     esac
     COMPREPLY=( $( compgen -W "$words" -- $cur ) )
 }
+
 complete -o default -o nospace -F _vg vg
 alias vagrant=vg
 complete -o default -o nospace -F _vg vagrant
@@ -315,4 +307,3 @@ if [ $TERM = 'cygwin' ]; then
     alias kitty="kitty -load"
 
 fi
-

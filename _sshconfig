@@ -1,0 +1,14 @@
+
+Host *
+    SendEnv LANG LC_* GIT_*
+    ForwardAgent no
+    User brunosilva
+
+Host 10.135.*
+    ForwardAgent yes
+
+Host github.com
+     HostName github.com
+     PreferredAuthentications publickey
+     User brunombsilva
+     #IdentityFile ~/.ssh/id_rsa
