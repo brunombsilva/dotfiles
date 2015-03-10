@@ -1,6 +1,5 @@
+#!/usr/bin/env bash
 # ~/.bashrc: executed by bash(1) for non-login shells.
-# see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
-# for examples
 
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
@@ -49,43 +48,7 @@ if [ -n "$force_color_prompt" ]; then
     fi
 fi
 
-#if [ "$color_prompt" = yes ]; then
-    #PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
-#else
-    #PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
-#fi
 unset color_prompt force_color_prompt
-
-# If this is an xterm set the title to user@host:dir
-#case "$TERM" in
-#xterm*|rxvt*)
-    #PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
-    #;;
-#*)
-    #;;
-#esac
-
-alias ls='ls --color=auto'
-# enable color support of ls and also add handy aliases
-if [ -x /usr/bin/dircolors ]; then
-    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
-    alias ls='ls --color=auto'
-    #alias dir='dir --color=auto'
-    #alias vdir='vdir --color=auto'
-
-    alias grep='grep --color=auto'
-    alias fgrep='fgrep --color=auto'
-    alias egrep='egrep --color=auto'
-fi
-
-# some more ls aliases
-alias ll='ls -alF'
-alias la='ls -A'
-alias l='ls -CF'
-
-# Add an "alert" alias for long running commands.  Use like so:
-#   sleep 10; alert
-alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 
 # Alias definitions.
 # You may want to put all your additions into a separate file like
@@ -96,29 +59,15 @@ if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi
 
+
+#TODO: Review From Here
+
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
 # sources /etc/bash.bashrc).
 if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
     . /etc/bash_completion
 fi
-
-# Rails
-alias r='rake'
-alias rcuc='rake cucumber:ok'
-alias rcucmt='rake cucumber:mt'
-
-# GIT
-alias gb='git branch --color'
-alias gba='git branch --color -a'
-alias gc='git commit -v'
-alias gst='git status'
-alias gco='git checkout'
-alias gpush='git push'
-alias gpull='git pull'
-alias gadd='git add -i'
-alias gmerge='git merge'
-alias gd='git diff HEAD'
 
 export GIT_COMMITTER_NAME='Bruno Silva'
 export GIT_COMMITTER_EMAIL='bruno.b.silva@co.sapo.pt'
@@ -127,9 +76,6 @@ export GIT_AUTHOR_EMAIL='bruno.b.silva@co.sapo.pt'
 
 # RVM
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
-
-# p4merge
-alias rmorig="find . -name *.orig -exec /bin/rm -f '{}' \;"
 
 working_directory() {
     dir=`pwd`
@@ -240,13 +186,6 @@ export SVN_EDITOR='vim'
 
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"  # This loads RVM into a shell session.
 
-alias likeabossHTTP='python -c "import SimpleHTTPServer;SimpleHTTPServer.test()" &'
-
-alias php_syntax='find ./ -type f -name \*.php -exec php -l {} \; | grep -v "^No syntax errors detected in"'
-
-alias lolcat='/var/lib/gems/1.8/bin/lolcat'
-#alias dramalho='sudo'
-
 export PATH=$PATH:.
 
 #if which fortune >/dev/null; then
@@ -260,19 +199,6 @@ export PATH=$PATH:.
 #export HISTIGNORE="ls:ls *:cd:cd -:pwd;exit:date:* --help:fg"
 export HISTIGNORE="pwd;exit:date:* --help:fg"
 export EDITOR="vim"
-
-# Easier navigation: .., ..., ~ and -
-alias ..="cd .."
-alias ...="cd ../.."
-alias ~="cd ~" # `cd` is probably faster to type though
-alias -- -="cd -"
-# IP addresses
-alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
-alias ips="ifconfig -a | perl -nle'/(\d+\.\d+\.\d+\.\d+)/ && print $1'"
-
-# View HTTP traffic
-alias sniff="sudo ngrep -d 'eth0' -t '^(GET|POST) ' 'tcp and port 80'"
-alias httpdump="sudo tcpdump -i eth0 -n -s 0 -w - | grep -a -o -E \"Host\: .*|GET \/.*\""
 
 # Autocorrect typos in path names when using `cd`
 shopt -s cdspell
@@ -311,12 +237,6 @@ fi
 #sudo phpcs --config-set default_standard PSR2
 export PATH="$HOME/.rbenv/bin:$PATH"
 #eval "$(rbenv init -)"
-
-alias mem-used="top -b -n 1 | grep -Po '(?<=Mem:).*free' | sed 's/ *\([0-9]*\)k total, *\([0-9]*\)k used, *\([0-9]*\)k free/Mem: \3 \/ \1/'"
-
-
-alias readable="chmod -R a+r .; find . -type d -exec chmod a+xr {} \;"
-
 
 tmup () 
 { 
