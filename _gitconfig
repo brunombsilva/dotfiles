@@ -47,6 +47,7 @@
     whitespace = space-before-tab,indent-with-non-tab,trailing-space
     autocrlf = false
     fileMode = false
+    editor = vim
 
 [color]
     # Use colors in Git commands that are capable of colored output when outputting to the terminal

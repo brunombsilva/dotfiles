@@ -8,6 +8,9 @@
 # ... or force ignoredups and ignorespace
 HISTCONTROL=ignoredups:ignorespace
 
+# ignore annoying commands from history
+HISTIGNORE="pwd;exit:date:* --help:fg"
+
 # append to the history file, don't overwrite it
 shopt -s histappend
 
@@ -60,8 +63,6 @@ if [ -f ~/.bash_aliases ]; then
 fi
 
 
-#TODO: Review From Here
-
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
 # sources /etc/bash.bashrc).
@@ -69,10 +70,14 @@ if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
     . /etc/bash_completion
 fi
 
-export GIT_COMMITTER_NAME='Bruno Silva'
-export GIT_COMMITTER_EMAIL='bruno.b.silva@co.sapo.pt'
-export GIT_AUTHOR_NAME='Bruno Silva'
-export GIT_AUTHOR_EMAIL='bruno.b.silva@co.sapo.pt'
+# include current folder in path
+export PATH=$PATH:.
+
+# default editor
+export EDITOR="vim"
+export SVN_EDITOR='vim'
+
+#TODO: Review From Here
 
 # RVM
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
@@ -181,24 +186,7 @@ export WHITE
 export BOLD
 export RESET
 
-# SVN messages editor
-export SVN_EDITOR='vim'
-
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"  # This loads RVM into a shell session.
-
-export PATH=$PATH:.
-
-#if which fortune >/dev/null; then
-    #if [[ -e /var/lib/gems/1.8/bin/lolcat ]]; then
-        #fortune riddles | lolcat
-    #else
-        #fortune
-    #fi
-#fi
-
-#export HISTIGNORE="ls:ls *:cd:cd -:pwd;exit:date:* --help:fg"
-export HISTIGNORE="pwd;exit:date:* --help:fg"
-export EDITOR="vim"
 
 # Autocorrect typos in path names when using `cd`
 shopt -s cdspell
