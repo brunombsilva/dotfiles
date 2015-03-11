@@ -22,6 +22,16 @@ HISTFILESIZE=2000
 # update the values of LINES and COLUMNS.
 shopt -s checkwinsize
 
+# Autocorrect typos in path names when using `cd`
+shopt -s cdspell
+
+# A command name that is the name of a directory is executed as if it were the argument to the cd command.
+shopt -s autocd
+
+# The pattern '**' used in a filename expansion context will match all files and zero or more directories and subdirectories. 
+# If the pattern is followed by a '/', only directories and subdirectories match.
+shopt -s globstar
+
 # make less more friendly for non-text input files, see lesspipe(1)
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
@@ -84,82 +94,23 @@ export GIT_AUTHOR_EMAIL=`git config user.email`
 export GIT_COMMITTER_NAME="$GIT_AUTHOR_NAME"
 export GIT_COMMITTER_EMAIL="$GIT_AUTHOR_EMAIL"
 
-#TODO: Review From Here
 
-working_directory() {
-    dir=`pwd`
-    in_home=0
-    #if [[ `pwd` =~ ^$HOME($|\/) ]]; then
-    if echo `pwd` | grep -E "^$HOME($|\/)" > /dev/null
-    then
-        dir="~${dir#$HOME}"
-        in_home=1
-    fi
+# prompt configuration (PS1, etc) is stored in a different file
+if [ -f ~/.bash_prompt ]; then
+    . ~/.bash_prompt
+fi
 
-    if [[ `tput cols &> /dev/null` -lt 100 ]]; then  # <-- Checking the term width
-        first="/`echo $dir | cut -d / -f 2`"
-        letter=${first:0:2}
-        if [[ $in_home == 1 ]]; then
-            letter="~$letter"
-        fi
-        proj=`echo $dir | cut -d / -f 3`
-        beginning="$letter/$proj"
+# Add tab completion for SSH hostnames based on ~/.ssh/config, ignoring wildcards
+[ -e "$HOME/.ssh/config" ] && complete -o "default" -o "nospace" -W "$(grep "^Host" ~/.ssh/config | grep -v "[?*]" | cut -d " " -f2)" scp sftp ssh
 
-        end=`echo "$dir" | rev | cut -d / -f1 | rev`
-
-        if [[ $proj == "" ]]; then
-            echo $dir
-        elif [[ $proj == "~" ]]; then
-            echo $dir
-        #elif [[ $dir =~ "$first/$proj"$ ]]; then
-        elif echo $dir | grep -E "$first/$proj"$ > /dev/null
-        then
-            echo $beginning
-        #elif [[ $dir =~ "$first/$proj/$end"$ ]]; then
-        elif echo $dir | grep -E "$first/$proj/$end$" > /dev/null
-        then
-            echo "$beginning/$end"
-        else
-            echo "$beginning/…/$end"
-        fi
-    else
-        echo $dir
-    fi
-}
-
-# GIT branch on prompt
-parse_git_branch() {
-    #echo ""
-   branch=`git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e "s/* \(.*\)/\1/"`
-
-    if [[ `tput cols &> /dev/null` -lt 100 ]]; then  # <---- Again checking the term width
-        branch=`echo $branch | sed s/feature/f/1`
-        branch=`echo $branch | sed s/hotfix/h/1`
-        branch=`echo $branch | sed s/release/\r/1`
-        branch=`echo $branch | sed s/master/mstr/1`
-        branch=`echo $branch | sed s/develop/dev/1`
-    fi
-
-    if [[ $branch != "" ]]; then
-        echo "($branch) "
-    fi
-}
-
-git_status_color() {
-    #echo ""
-   [[ $(git status 2> /dev/null | tail -n1) != "nothing to commit (working directory clean)" ]] && \
-   echo -e "\033[0;33m" || \
-   echo -e "\033[1;30m"
-}
-
-PS1="\n\[\033[1;30m\]\u@\h \[\033[0;32m\]\$(working_directory) \$(git_status_color)\$(parse_git_branch)\[\033[1;31m\]\nλ \[\033[0m\]"
-
+# term type stuff... I don't really remember anyhing about this.
 if [[ $COLORTERM = gnome-* && $TERM = xterm ]] && infocmp gnome-256color >/dev/null 2>&1; then
    export TERM=gnome-256color
 elif infocmp xterm-256color >/dev/null 2>&1; then
    export TERM=xterm-256color
 fi
 
+# Local color variables
 if tput setaf 1 &> /dev/null; then
    tput sgr0
    if [[ $(tput colors) -ge 256 ]] 2>/dev/null; then
@@ -190,33 +141,14 @@ export WHITE
 export BOLD
 export RESET
 
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"  # This loads RVM into a shell session.
-
-# Autocorrect typos in path names when using `cd`
-shopt -s cdspell
-
-# Add tab completion for SSH hostnames based on ~/.ssh/config, ignoring wildcards
-[ -e "$HOME/.ssh/config" ] && complete -o "default" -o "nospace" -W "$(grep "^Host" ~/.ssh/config | grep -v "[?*]" | cut -d " " -f2)" scp sftp ssh
 
 # Highlight section titles in manual pages
-export LESS_TERMCAP_md="$ORANGE"
+export LESS_TERMCAP_md="$GREEN"
 
-[[ -s /user/local/bin/tmuxinator ]] && source .user/local/bin/tmuxinator
+# http://zameermanji.com/blog/2012/12/30/using-vim-as-manpager/
+#export MANPAGER="/bin/sh -c \"col -b | vim -c 'set ft=man ts=8 nomod nolist nonu noma' -\""
 
-
-[ -z "$VIMPAGER_PATH" ] && export VIMPAGER_PATH=~/Dropbox/Programs/vimpager
-
-if [[ -e "$VIMPAGER_PATH" ]]; then
-    export PAGER=$VIMPAGER_PATH/vimpager
-    export CAT=$VIMPAGER_PATH/vimcat
-    export MANPAGER="$VIMPAGER_PATH/vimpager"
-    alias cat=$CAT
-    #alias less=$PAGER
-    #alias zless=$PAGER
-else
-    export MANPAGER="less -X"
-fi
-
+# Update tmux pane environment variables after attaching session. Usefull for $SSH_AUTH_SOCK
 tmup () 
 { 
     echo -n "Updating to latest tmux environment...";
@@ -232,78 +164,3 @@ tmup ()
     unset IFS;
     echo "Done"
 }
-
-vg () 
-{
-    cd ~/Vagrant/$1 > /dev/null 2>&1
-    if [ $? != 0 ]; then
-        echo 'Invalid Vagrant Project'
-        return -1
-    fi
-    shift
-    vagrant $@
-    cd - > /dev/null
-}
-
-_vg()
-{
-    cur=${COMP_WORDS[COMP_CWORD]}
-    prev=${COMP_WORDS[COMP_CWORD-1]}
-    case "$COMP_CWORD" in
-        1) words=`ls -p ~/Vagrant/ | sed '/puppet\|template\|.*[^\/]$/d' | tr -d '/'`;;
-        2) words='box destroy halt help init package plugin provision reload resume ssh ssh-config status suspend up';;
-        *) words='';;
-    esac
-    COMPREPLY=( $( compgen -W "$words" -- $cur ) )
-}
-
-complete -o default -o nospace -F _vg vg
-alias vagrant=vg
-complete -o default -o nospace -F _vg vagrant
-
-#TODO: check windows environment
-if [ $TERM = 'cygwin' ]; then 
-    base='/c/Dropbox/Programs'
-
-    export PATH="$PATH:$base/util-linux-ng/bin"
-    export PATH="$PATH:$base/Kitty"
-    export PATH="$PATH:$base/unzip/bin"
-    export PATH="$PATH:$base/wget/bin"
-    export PATH="$PATH:$base/unrar/bin"~
-
-    export GIT_SSH="klink"
-
-    alias locate="$base/findutils/bin/locate --database='$base/findutils/var/locatedb'"
-    export BINDIR="$base/findutils/bin"
-    export LIBEXECDIR="$base/findutils/libexec"
-    alias updatedb="$base/findutils/bin/updatedb --output=/c/Dropbox/Programs/findutils/var/locatedb"
-    alias vim="$base/gVimPortable/App/vim/vim73/vim --cmd 'set encoding=utf8' -c 'colorscheme default'"
-    alias gvim="$base/gVimPortable/gVimPortable"
-
-    _kitty()
-    {
-     cur=${COMP_WORDS[COMP_CWORD]}
-     prev=${COMP_WORDS[COMP_CWORD-1]}
-     COMPREPLY=( $( compgen -W "$(ls $base/kitty/Sessions | sed '/Default%20Settings/d')" -- $cur ) )
-    }
-    complete -o default -o nospace -F _kitty kitty
-
-    auto_alias() {
-        folder=$1
-        exclude=$2
-        if [ -z $exclude ]; then
-            exclude='^$'
-        fi
-        aliases=`ls "$folder"/*/*.exe | \
-                 sed 's/\.exe//Ig' | \
-                 sed "/$exclude/Id" | \
-                 awk -F "/" '{alias=$NF; sub(/ /,"", alias); print alias "() \{ \"" $0 ".exe\" \$@; \};"  }'`
-        eval $aliases
-    }
-    auto_alias $base 
-    auto_alias '/c/Program Files' 'instal\|Setup\|uninst\|config'
-    auto_alias '/c/Program Files (x86)' 'instal\|Setup\|uninst\|config\|Mouse\|Defender'
-
-    alias kitty="kitty -load"
-
-fi
