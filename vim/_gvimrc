@@ -1,5 +1,4 @@
-" Example Vim graphical configuration.
-" Copy to ~/.gvimrc or ~/_gvimrc.
+" Vim graphical configuration.
 
 set guifont=Monospace\ 10         " Font family and font size.
 set antialias                     " MacVim: smooth fonts.
@@ -10,19 +9,10 @@ set guioptions-=e                 " Hide enhanced tabs.
 "set background=light              " Background.
 "set lines=25 columns=100          " Window dimensions.
 
-"colorscheme wombat
-
 set guioptions-=r                 " Don't show right scrollbar
 set guioptions-=L                 " Don't show left scrollbar
 
 if has('win32')
     set guifont=Consolas:h10
     let g:NERDTreeDirArrows=1
-    "hi Normal guibg=#121212
-    ":cANSI
-    let Grep_Path      = $VIMRUNTIME.'\..\..\..\..\Grep\bin\grep.exe'
-    let fGrep_Path     = $VIMRUNTIME.'\..\..\..\..\Grep\bin\fgrep.exe'
-    let Rgrep_Path     = $VIMRUNTIME.'\..\..\..\..\Grep\bin\egrep.exe'
-    let Grep_Find_Path = $VIMRUNTIME.'\..\..\..\..\findutils\bin\find.exe'
-    let Grep_Xargs_Path = $VIMRUNTIME.'\..\..\..\..\findutils\bin\xargs.exe'
 endif
