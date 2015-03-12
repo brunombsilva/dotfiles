@@ -216,11 +216,8 @@ hi DbgCurrent term=reverse ctermfg=White ctermbg=Red gui=reverse
 hi DbgBreakPt term=reverse ctermfg=Red ctermbg=DarkGrey gui=reverse
 let g:debuggerMaxDepth = 2
 
-" Rainbow Parentheses Configuration
-au VimEnter * RainbowParenthesesToggle
-au Syntax * RainbowParenthesesLoadRound
-au Syntax * RainbowParenthesesLoadSquare
-au Syntax * RainbowParenthesesLoadBraces
+" Rainbow Parentheses Highlighting
+let g:rainbow_active=1
 
 "TODO: Review bellow
 

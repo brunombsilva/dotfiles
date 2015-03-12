@@ -62,10 +62,6 @@
     path = "vim/_vim/bundle/nerdtree"
 	url = https://github.com/scrooloose/nerdtree.git
 
-[submodule "rainbow_parentheses.vim"]
-    path = "vim/_vim/bundle/rainbow_parentheses.vim"
-	url = https://github.com/kien/rainbow_parentheses.vim.git
-
 [submodule "syntastic"]
     path = "vim/_vim/bundle/syntastic"
 	url = https://github.com/scrooloose/syntastic.git
@@ -186,3 +182,6 @@
 [submodule "vim/_vim/bundle/investigate.vim"]
 	path = vim/_vim/bundle/investigate.vim
 	url = https://github.com/Keithbsmiley/investigate.vim.git
+[submodule "vim/_vim/bundle/rainbow.git"]
+	path = vim/_vim/bundle/rainbow.git
+	url = git@github.com:luochen1990/rainbow.git
