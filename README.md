@@ -1,4 +1,3 @@
+# Documentation Under Construction
 
-Git pull all submodules
-
-git pull --recurse-submodules
+This repository includes all my non-confidential Linux development environment configuration files (bash, vim, git, etc).
