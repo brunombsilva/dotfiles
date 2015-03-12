@@ -6,12 +6,7 @@ endif
 
 let g:pathogen_disabled = ['DBGp-client']
 
-if has('win32') || has('win64')
-    "TODO: Remove?
-    set runtimepath=$VIMRUNTIME\\..\\..\\..\\..\\..\\Config\\vim\\_vim,$VIMRUNTIME\\..\\..\\..\\..\\..\\Config\\vim\\_vim\\plugin,$VIMRUNTIME
-else
-    set term=screen-256color
-endif
+"set term=screen-256color
 
 runtime bundle/vim-pathogen/autoload/pathogen.vim
 call pathogen#infect($PATHOGEN_PATH.'/{}') 

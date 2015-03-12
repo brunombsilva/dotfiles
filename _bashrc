@@ -72,7 +72,6 @@ if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi
 
-
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
 # sources /etc/bash.bashrc).
@@ -164,3 +163,15 @@ tmup ()
     unset IFS;
     echo "Done"
 }
+
+
+# Load https://github.com/rupa/z
+# z [-chlrtx] [regex1 regex2 ... regexn]
+#
+# Tracks your most used directories, based on 'frecency'.
+# After  a  short  learning  phase, z will take you to the most 'frecent'
+# directory that matches ALL of the regexes given on the command line, in order.
+# For example, z foo bar would match /foo/bar but not /bar/foo.
+if [ -f ~/z/z.sh ]; then
+    . ~/z/z.sh
+fi
