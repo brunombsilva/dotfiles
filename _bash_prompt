@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# More documation in
+# More documentation in
 # http://www.thegeekstuff.com/2008/09/bash-shell-take-control-of-ps1-ps2-ps3-ps4-and-prompt_command/
 
 # Get current directory replacing long paths by /<letter>/<second-level>/…/<current-folder>

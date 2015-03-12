@@ -188,3 +188,6 @@
 [submodule "vim/_vim/bundle/delimitMate"]
 	path = vim/_vim/bundle/delimitMate
 	url = git@github.com:Raimondi/delimitMate.git
+[submodule "vim/_vim/bundle/vim-airline"]
+	path = vim/_vim/bundle/vim-airline
+	url = git@github.com:bling/vim-airline.git
