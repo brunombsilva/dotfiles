@@ -63,6 +63,11 @@ fi
 
 unset color_prompt force_color_prompt
 
+# bash functions
+if [ -f ~/.bash_functions ]; then
+    . ~/.bash_functions
+fi
+
 # Alias definitions.
 # You may want to put all your additions into a separate file like
 # ~/.bash_aliases, instead of adding them here directly.
@@ -149,24 +154,6 @@ export LESS_TERMCAP_md="$GREEN"
 
 # http://zameermanji.com/blog/2012/12/30/using-vim-as-manpager/
 #export MANPAGER="/bin/sh -c \"col -b | vim -c 'set ft=man ts=8 nomod nolist nonu noma' -\""
-
-# Update tmux pane environment variables after attaching session. Usefull for $SSH_AUTH_SOCK
-tmup () 
-{ 
-    echo -n "Updating to latest tmux environment...";
-    export IFS=",";
-    for line in $(tmux showenv -t $(tmux display -p "#S") | tr "\n" ",");
-    do
-        if [[ $line == -* ]]; then
-            unset $(echo $line | cut -c2-);
-        else
-            export $line;
-        fi;
-    done;
-    unset IFS;
-    echo "Done"
-}
-
 
 # Load https://github.com/rupa/z
 # z [-chlrtx] [regex1 regex2 ... regexn]
