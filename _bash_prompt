@@ -70,7 +70,7 @@ git_status_color() {
 PS1="\n\[\033[1;30m\]\u@\h \[\033[0;32m\]\$(working_directory) \$(git_status_color)\$(parse_git_branch)\[\033[1;31m\]\nλ \[\033[0m\]"
 
 #PS2 – Continuation interactive prompt
-PS2=" \[\033[1;31m\]| \[\033[0m\]"
+PS2=" \[\033[1;31m\]→ \[\033[0m\]"
 
 #Bash shell executes the content of the PROMPT_COMMAND just before displaying the PS1 variable.
 #PROMPT_COMMAND="echo -n [$(mem-used)]"
