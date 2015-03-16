@@ -17,3 +17,8 @@ My git settings including aliases, defaults and ignored files
 ## tmux
 
 My prefered terminal multiplexer
+
+
+## Setup
+
+Though you can cherry pick what you want to your dotfiles, create symlinks or rename these files, I use an [Ansible Playbook](https://github.com/brunombsilva/ansible-dotfiles) to provision symlinks and software dependencies
