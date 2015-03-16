@@ -113,6 +113,9 @@ autocmd FileType php setlocal foldmethod=syntax
 autocmd FileType css  setlocal foldmethod=indent shiftwidth=2 tabstop=2
 autocmd FileType xml setlocal foldmethod=syntax
 
+" PHP Comments
+autocmd FileType php setlocal comments=s1:/**,mb:*,ex:*/,://,:#
+
 " Fold/unfold PHP classes, methods, functions, etc
 let g:php_folding=1
 
@@ -192,8 +195,9 @@ let g:debuggerMaxDepth = 2
 " Rainbow Parentheses Highlighting
 let g:rainbow_active=1
 
-"TODO: Review bellow
+" TODO: Review
 
+" Syntastic Configuration
 let g:syntastic_auto_loc_list=1
 let g:syntastic_loc_list_height=3
 "let g:syntastic_quiet_warnings=1
@@ -201,25 +205,6 @@ let g:syntastic_php_phpmd_post_args = 'design,unusedcode'
 let g:syntastic_php_phpcs_args = '--standard=PSR2'
 
 "let g:syntastic_mode_map = { 'mode': 'active', 'active_filetypes': ['php'], 'passive_filetypes': [''] }
-
-
-autocmd FileType php setlocal comments=s1:/**,mb:*,ex:*/,://,:#
-
-fu! DoRunPyBuffer2()
-pclose! " force preview window closed
-setlocal ft=python
-
-" copy the buffer into a new window, then run that buffer through python
-sil %y a | below new | sil put a | sil %!python -
-" indicate the output window as the current previewwindow
-setlocal previewwindow ro nomodifiable nomodified
-
-" back into the original window
-winc p
-endfu
-
-command! RunPyBuffer call DoRunPyBuffer2()
-map <Leader>py :RunPyBuffer<CR>
 
 set ttymouse=xterm2
 set mouse=a
@@ -239,9 +224,6 @@ endif
 let g:snipMate = {}
 let g:snipMate['scope_aliases'] = {'php':'php'}
 
-map <leader>ps :PSearch<cr>
-map <leader>ps* :PSearchw<cr><cr>
-
 if has("autocmd") && exists("+omnifunc")
     autocmd Filetype *
             \   if &omnifunc == "" |
@@ -252,8 +234,6 @@ endif
 imap <C-Space> <C-x><C-o>
 imap <C-@> <C-Space>
 set completeopt=longest,menu,preview
-
-"let g:neocomplcache_enable_at_startup = 1
 
 autocmd FileType smarty let b:match_words = '<:>,<\@<=[ou]l\>[^>]*\%(>\|$\):<\@<=li\>:<\@<=/[ou]l>,<\@<=dl\>[^>]*\%(>\|$\):<\@<=d[td]\>:<\@<=/dl>,<\@<=\([^/][^ \t>]*\)[^>]*\%(>\|$\):<\@<=/\1>'
 
@@ -275,12 +255,12 @@ nnoremap <Leader>fU :execute 'CtrlPFunky ' . expand('<cword>')<Cr>
 "let g:ctrlp_funky_syntax_highlight = 1
 let g:ctrlp_funky_matchtype = 'path'
 
-        nnoremap <C-y> :CtrlPYankring<cr>
+nnoremap <C-y> :CtrlPYankring<cr>
 nnoremap <C-c>l :CtrlPCmdline<cr>
 
 let g:clam_winpos = 'botright'
 
-    "changesPlugin
+"changesPlugin
 au VimEnter * EC
 
 map - <C-W>-
