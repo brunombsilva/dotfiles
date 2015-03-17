@@ -149,9 +149,6 @@
 [submodule "vim/_vim/bundle/ctrlp-funky"]
 	path = vim/_vim/bundle/ctrlp-funky
 	url = git://github.com/tacahiroy/ctrlp-funky.git
-[submodule "vim/_vim/bundle/ctrlp-git-log"]
-	path = vim/_vim/bundle/ctrlp-git-log
-	url = https://github.com/kaneshin/ctrlp-git-log.git
 [submodule "vim/_vim/bundle/vim-seek"]
 	path = vim/_vim/bundle/vim-seek
 	url = https://github.com/goldfeld/vim-seek.git

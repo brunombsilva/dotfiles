@@ -248,15 +248,16 @@ map <leader>tb :TagbarToggle<cr>
 
 map <leader>gt :call TimeLapse() <cr>
 
-let g:ctrlp_extensions = ['funky', 'git-log']
-nnoremap <Leader>fu :CtrlPFunky<Cr>
-" narrow the list down with a word under cursor
-nnoremap <Leader>fU :execute 'CtrlPFunky ' . expand('<cword>')<Cr>
-"let g:ctrlp_funky_syntax_highlight = 1
+let g:ctrlp_extensions = ['funky']
+let g:ctrlp_funky_syntax_highlight = 1
 let g:ctrlp_funky_matchtype = 'path'
 
 nnoremap <C-y> :CtrlPYankring<cr>
 nnoremap <C-c>l :CtrlPCmdline<cr>
+nnoremap <C-c>b :CtrlPBuffer<cr>
+nnoremap <C-c>f :CtrlPFunky<cr>
+" narrow the list down with a word under cursor
+nnoremap <C-c>fU :execute 'CtrlPFunky ' . expand('<cword>')<Cr>
 
 let g:clam_winpos = 'botright'
 
