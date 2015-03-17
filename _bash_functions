@@ -46,4 +46,9 @@ tmup ()
     echo "Done"
 }
 
-
+# update SSH_AUTH_SOCK using latest agent
+ssh-auth-sock()
+{
+    export SSH_AUTH_SOCK=$(find /tmp/ssh-* -user `whoami` -name agent\* -printf '%T@ %p\n' 2>/dev/null | sort -k 1nr | sed 's/^[^ ]* //' | head -n 1)
+    echo $SSH_AUTH_SOCK
+}
