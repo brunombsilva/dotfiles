@@ -1,0 +1,9 @@
+{
+	"name": "Default color scheme for shell prompts",
+	"groups": {
+		"hostname":             { "fg": "brightyellow", "bg": "mediumorange" },
+        "cwd":                  { "fg": "gray6", "bg": "black" },
+        "cwd:divider":          { "fg": "gray6", "bg": "black" },
+        "cwd:current_folder":   { "fg": "gray0", "bg": "gray10" }
+	}
+}
