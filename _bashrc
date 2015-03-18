@@ -167,5 +167,5 @@ if [ -f ~/z/z.sh ]; then
 fi
 
 if [ ! -f $SSH_AUTH_SOCK ]; then
-    ssh-auth-sock
+    export SSH_AUTH_SOCK=$(find /tmp/ssh-* -user `whoami` -name agent\* -printf '%T@ %p\n' 2>/dev/null | sort -k 1nr | sed 's/^[^ ]* //' | head -n 1)
 fi
