@@ -5,6 +5,8 @@ if [ -f '/usr/local/lib/python2.7/dist-packages/powerline/bindings/bash/powerlin
     POWERLINE_BASH_CONTINUATION=1
     POWERLINE_BASH_SELECT=1
     source '/usr/local/lib/python2.7/dist-packages/powerline/bindings/bash/powerline.sh'
+    # Hammer time! shell input will start in the line after powerline
+    PROMPT_COMMAND="$PROMPT_COMMAND; PS1=\"\$PS1\n \";"
     return
 fi
 
