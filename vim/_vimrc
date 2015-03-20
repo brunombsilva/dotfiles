@@ -47,6 +47,11 @@ set visualbell                    " No beeping.
 set nobackup                      " Don't make a backup before overwriting a file.
 set nowritebackup                 " And again.
 
+set ttymouse=xterm2
+set mouse=a
+
+set clipboard=unnamed
+
 " Keep swap files in one location
 if has("win32") || has("win64")
     set directory=$TMP
@@ -195,50 +200,38 @@ let g:debuggerMaxDepth = 2
 " Rainbow Parentheses Highlighting
 let g:rainbow_active=1
 
-" TODO: Review
-
 " Syntastic Configuration
+
+" Automatically open the location-list hen a buffer has errors
 let g:syntastic_auto_loc_list=1
+
+"location-list size
 let g:syntastic_loc_list_height=3
-"let g:syntastic_quiet_warnings=1
+
+" PHP syntax checking configuration
 let g:syntastic_php_phpmd_post_args = 'design,unusedcode'
-let g:syntastic_php_phpcs_args = '--standard=PSR2'
+let g:syntastic_php_phpcs_args = '--standard=~/.configuration/php/phpcs_ruleset.xml'
 
-"let g:syntastic_mode_map = { 'mode': 'active', 'active_filetypes': ['php'], 'passive_filetypes': [''] }
+" Let's always check PHP syntax and best practices
+let g:syntastic_mode_map = { 'mode': 'active', 'active_filetypes': ['php'], 'passive_filetypes': [''] }
 
-set ttymouse=xterm2
-set mouse=a
+"  Prettier!
+hi Normal ctermbg=None
+hi LineNr ctermfg=235 ctermbg=Black
+hi SignColumn ctermbg=None
 
-set clipboard=unnamed
-let g:php_cs_fixer_path = "/usr/local/bin/php-cs-fixer"
-"let g:php_cs_fixer_fixers_list = "indentation,linefeed,traling_spaces,unused_use,php_closing_tags,eof_ending,extra_empty_lines,control_spaces,elseif"
-
-if exists('vimcat') 
-    hi Normal ctermbg=16
-else
-    hi Normal ctermbg=None
-    hi LineNr ctermfg=235 ctermbg=Black
-    hi SignColumn ctermbg=None
-endif
-
-let g:snipMate = {}
-let g:snipMate['scope_aliases'] = {'php':'php'}
-
-if has("autocmd") && exists("+omnifunc")
-    autocmd Filetype *
-            \   if &omnifunc == "" |
-            \       setlocal omnifunc=syntaxcomplete#Complete |
-            \   endif
-endif
-
+" Autocomplete Bindings and options. Nowadays I don't even use it
 imap <C-Space> <C-x><C-o>
 imap <C-@> <C-Space>
 set completeopt=longest,menu,preview
 
+" Smarty matching pairs support 
 autocmd FileType smarty let b:match_words = '<:>,<\@<=[ou]l\>[^>]*\%(>\|$\):<\@<=li\>:<\@<=/[ou]l>,<\@<=dl\>[^>]*\%(>\|$\):<\@<=d[td]\>:<\@<=/dl>,<\@<=\([^/][^ \t>]*\)[^>]*\%(>\|$\):<\@<=/\1>'
 
+" Show TagBar on the left
 let g:tagbar_left = 1
 
+" TagBar & NERDTree keybindings support
 imap <leader>nt <Esc><leader>nt
 map <leader>nt :NERDTreeToggle<cr>
 
@@ -246,31 +239,36 @@ imap <leader>ide <Esc><leader>ide
 map <leader>ide :NERDTreeClose<cr>:TagbarClose<cr>:NERDTree<cr>:TagbarOpen<cr><C-w>t<C-w>s:buffer NERD_tree_1<cr><C-w>t<C-w>l<C-w>c<C-w>t
 map <leader>tb :TagbarToggle<cr>
 
+" Git file history navigation
 map <leader>gt :call TimeLapse() <cr>
 
+" ctrlp extension used to navigate between current buffer function definitions
 let g:ctrlp_extensions = ['funky']
 let g:ctrlp_funky_syntax_highlight = 1
 let g:ctrlp_funky_matchtype = 'path'
 
+" ctrlp shortcuts
 nnoremap <C-y> :CtrlPYankring<cr>
 nnoremap <C-c>l :CtrlPCmdline<cr>
 nnoremap <C-c>b :CtrlPBuffer<cr>
 nnoremap <C-c>f :CtrlPFunky<cr>
+
 " narrow the list down with a word under cursor
 nnoremap <C-c>fU :execute 'CtrlPFunky ' . expand('<cword>')<Cr>
 
-let g:clam_winpos = 'botright'
-
-"changesPlugin
+"changesPlugin, check for changes from filesystem when entering a buffer
 au VimEnter * EC
 
+" Shortcuts to resize panes
 map - <C-W>-
 map + <C-W>+
 map º <C-W>>
 map ç <c-W><
 
+"disable vim-session plugin session auto-saving
 let g:session_autosave = 'no'
 
+" documentation lookup, for PHP
 let g:investigate_use_command_for_php = 1
 let g:investigate_command_for_php = '^i:call system(''midori "http://devdocs.io/#q=^s"'')'
 "let g:investigate_command_for_php = '^i:call system(''midori -a "http://php.net/search.php?show=quickref&pattern=^s"'')'
