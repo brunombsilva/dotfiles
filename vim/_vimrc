@@ -209,7 +209,7 @@ let g:syntastic_auto_loc_list=1
 let g:syntastic_loc_list_height=3
 
 " PHP syntax checking configuration
-let g:syntastic_php_phpmd_post_args = 'design,unusedcode'
+let g:syntastic_php_phpmd_post_args = 'design'
 let g:syntastic_php_phpcs_args = '--standard=~/.configuration/php/phpcs_ruleset.xml'
 
 " Let's always check PHP syntax and best practices

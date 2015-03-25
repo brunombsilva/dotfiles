@@ -16,4 +16,8 @@
     <exclude-pattern>./app/lang/*</exclude-pattern>
     <exclude-pattern>./app/views/*</exclude-pattern>
     <exclude-pattern>./app/storage/*</exclude-pattern>
+
+    <rule ref="PSR1.Files.SideEffects">
+        <exclude-patern>*/wp-content/*</exclude-pattern>
+    </rule>
 </ruleset>
