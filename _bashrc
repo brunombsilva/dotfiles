@@ -165,7 +165,3 @@ export LESS_TERMCAP_md="$GREEN"
 if [ -f ~/z/z.sh ]; then
     . ~/z/z.sh
 fi
-
-if [ ! -f $SSH_AUTH_SOCK ]; then
-    export SSH_AUTH_SOCK=$(find /tmp/ssh-* -user `whoami` -name agent\* -printf '%T@ %p\n' 2>/dev/null | sort -k 1nr | sed 's/^[^ ]* //' | head -n 1)
-fi

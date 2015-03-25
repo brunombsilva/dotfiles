@@ -1,14 +1,18 @@
 #!/usr/bin/env bash
 
+
 if [ -f '/usr/local/lib/python2.7/dist-packages/powerline/bindings/bash/powerline.sh' ]; then
     powerline-daemon -q
     POWERLINE_BASH_CONTINUATION=1
     POWERLINE_BASH_SELECT=1
     source '/usr/local/lib/python2.7/dist-packages/powerline/bindings/bash/powerline.sh'
     # Hammer time! shell input will start in the line after powerline
-    PROMPT_COMMAND="$PROMPT_COMMAND; PS1=\"\$PS1\n \";"
+    PROMPT_COMMAND="$PROMPT_COMMAND"$'\n''PS1="$PS1\n "'
+    PROMPT_COMMAND="$PROMPT_COMMAND"$'\n''ssh_auth_sock'
     return
 fi
+
+PROMPT_COMMAND ="$PROMPT_COMMAND; ssh_auth_sock; "
 
 # More documentation in
 # http://www.thegeekstuff.com/2008/09/bash-shell-take-control-of-ps1-ps2-ps3-ps4-and-prompt_command/
