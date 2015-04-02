@@ -212,12 +212,14 @@ let g:syntastic_loc_list_height=3
 let g:syntastic_php_phpmd_post_args = 'design'
 let g:syntastic_php_phpcs_args = '--standard=~/.configuration/php/phpcs_ruleset.xml'
 
+let g:syntastic_twig_twiglint_exec='~/.composer/vendor/asm89/twig-lint/bin/twig-lint'
+
 " Let's always check PHP syntax and best practices
 let g:syntastic_mode_map = { 'mode': 'active', 'active_filetypes': ['php'], 'passive_filetypes': [''] }
 
 "  Prettier!
 hi Normal ctermbg=None
-hi LineNr ctermfg=235 ctermbg=Black
+hi LineNr ctermfg=235 ctermbg=None
 hi SignColumn ctermbg=None
 
 " Autocomplete Bindings and options. Nowadays I don't even use it
