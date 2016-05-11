@@ -165,3 +165,6 @@ export LESS_TERMCAP_md="$GREEN"
 if [ -f ~/z/z.sh ]; then
     . ~/z/z.sh
 fi
+
+export PATH="$HOME/.rbenv/bin:$PATH"
+eval "$(rbenv init -)"

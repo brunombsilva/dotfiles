@@ -188,3 +188,6 @@
 [submodule "vim/_vim/bundle/vim-airline"]
 	path = vim/_vim/bundle/vim-airline
 	url = git@github.com:bling/vim-airline.git
+[submodule "vim/_vim/bundle/vim-autoformat"]
+	path = vim/_vim/bundle/vim-autoformat
+	url = https://github.com/Chiel92/vim-autoformat.git
