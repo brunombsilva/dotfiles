@@ -191,3 +191,6 @@
 [submodule "vim/_vim/bundle/vim-autoformat"]
 	path = vim/_vim/bundle/vim-autoformat
 	url = https://github.com/Chiel92/vim-autoformat.git
+[submodule "vim/_vim/bundle/vim-cheat40"]
+	path = vim/_vim/bundle/vim-cheat40
+	url = https://github.com/lifepillar/vim-cheat40.git
