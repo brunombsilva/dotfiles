@@ -44,7 +44,7 @@
 
 [submodule "ctrlp.vim"]
     path = "vim/_vim/bundle/ctrlp.vim"
-	url = https://github.com/kien/ctrlp.vim.git
+	url = https://github.com/ctrlpvim/ctrlp.vim.git
 
 [submodule "grep.vim"]
     path = "vim/_vim/bundle/grep.vim"

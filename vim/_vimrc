@@ -244,6 +244,8 @@ map <leader>tb :TagbarToggle<cr>
 " Git file history navigation
 map <leader>gt :call TimeLapse() <cr>
 
+let g:ctrlp_working_path_mode = 'rw'
+
 " ctrlp extension used to navigate between current buffer function definitions
 let g:ctrlp_extensions = ['funky']
 let g:ctrlp_funky_syntax_highlight = 1
