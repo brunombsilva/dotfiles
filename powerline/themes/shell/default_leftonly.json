@@ -2,7 +2,7 @@
 	"segments": {
 		"left": [
 			{
-				"function": "powerline.segments.common.net.hostname",
+				"function": "powerline.segments.common.env.user",
 				"priority": 10
 			},
             {
