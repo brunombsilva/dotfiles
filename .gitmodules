@@ -194,3 +194,6 @@
 [submodule "vim/_vim/bundle/vim-cheat40"]
 	path = vim/_vim/bundle/vim-cheat40
 	url = https://github.com/lifepillar/vim-cheat40.git
+[submodule "vim/_vim/bundle/nginx-vim-syntax"]
+	path = vim/_vim/bundle/nginx-vim-syntax
+	url = https://github.com/evanmiller/nginx-vim-syntax.git
