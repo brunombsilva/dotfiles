@@ -169,7 +169,7 @@
 	url = https://github.com/chrisbra/csv.vim.git
 [submodule "vim/_vim/bundle/vim-phpmanual"]
 	path = vim/_vim/bundle/vim-phpmanual
-	url = git@github.com:alvan/vim-phpmanual
+	url = https://github.com/alvan/vim-phpmanual
 [submodule "vim/_vim/bundle/ctrlp-extensions.vim"]
 	path = vim/_vim/bundle/ctrlp-extensions.vim
 	url = https://github.com/sgur/ctrlp-extensions.vim.git
@@ -181,13 +181,13 @@
 	url = https://github.com/Keithbsmiley/investigate.vim.git
 [submodule "vim/_vim/bundle/rainbow.git"]
 	path = vim/_vim/bundle/rainbow.git
-	url = git@github.com:luochen1990/rainbow.git
+	url = https://github.com/luochen1990/rainbow.git
 [submodule "vim/_vim/bundle/delimitMate"]
 	path = vim/_vim/bundle/delimitMate
-	url = git@github.com:Raimondi/delimitMate.git
+	url = https://github.com/Raimondi/delimitMate.git
 [submodule "vim/_vim/bundle/vim-airline"]
 	path = vim/_vim/bundle/vim-airline
-	url = git@github.com:bling/vim-airline.git
+	url = https://github.com/bling/vim-airline.git
 [submodule "vim/_vim/bundle/vim-autoformat"]
 	path = vim/_vim/bundle/vim-autoformat
 	url = https://github.com/Chiel92/vim-autoformat.git
