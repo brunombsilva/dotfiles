@@ -68,7 +68,7 @@
 
 [submodule "tagbar"]
     path = "vim/_vim/bundle/tagbar"
-	url = git://github.com/majutsushi/tagbar
+	url = https://github.com/majutsushi/tagbar.git
 
 [submodule "tlib_vim"]
     path = "vim/_vim/bundle/tlib_vim"
@@ -84,7 +84,7 @@
 
 [submodule "vim-fugitive"]
     path = "vim/_vim/bundle/vim-fugitive"
-	url = git://github.com/tpope/vim-fugitive.git
+	url = https://github.com/tpope/vim-fugitive.git
 
 [submodule "vim-gitgutter"]
     path = "vim/_vim/bundle/vim-gitgutter"
@@ -108,7 +108,7 @@
 
 [submodule "vim-snipmate"]
     path = "vim/_vim/bundle/vim-snipmate"
-	url = git://github.com/garbas/vim-snipmate.git
+	url = https://github.com/garbas/vim-snipmate.git
 
 [submodule "xmledit"]
     path = "vim/_vim/bundle/xmledit"
@@ -148,7 +148,7 @@
 	url = https://github.com/vim-scripts/git-time-lapse.git
 [submodule "vim/_vim/bundle/ctrlp-funky"]
 	path = vim/_vim/bundle/ctrlp-funky
-	url = git://github.com/tacahiroy/ctrlp-funky.git
+	url = https://github.com/tacahiroy/ctrlp-funky.git
 [submodule "vim/_vim/bundle/vim-seek"]
 	path = vim/_vim/bundle/vim-seek
 	url = https://github.com/goldfeld/vim-seek.git
@@ -169,7 +169,7 @@
 	url = https://github.com/chrisbra/csv.vim.git
 [submodule "vim/_vim/bundle/vim-phpmanual"]
 	path = vim/_vim/bundle/vim-phpmanual
-	url = git@github.com:alvan/vim-phpmanual
+	url = https://github.com/alvan/vim-phpmanual
 [submodule "vim/_vim/bundle/ctrlp-extensions.vim"]
 	path = vim/_vim/bundle/ctrlp-extensions.vim
 	url = https://github.com/sgur/ctrlp-extensions.vim.git
@@ -181,13 +181,13 @@
 	url = https://github.com/Keithbsmiley/investigate.vim.git
 [submodule "vim/_vim/bundle/rainbow.git"]
 	path = vim/_vim/bundle/rainbow.git
-	url = git@github.com:luochen1990/rainbow.git
+	url = https://github.com/luochen1990/rainbow.git
 [submodule "vim/_vim/bundle/delimitMate"]
 	path = vim/_vim/bundle/delimitMate
-	url = git@github.com:Raimondi/delimitMate.git
+	url = https://github.com/Raimondi/delimitMate.git
 [submodule "vim/_vim/bundle/vim-airline"]
 	path = vim/_vim/bundle/vim-airline
-	url = git@github.com:bling/vim-airline.git
+	url = https://github.com/bling/vim-airline.git
 [submodule "vim/_vim/bundle/vim-autoformat"]
 	path = vim/_vim/bundle/vim-autoformat
 	url = https://github.com/Chiel92/vim-autoformat.git
