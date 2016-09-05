@@ -273,6 +273,23 @@ map ç <c-W><
 let g:session_autosave = 'no'
 
 " documentation lookup, for PHP
-let g:investigate_use_command_for_php = 1
-let g:investigate_command_for_php = '^i:call system(''midori "http://devdocs.io/#q=^s"'')'
+"let g:investigate_use_command_for_php = 1
+"let g:investigate_command_for_php = '^i:call system(''midori "http://devdocs.io/#q=^s"'')'
 "let g:investigate_command_for_php = '^i:call system(''midori -a "http://php.net/search.php?show=quickref&pattern=^s"'')'
+
+"set splitbelow
+
+".net stuff
+let g:OmniSharp_server_path = '/home/vagrant/omnisharp-roslyn/src/OmniSharp/bin/Release/netcoreapp1.0/ubuntu.14.04-x64/OmniSharp'
+"let g:syntastic_cs_checkers = ['syntax', 'semantic', 'issues']
+let g:syntastic_cs_checkers = ['code_checker']
+let g:OmniSharp_server_type = 'roslyn'
+let g:omnicomplete_fetch_documentation=1
+
+let g:SuperTabDefaultCompletionType = 'context'
+let g:SuperTabContextDefaultCompletionType = "<c-x><c-o>"
+let g:SuperTabDefaultCompletionTypeDiscovery = ["&omnifunc:<c-x><c-o>","&completefunc:<c-x><c-n>"]
+let g:SuperTabClosePreviewOnPopupClose = 1
+
+let $PATH=$PATH . ':' . expand('~/.composer/vendor/bin')
+let g:padawan#composer_command = "composer"

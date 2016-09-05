@@ -197,3 +197,24 @@
 [submodule "vim/_vim/bundle/nginx-vim-syntax"]
 	path = vim/_vim/bundle/nginx-vim-syntax
 	url = https://github.com/evanmiller/nginx-vim-syntax.git
+[submodule "vim/_vim/bundle/omnisharp-vim"]
+	path = vim/_vim/bundle/omnisharp-vim
+	url = https://github.com/OmniSharp/omnisharp-vim.git
+[submodule "vim/_vim/bundle/vim-dispatch"]
+	path = vim/_vim/bundle/vim-dispatch
+	url = https://github.com/tpope/vim-dispatch.git
+[submodule "vim/_vim/bundle/supertab"]
+	path = vim/_vim/bundle/supertab
+	url = https://github.com/ervandew/supertab.git
+[submodule "vim/_vim/bundle/echodoc.vim"]
+	path = vim/_vim/bundle/echodoc.vim
+	url = https://github.com/Shougo/echodoc.vim.git
+[submodule "vim/_vim/bundle/Dockerfile.vom"]
+	path = vim/_vim/bundle/Dockerfile.vom
+	url = https://github.com/ekalinin/Dockerfile.vim.git
+[submodule "vim/_vim/bundle/padawan.vim"]
+	path = vim/_vim/bundle/padawan.vim
+	url = https://github.com/mkusher/padawan.vim.git
+[submodule "vim/_vim/bundle/vim-blade"]
+	path = vim/_vim/bundle/vim-blade
+	url = git://github.com/jwalton512/vim-blade.git
