@@ -169,4 +169,16 @@ fi
 export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"
 
-export PATH="$HOME/.config/composer/vendor/bin:$PATH"
+export PATH="$HOME/.composer/vendor/bin:$PATH"
+export PATH=$PATH:/usr/local/go/bin
+export GOPATH=$HOME/.go
+export PATH=$PATH:$GOPATH/bin
+export PATH=$PATH:$HOME/.cargo/bin
+
+### Added by the Heroku Toolbelt
+export PATH="/usr/local/heroku/bin:$PATH"
+
+
+# tabtab source for bower package
+# uninstall by removing these lines or running `tabtab uninstall bower`
+[ -f /usr/lib/node_modules/bower-complete/node_modules/tabtab/.completions/bower.bash ] && . /usr/lib/node_modules/bower-complete/node_modules/tabtab/.completions/bower.bash
