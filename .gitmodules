@@ -30,10 +30,6 @@
     path = "vim/_vim/bundle/SyntaxComplete"
 	url = https://github.com/vim-scripts/SyntaxComplete.git
 
-[submodule "bufexplorer.zip"]
-    path = "vim/_vim/bundle/bufexplorer.zip"
-	url = https://github.com/vim-scripts/bufexplorer.zip
-
 [submodule "changesPlugin"]
     path = "vim/_vim/bundle/changesPlugin"
 	url = https://github.com/chrisbra/changesPlugin.git
@@ -217,4 +213,7 @@
 	url = https://github.com/mkusher/padawan.vim.git
 [submodule "vim/_vim/bundle/vim-blade"]
 	path = vim/_vim/bundle/vim-blade
-	url = git://github.com/jwalton512/vim-blade.git
+	url = https://github.com/jwalton512/vim-blade.git
+[submodule "vim/_vim/bundle/asyncrun.vim"]
+	path = vim/_vim/bundle/asyncrun.vim
+	url = https://github.com/skywind3000/asyncrun.vim.git

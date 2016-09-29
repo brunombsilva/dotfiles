@@ -190,8 +190,6 @@ set listchars=tab:<.,eol:¬
 highlight NonText guifg=#4a4a59
 highlight SpecialKey guifg=#4a4a59
 
-let g:bufExplorerShowTabBuffer=1 
-
 "DBGp-client configuration
 hi DbgCurrent term=reverse ctermfg=White ctermbg=Red gui=reverse
 hi DbgBreakPt term=reverse ctermfg=Red ctermbg=DarkGrey gui=reverse
