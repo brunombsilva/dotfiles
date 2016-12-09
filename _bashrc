@@ -63,10 +63,7 @@ fi
 
 unset color_prompt force_color_prompt
 
-# bash functions
-if [ -f ~/.bash_functions ]; then
-    . ~/.bash_functions
-fi
+for f in ~/.bash.bashrc/*; do source $f; done
 
 # Alias definitions.
 # You may want to put all your additions into a separate file like

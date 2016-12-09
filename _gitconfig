@@ -105,3 +105,6 @@
 
 [push]
     default = current
+
+[status]
+    submoduleSummary = true
