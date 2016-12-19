@@ -107,4 +107,4 @@
     default = current
 
 [status]
-    submoduleSummary = true
+    submoduleSummary = false
