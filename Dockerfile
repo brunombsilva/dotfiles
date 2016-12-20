@@ -78,7 +78,8 @@ RUN for file in .configuration/_*; do ln -s -f $file $(echo "$file" | sed 's/\.c
 RUN ln -s -f .configuration/vim/_vimrc .vimrc 
 RUN ln -s -f .configuration/vim/_gvimrc .gvimrc 
 RUN ln -s -f .configuration/vim/_vim .vim 
-RUN mkdir -p .ssh && ln -s -f .configuration/ssh/_config .ssh/config
+RUN mkdir -p .ssh && ln -s -f $HOME/.configuration/ssh/_config $HOME/.ssh/config
+RUN mkdir -p .config && ln -s -f $HOME/.configuration/powerline $HOME/.config/powerline
 
 USER root
 
