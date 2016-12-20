@@ -1,0 +1,12 @@
+version: '2'
+
+services:
+   dotfiles:
+      container_name: dotfiles
+      restart: always
+      build:
+        context: .
+      volumes:
+         - ../docker-compose:/home/ubuntu/youzz-development
+      ports:
+        - '2323:22'
