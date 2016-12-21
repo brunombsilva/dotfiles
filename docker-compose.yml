@@ -6,7 +6,9 @@ services:
       restart: always
       build:
         context: .
+        args:
+          USER_NAME: bsilva
       volumes:
-         - ../docker-compose:/home/ubuntu/youzz-development
+         - ../docker-compose:/home/bsilva/youzz-development
       ports:
         - '2323:22'

@@ -2,14 +2,16 @@ FROM ubuntu:trusty
 
 #Borrowed some stuff from https://github.com/uralbash/docker-ubuntu
 
-ENV HOME_USER ubuntu
-ENV HOME_PASS 123456
+ARG USER_NAME=ubuntu
+ARG USER_ID=1000
+ARG USER_PASSWORD=123456
 
 RUN apt-get -y update 
 RUN apt-get -y install git wget tmux libncurses5-dev libncursesw5-dev htop exuberant-ctags ngrep \
 	ruby-full nodejs npm grc lnav git-extras wget unzip bash-completion man python-pip
 
 RUN apt-get -y install language-pack-EN
+ENV LANG en_US.UTF-8
 	
 WORKDIR /tmp
 
@@ -37,15 +39,11 @@ RUN pip install http-prompt powerline-status powerline-gitstatus
 
 RUN npm install js-yaml js-beautify
 
-#RUN useradd -m -s /bin/bash ubuntu
-#RUN usermod -aG sudo ubuntu
-#RUN echo "ubuntu ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
-
 ## Add USER
-RUN useradd -m -s /bin/bash ${HOME_USER} && \
-    echo "${HOME_USER}:${HOME_PASS}"|chpasswd && \
-    adduser ${HOME_USER} sudo && \
-    echo ${HOME_USER}' ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers
+RUN useradd -u ${USER_ID} -m -s /bin/bash -U ${USER_NAME} && \
+    echo "${USER_NAME}:${USER_PASSWORD}"|chpasswd && \
+    adduser ${USER_NAME} sudo && \
+    echo ${USER_NAME}' ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers
 
 ## SSH
 RUN apt-get install -y openssh-server && \
@@ -54,13 +52,13 @@ RUN apt-get install -y openssh-server && \
     sed 's@session\s*required\s*pam_loginuid.so@session optional pam_loginuid.so@g' -i /etc/pam.d/sshd
 
 
-USER ${HOME_USER}
+USER ${USER_NAME}
 
-WORKDIR /home/${HOME_USER}
+WORKDIR /home/${USER_NAME}
 
 ## Github + BitBucket
-RUN mkdir $HOME/.ssh
-RUN chmod 700 $HOME/.ssh
+RUN mkdir -m 700 $HOME/.ssh
+#RUN chmod 700 $HOME/.ssh
 RUN ssh-keyscan -H github.com >> $HOME/.ssh/known_hosts
 RUN ssh-keyscan -H bitbucket.com >> $HOME/.ssh/known_hosts
 
@@ -72,6 +70,9 @@ RUN git clone https://github.com/rupa/z z
 
 ## dotfiles
 ADD . .configuration
+USER root
+RUN chown -R $USER_NAME:$USER_NAME .configuration
+USER ${USER_NAME}
 
 RUN for file in .configuration/_*; do ln -s -f $file $(echo "$file" | sed 's/\.configuration\///; s/^_/./'); done 
 
