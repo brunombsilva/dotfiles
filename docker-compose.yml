@@ -12,7 +12,7 @@ services:
       environment:
           TESTING: lolstuff
       volumes:
-         - ../docker-compose:/home/$USER_NAME/youzz-development
+         - /youzz-development:/youzz-development
          - .:/home/$USER_NAME/.configuration
          - ./docker:/home/$USER_NAME/.docker
       ports:
