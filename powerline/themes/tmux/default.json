@@ -9,15 +9,15 @@
 				"function": "powerline.segments.common.time.date"
 			},
 			{
-				"function": "powerline.segments.common.time.date",
-				"name": "time",
-				"args": {
-					"format": "%H:%M",
-					"istime": true
-				}
-			},
-			{
-				"function": "powerline.segments.common.net.hostname"
+				"function": "powerline_docker.docker",
+				"priority": 30,
+			"args": {
+						"base_url": "tcp://172.28.5.254:2376",
+						"use_tls": true,
+						"ca_cert": "/home/bsilva/.docker/ca.pem",
+						"client_cert": "/home/bsilva/.docker/cert.pem",
+						"client_key": "/home/bsilva/.docker/key.pem"
+					}
 			}
 		]
 	}

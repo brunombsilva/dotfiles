@@ -12,6 +12,8 @@ services:
       environment:
           TESTING: lolstuff
       volumes:
+         #for docker-compose volumes work while inside container, 
+         # host and guest volume paths should match
          - /youzz-development:/youzz-development
          - .:/home/$USER_NAME/.configuration
          - ./docker:/home/$USER_NAME/.docker

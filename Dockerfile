@@ -34,7 +34,7 @@ RUN wget https://github.com/jonas/tig/releases/download/tig-2.2.1/tig-2.2.1.tar.
 #RUN gem install lolcat sass
 
 RUN pip install pip virtualenv virtualenvwrapper -U
-RUN pip install http-prompt powerline-status powerline-gitstatus 
+RUN pip install http-prompt powerline-status powerline-gitstatus docker powerline-docker 
 
 RUN npm install js-yaml js-beautify
 
