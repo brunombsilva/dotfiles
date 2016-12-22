@@ -8,7 +8,7 @@ ARG USER_PASSWORD=123456
 
 RUN apt-get -y update 
 RUN apt-get -y install git wget tmux libncurses5-dev libncursesw5-dev htop exuberant-ctags ngrep \
-	ruby-full nodejs npm grc lnav git-extras wget unzip bash-completion man python-pip
+	ruby-full nodejs npm grc lnav git-extras wget unzip bash-completion man python-pip curl php5 php5-curl 
 
 RUN apt-get -y install language-pack-EN
 ENV LANG en_US.UTF-8
@@ -71,8 +71,11 @@ RUN git clone https://github.com/rupa/z z
 ## dotfiles
 ADD . .configuration
 USER root
+#remote docker management
+RUN .configuration/install-docker.sh
 RUN chown -R $USER_NAME:$USER_NAME .configuration
 USER ${USER_NAME}
+ENV LANG en_US.UTF-8
 
 RUN for file in .configuration/_*; do ln -s -f $file $(echo "$file" | sed 's/\.configuration\///; s/^_/./'); done 
 

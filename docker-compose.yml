@@ -8,7 +8,12 @@ services:
         context: .
         args:
           USER_NAME: bsilva
+      hostname: dotfiles
+      environemnt:
+         DOCKER_HOST: tcp://172.17.0.1:2376 DOCKER_TLS_VERIFY=1
       volumes:
          - ../docker-compose:/home/bsilva/youzz-development
+         - .:/home/bsilva/.configuration
+         - ./docker:/home/bsilva/.docker
       ports:
         - '2323:22'
