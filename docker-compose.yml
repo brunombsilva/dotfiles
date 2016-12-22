@@ -7,13 +7,26 @@ services:
       build:
         context: .
         args:
-          USER_NAME: bsilva
+          USER_NAME: $USER_NAME
       hostname: dotfiles
-      environemnt:
-         DOCKER_HOST: tcp://172.17.0.1:2376 DOCKER_TLS_VERIFY=1
+      environment:
+          TESTING: lolstuff
       volumes:
-         - ../docker-compose:/home/bsilva/youzz-development
-         - .:/home/bsilva/.configuration
-         - ./docker:/home/bsilva/.docker
+         - ../docker-compose:/home/$USER_NAME/youzz-development
+         - .:/home/$USER_NAME/.configuration
+         - ./docker:/home/$USER_NAME/.docker
       ports:
         - '2323:22'
+      networks:
+        - default
+
+networks:
+   default:
+      ipam:
+         config:
+             - subnet: 172.28.0.0/16
+               ip_range: 172.28.5.0/24
+               gateway: 172.28.5.254
+#TODO: remove hardcoded gateways dependencies from
+# - _bash.bashrc/docker.bash
+# - docker/generate-docker-cert.sh

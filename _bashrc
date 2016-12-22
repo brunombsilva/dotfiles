@@ -84,6 +84,8 @@ fi
 # include current folder in path
 export PATH=$PATH:.
 
+export LANG=en_US.UTF-8
+
 # include current folder in path
 export PATH=$PATH:~/.configuration/bin/
 

@@ -7,7 +7,6 @@ echo "deb https://apt.dockerproject.org/repo ubuntu-trusty main" | sudo tee /etc
 apt-get -y update
 apt-get -y --force-yes install docker-engine
 #docker run hello-world
-usermod -aG docker $USER
 curl -L "https://github.com/docker/compose/releases/download/1.9.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
 #curl -L "https://github.com/docker/machine/releases/download/v0.6.0/docker-machine-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-machine
 

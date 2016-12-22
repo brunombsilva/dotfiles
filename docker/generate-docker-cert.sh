@@ -47,7 +47,7 @@ openssl genrsa -des3 -out server-key.pem -passout pass:$PASS 2048
 openssl req -new -key server-key.pem -out server.csr -passin pass:$PASS -subj '/CN=*/'
 
 # sign the server key with our CA
-echo subjectAltName = DNS:$HOST,IP:172.18.0.1,IP:172.17.0.1,IP:127.0.0.1 > extfile.cnf
+echo subjectAltName = DNS:$HOST,IP:172.28.5.254,IP:127.0.0.1 > extfile.cnf
 openssl x509 -req -days $DAYS -passin pass:$PASS -in server.csr -CA ca.pem -CAkey ca-key.pem -out server-cert.pem -extfile extfile.cnf
 
 # create a client key and certificate signing request (CSR)
