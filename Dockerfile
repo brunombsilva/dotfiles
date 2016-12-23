@@ -22,8 +22,8 @@ RUN apt-get -y install \
 	exuberant-ctags \
 	ngrep \
 	ruby-full \
-	nodejs \
-	npm \
+	#nodejs \
+	#npm \
 	grc \
 	lnav \
 	unzip \
@@ -47,7 +47,7 @@ RUN wget https://github.com/vim/vim/archive/v8.0.0134.zip -O vim.zip && \
 	cd vim-8* && \
 	./configure --with-features=huge --enable-pythoninterp=dynamic --enable-rubyinterp --enable-multibyte && \
         make install && \
-	rm /tmp/*
+	rm -fR /tmp/*
 
 #Install tig (for git repository browsing)
 RUN wget https://github.com/jonas/tig/releases/download/tig-2.2.1/tig-2.2.1.tar.gz -O tig.tar.gz && \
@@ -55,10 +55,13 @@ RUN wget https://github.com/jonas/tig/releases/download/tig-2.2.1/tig-2.2.1.tar.
 	cd tig-2* && \
 	make prefix=/usr/local && \
 	make install prefix=/usr/local && \
-	rm /tmp/*
+	rm -fR /tmp/*
 
-#TODO: https://github.com/creationix/nvm
-RUN npm install js-yaml js-beautify
+#dotnet core
+RUN echo "deb [arch=amd64] https://apt-mo.trafficmanager.net/repos/dotnet-release/ trusty main" > /etc/apt/sources.list.d/dotnetdev.list' && \
+	apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 417A0893 && \
+	apt-get -y update && \
+	apt-get -y install dotnet-dev-1.0.0-preview2.1-003177
 
 ## Add USER
 RUN useradd -u ${USER_ID} -m -s /bin/bash -U ${USER_NAME} && \
@@ -83,7 +86,6 @@ RUN git clone https://github.com/yyuu/pyenv.git $HOME/.pyenv
 RUN cd $HOME/.pyenv/bin && \
 	eval "$(./pyenv init -)" && \
 	./pyenv install 2.7.9 && \
-	./pyenv rehash && \
 	./pyenv global 2.7.9 && \
 	pip install \
 		http-prompt \
@@ -92,7 +94,27 @@ RUN cd $HOME/.pyenv/bin && \
 		#docker \
 		powerline-docker 
 
-#RUN gem install lolcat sass
+#Install ruby and ruby tools
+RUN git clone https://github.com/rbenv/rbenv.git .rbenv && \
+	git clone https://github.com/rbenv/ruby-build.git .rbenv/plugins/ruby-build && \
+	cd .rbenv && src/configure && make -C src && \
+	cd $HOME/.rbenv/bin && \
+	eval "$(./rbenv init -)" && \
+	apt-get install -y libreadline-dev && \
+	./rbenv install 2.3.3 && \
+	./rbenv global 2.3.3 && \
+	gem install \
+		lolcat \
+		sass
+
+#Install npm and npm tools
+RUN git clone https://github.com/creationix/nvm.git .nvm && \
+	cd .nvm && \
+	./nvm.sh && \
+        nvm install node && \
+	npm install -g \
+		js-yaml \
+		js-beautify
 
 ## Github + BitBucket
 RUN mkdir -m 700 $HOME/.ssh
@@ -100,18 +122,14 @@ RUN mkdir -m 700 $HOME/.ssh
 RUN ssh-keyscan -H github.com >> $HOME/.ssh/known_hosts
 RUN ssh-keyscan -H bitbucket.com >> $HOME/.ssh/known_hosts
 
-RUN git clone https://github.com/rbenv/rbenv.git .rbenv && \
-	git clone https://github.com/rbenv/ruby-build.git .rbenv/plugins/ruby-build && \
-	cd .rbenv && src/configure && make -C src
-
-RUN git clone https://github.com/rupa/z .z && chmod +x .z/z.sh
+RUN git clone https://github.com/rupa/z .rupa-z && chmod +x .rupa-z/z.sh
 
 ## dotfiles
 ADD ./configuration .configuration
-ADD /install-docker.sh /tmp/install-docker.sh
+ADD ./bin bin
 USER root
 #remote docker management
-RUN /tmp/install-docker.sh
+RUN /home/${USER_NAME}/bin/install-docker.sh
 RUN chown -R $USER_NAME:$USER_NAME .configuration
 USER ${USER_NAME}
 

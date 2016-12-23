@@ -86,8 +86,8 @@ export PATH=$PATH:.
 
 export LANG=en_US.UTF-8
 
-# include current folder in path
-export PATH=$PATH:~/.configuration/bin/
+# include user binaries
+export PATH=$PATH:~/bin/
 
 # default editor
 export EDITOR="vim"
@@ -156,8 +156,8 @@ export LESS_TERMCAP_md="$GREEN"
 # After  a  short  learning  phase, z will take you to the most 'frecent'
 # directory that matches ALL of the regexes given on the command line, in order.
 # For example, z foo bar would match /foo/bar but not /bar/foo.
-if [ -f ~/.z/z.sh ]; then
-    . ~/.z/z.sh
+if [ -f ~/.rupa-z/z.sh ]; then
+    . ~/.rupa-z/z.sh
 fi
 
 export RBENV_ROOT="$HOME/.rbenv"
@@ -167,6 +167,10 @@ eval "$(rbenv init -)"
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" # This loads nvm
+
 
 export PATH="$HOME/.composer/vendor/bin:$PATH"
 export PATH=$PATH:/usr/local/go/bin
