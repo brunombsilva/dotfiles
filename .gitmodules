@@ -1,17 +1,17 @@
 [submodule "git-flow-completion"]
-	path = git-flow-completion
+	path = configuration/git-flow-completion
 	url = https://github.com/bobthecow/git-flow-completion.git
 
 [submodule "powerline-consolas"]
-	path = powerline-consolas
+	path = configuration/powerline-consolas
 	url = https://github.com/nicolalamacchia/powerline-consolas.git
 
 [submodule "powerline-fontes"]
-    path = "powerline-fonts"
+    path = "configuration/powerline-fonts"
 	url = https://github.com/Lokaltog/powerline-fonts.git
 
 [submodule "tmux-colors-solarized"]
-	path = tmux-colors-solarized
+	path = configuration/tmux-colors-solarized
 	url = https://github.com/seebi/tmux-colors-solarized.git
 
 [submodule "DBGp-client"]
