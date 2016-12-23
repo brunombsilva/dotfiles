@@ -1,9 +1,9 @@
 [submodule "git-flow-completion"]
-    path = "git-flow-completion"
+	path = git-flow-completion
 	url = https://github.com/bobthecow/git-flow-completion.git
 
 [submodule "powerline-consolas"]
-    path = "powerline-consolas"
+	path = powerline-consolas
 	url = https://github.com/nicolalamacchia/powerline-consolas.git
 
 [submodule "powerline-fontes"]
@@ -11,7 +11,7 @@
 	url = https://github.com/Lokaltog/powerline-fonts.git
 
 [submodule "tmux-colors-solarized"]
-    path = "tmux-colors-solarized"
+	path = tmux-colors-solarized
 	url = https://github.com/seebi/tmux-colors-solarized.git
 
 [submodule "DBGp-client"]
@@ -131,8 +131,8 @@
 	url = https://github.com/shawncplus/phpcomplete.vim.git
 
 [submodule "configuration/vim/_vim/bundle/vim-git-log"]
-	path = "configuration/vim/_vim/bundle/vim-git-log"
-	url = https://github.com/kablamo/vim-git-log.git 
+	path = configuration/vim/_vim/bundle/vim-git-log
+	url = https://github.com/kablamo/vim-git-log.git
 [submodule "configuration/vim/_vim/bundle/vim-powerline"]
 	path = configuration/vim/_vim/bundle/vim-powerline
 	url = https://github.com/Lokaltog/vim-powerline.git
@@ -217,3 +217,90 @@
 [submodule "configuration/vim/_vim/bundle/asyncrun.vim"]
 	path = configuration/vim/_vim/bundle/asyncrun.vim
 	url = https://github.com/skywind3000/asyncrun.vim.git
+[submodule "powerline-fonts"]
+	path = powerline-fonts
+	url = https://github.com/Lokaltog/powerline-fonts.git
+[submodule "configuration/vim/_vim/bundle/DBGp-client"]
+	path = configuration/vim/_vim/bundle/DBGp-client
+	url = https://github.com/vim-scripts/DBGp-client.git
+[submodule "configuration/vim/_vim/bundle/JavaScript-syntax"]
+	path = configuration/vim/_vim/bundle/JavaScript-syntax
+	url = https://github.com/vim-scripts/JavaScript-syntax.git
+[submodule "configuration/vim/_vim/bundle/SudoEdit.vim"]
+	path = configuration/vim/_vim/bundle/SudoEdit.vim
+	url = https://github.com/chrisbra/SudoEdit.vim
+[submodule "configuration/vim/_vim/bundle/SyntaxComplete"]
+	path = configuration/vim/_vim/bundle/SyntaxComplete
+	url = https://github.com/vim-scripts/SyntaxComplete.git
+[submodule "configuration/vim/_vim/bundle/changesPlugin"]
+	path = configuration/vim/_vim/bundle/changesPlugin
+	url = https://github.com/chrisbra/changesPlugin.git
+[submodule "configuration/vim/_vim/bundle/css3-mod"]
+	path = configuration/vim/_vim/bundle/css3-mod
+	url = https://github.com/vim-scripts/css3-mod.git
+[submodule "configuration/vim/_vim/bundle/ctrlp.vim"]
+	path = configuration/vim/_vim/bundle/ctrlp.vim
+	url = https://github.com/ctrlpvim/ctrlp.vim.git
+[submodule "configuration/vim/_vim/bundle/grep.vim"]
+	path = configuration/vim/_vim/bundle/grep.vim
+	url = https://github.com/vim-scripts/grep.vim
+[submodule "configuration/vim/_vim/bundle/neocomplcache"]
+	path = configuration/vim/_vim/bundle/neocomplcache
+	url = https://github.com/Shougo/neocomplcache.git
+[submodule "configuration/vim/_vim/bundle/nerdcommenter"]
+	path = configuration/vim/_vim/bundle/nerdcommenter
+	url = https://github.com/scrooloose/nerdcommenter.git
+[submodule "configuration/vim/_vim/bundle/nerdtree"]
+	path = configuration/vim/_vim/bundle/nerdtree
+	url = https://github.com/scrooloose/nerdtree.git
+[submodule "configuration/vim/_vim/bundle/syntastic"]
+	path = configuration/vim/_vim/bundle/syntastic
+	url = https://github.com/scrooloose/syntastic.git
+[submodule "configuration/vim/_vim/bundle/tagbar"]
+	path = configuration/vim/_vim/bundle/tagbar
+	url = https://github.com/majutsushi/tagbar.git
+[submodule "configuration/vim/_vim/bundle/tlib_vim"]
+	path = configuration/vim/_vim/bundle/tlib_vim
+	url = https://github.com/tomtom/tlib_vim.git
+[submodule "configuration/vim/_vim/bundle/vim-addon-mw-utils"]
+	path = configuration/vim/_vim/bundle/vim-addon-mw-utils
+	url = https://github.com/MarcWeber/vim-addon-mw-utils.git
+[submodule "configuration/vim/_vim/bundle/vim-colors-solarized"]
+	path = configuration/vim/_vim/bundle/vim-colors-solarized
+	url = https://github.com/altercation/vim-colors-solarized
+[submodule "configuration/vim/_vim/bundle/vim-fugitive"]
+	path = configuration/vim/_vim/bundle/vim-fugitive
+	url = https://github.com/tpope/vim-fugitive.git
+[submodule "configuration/vim/_vim/bundle/vim-gitgutter"]
+	path = configuration/vim/_vim/bundle/vim-gitgutter
+	url = https://github.com/airblade/vim-gitgutter.git
+[submodule "configuration/vim/_vim/bundle/vim-json"]
+	path = configuration/vim/_vim/bundle/vim-json
+	url = https://github.com/rogerz/vim-json.git
+[submodule "configuration/vim/_vim/bundle/vim-pathogen"]
+	path = configuration/vim/_vim/bundle/vim-pathogen
+	url = https://github.com/tpope/vim-pathogen.git
+[submodule "configuration/vim/_vim/bundle/vim-php-cs-fixer"]
+	path = configuration/vim/_vim/bundle/vim-php-cs-fixer
+	url = https://github.com/stephpy/vim-php-cs-fixer.git
+[submodule "configuration/vim/_vim/bundle/vim-session"]
+	path = configuration/vim/_vim/bundle/vim-session
+	url = https://github.com/xolox/vim-session.git
+[submodule "configuration/vim/_vim/bundle/vim-snipmate"]
+	path = configuration/vim/_vim/bundle/vim-snipmate
+	url = https://github.com/garbas/vim-snipmate.git
+[submodule "configuration/vim/_vim/bundle/xmledit"]
+	path = configuration/vim/_vim/bundle/xmledit
+	url = https://github.com/sukima/xmledit.git
+[submodule "configuration/vim/_vim/bundle/zoomwintab.vim"]
+	path = configuration/vim/_vim/bundle/zoomwintab.vim
+	url = https://github.com/troydm/zoomwintab.vim.git
+[submodule "configuration/vim/_vim/bundle/genutils"]
+	path = configuration/vim/_vim/bundle/genutils
+	url = https://github.com/vim-scripts/genutils.git
+[submodule "configuration/vim/_vim/bundle/vim-voogle"]
+	path = configuration/vim/_vim/bundle/vim-voogle
+	url = https://github.com/g3orge/vim-voogle.git
+[submodule "configuration/vim/_vim/bundle/phpcomplete.vim"]
+	path = configuration/vim/_vim/bundle/phpcomplete.vim
+	url = https://github.com/shawncplus/phpcomplete.vim.git

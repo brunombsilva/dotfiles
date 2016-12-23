@@ -1,9 +1,9 @@
 set -e
 
 CONFIG_DIR=`pwd`
-./generate-docker-cert.sh
+./bin/generate-docker-cert.sh
 cp -v {ca,cert,key}.pem ~/.docker
-sudo ./install-docker.sh 
+sudo ./bin/install-docker.sh 
 sudo usermod -aG docker $USER
 
 echo DOCKER_OPTS=\"--tlsverify --tlscacert=$CONFIG_DIR/ca.pem --tlscert=$CONFIG_DIR/server-cert.pem --tlskey=$CONFIG_DIR/server-key.pem -H=0.0.0.0:2376\" | sudo tee  /etc/default/docker
