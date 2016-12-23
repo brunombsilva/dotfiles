@@ -85,7 +85,7 @@
 [submodule "configuration/vim/_vim/bundle/asyncrun.vim"]
 	path = configuration/vim/_vim/bundle/asyncrun.vim
 	url = https://github.com/skywind3000/asyncrun.vim.git
-[submodule "powerline-fonts"]
+[submodule "configuration/powerline-fonts"]
 	path = configuration/powerline-fonts
 	url = https://github.com/Lokaltog/powerline-fonts.git
 [submodule "configuration/vim/_vim/bundle/DBGp-client"]
@@ -178,9 +178,6 @@
 [submodule "configuration/powerline-consolas"]
 	path = configuration/powerline-consolas
 	url = https://github.com/nicolalamacchia/powerline-consolas.git
-[submodule "configuration/powerline-fonts"]
-	path = configuration/powerline-fonts
-	url = https://github.com/Lokaltog/powerline-fonts.git
 [submodule "configuration/tmux-colors-solarized"]
 	path = configuration/tmux-colors-solarized
 	url = https://github.com/seebi/tmux-colors-solarized.git
