@@ -9,7 +9,7 @@ ARG TIG_VERSION=2.2.1
 ARG DOTNETCORE_VERSION=1.0.0-preview2.1-003177
 ARG PYTHON_VERSION=2.7.9
 ARG RUBY_VERSION=2.3.3
-ARG NODE_VERSION=latest
+ARG NODE_VERSION=v6.9.2
 
 #Update sources
 RUN apt-get -y update
@@ -83,7 +83,7 @@ RUN apt-get install -y openssh-server && \
 
 #Some dependecies as root, because switching to user
 RUN apt-get install -y \
-	openssl-dev sqlite3 bzip2 `# python` \
+	libssl-dev sqlite3 bzip2 `# python` \
 	libreadline-dev `#ruby + python` \
 	zlib1g-dev `# ruby`
 
@@ -120,11 +120,11 @@ RUN git clone https://github.com/rbenv/rbenv.git .rbenv && \
 #Install npm and npm tools
 RUN git clone https://github.com/creationix/nvm.git .nvm && \
 	cd .nvm && \
-	./nvm.sh && \
+	/bin/bash -c 'source ./nvm.sh && \
         nvm install node ${NODE_VERSION} && \
 	npm install -g \
 		js-yaml \
-		js-beautify
+		js-beautify'
 
 ## Github + BitBucket
 RUN mkdir -m 700 $HOME/.ssh
@@ -139,7 +139,7 @@ ADD ./configuration .configuration
 ADD ./bin bin
 USER root
 #remote docker management
-RUN /home/${USER_NAME}/bin/install-docker.sh
+RUN /home/${USER_NAME}/bin/docker-install
 RUN chown -R $USER_NAME:$USER_NAME .configuration
 USER ${USER_NAME}
 

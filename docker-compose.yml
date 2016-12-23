@@ -9,8 +9,7 @@ services:
         args:
           USER_NAME: $USER_NAME
       hostname: dotfiles
-      environment:
-          TESTING: lolstuff
+      #environment:
       volumes:
          #for docker-compose volumes work while inside container, 
          # host and guest volume paths should match
