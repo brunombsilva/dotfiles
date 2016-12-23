@@ -101,11 +101,6 @@ export GIT_COMMITTER_NAME="$GIT_AUTHOR_NAME"
 export GIT_COMMITTER_EMAIL="$GIT_AUTHOR_EMAIL"
 
 
-# prompt configuration (PS1, etc) is stored in a different file
-if [ -f ~/.bash_prompt ]; then
-    . ~/.bash_prompt
-fi
-
 # Add tab completion for SSH hostnames based on ~/.ssh/config, ignoring wildcards
 [ -e "$HOME/.ssh/config" ] && complete -o "default" -o "nospace" -W "$(grep "^Host" ~/.ssh/config | grep -v "[?*]" | cut -d " " -f2)" scp sftp ssh
 
@@ -187,3 +182,8 @@ export PATH="/usr/local/heroku/bin:$PATH"
 # uninstall by removing these lines or running `tabtab uninstall bower`
 [ -f /usr/lib/node_modules/bower-complete/node_modules/tabtab/.completions/bower.bash ] && . /usr/lib/node_modules/bower-complete/node_modules/tabtab/.completions/bower.bash
 
+
+# prompt configuration (PS1, etc) is stored in a different file
+if [ -f ~/.bash_prompt ]; then
+    . ~/.bash_prompt
+fi

@@ -6,35 +6,58 @@ ARG USER_NAME=ubuntu
 ARG USER_ID=1000
 ARG USER_PASSWORD=123456
 
-RUN apt-get -y update 
-RUN apt-get -y install git wget tmux libncurses5-dev libncursesw5-dev htop exuberant-ctags ngrep \
-	ruby-full nodejs npm grc lnav git-extras wget unzip bash-completion man curl php5 php5-curl # python-pip
+#Update sources
+RUN apt-get -y update
 
+#Install base packages
+RUN apt-get -y install \
+	git \
+	git-extras \
+	wget \
+	curl \
+	tmux \
+	libncurses5-dev \
+	libncursesw5-dev \
+	htop \
+	exuberant-ctags \
+	ngrep \
+	ruby-full \
+	nodejs \
+	npm \
+	grc \
+	lnav \
+	unzip \
+	bash-completion \
+	man \
+	php5 \
+	php5-curl 
+	# python-pip
+
+#Ensure locales
 RUN apt-get -y install language-pack-EN
-	
+
+#Dirty work will be done in /tmp
 WORKDIR /tmp
 
-#vim dependecies
+# Install Vim 8.0
 RUN apt-get -y install ruby-dev python-dev
 
-RUN wget https://github.com/vim/vim/archive/v8.0.0134.zip -O vim.zip \
-	&& unzip vim.zip \
-	&& cd vim-8* \
-	&& ./configure --with-features=huge --enable-pythoninterp=dynamic --enable-rubyinterp --enable-multibyte \
-       && make install  
+RUN wget https://github.com/vim/vim/archive/v8.0.0134.zip -O vim.zip && \
+	unzip vim.zip && \
+	cd vim-8* && \
+	./configure --with-features=huge --enable-pythoninterp=dynamic --enable-rubyinterp --enable-multibyte && \
+        make install && \
+	rm /tmp/*
 
+#Install tig (for git repository browsing)
 RUN wget https://github.com/jonas/tig/releases/download/tig-2.2.1/tig-2.2.1.tar.gz -O tig.tar.gz && \
-	tar -zxvf tig.tar.gz && cd tig-2* && make prefix=/usr/local && make install prefix=/usr/local
+	tar -zxvf tig.tar.gz && \
+	cd tig-2* && \
+	make prefix=/usr/local && \
+	make install prefix=/usr/local && \
+	rm /tmp/*
 
-#RUN wget https://www.python.org/ftp/python/2.7.9/Python-2.7.9.tgz -I python.tgz && \
-#	tar -zxvf python.tgz && \
-#	apt-get -y install build-essential libreadline-gplv2-dev libncursesw5-dev libssl-dev libsqlite3-dev tk-dev libgdbm-dev libc6-dev libbz2-dev && \
-#	cd Python-2* && ./configure && make && make install
-
-#RUN gem install lolcat sass
-
-#RUN pip install pip virtualenv virtualenvwrapper -U
-
+#TODO: https://github.com/creationix/nvm
 RUN npm install js-yaml js-beautify
 
 ## Add USER
@@ -44,25 +67,36 @@ RUN useradd -u ${USER_ID} -m -s /bin/bash -U ${USER_NAME} && \
     echo ${USER_NAME}' ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers
 
 ## SSH
+#TODO: use only RSA
 RUN apt-get install -y openssh-server && \
     mkdir /var/run/sshd && \
     sed -i 's/PermitRootLogin without-password/PermitRootLogin yes/' /etc/ssh/sshd_config && \
     sed 's@session\s*required\s*pam_loginuid.so@session optional pam_loginuid.so@g' -i /etc/pam.d/sshd
-
 
 USER ${USER_NAME}
 
 WORKDIR /home/${USER_NAME}
 
 RUN git clone https://github.com/yyuu/pyenv.git $HOME/.pyenv
-RUN cd $HOME/.pyenv/bin && \
-	eval "$(./pyenv init -)" && ./pyenv install 2.7.9 && ./pyenv rehash
 
-RUN cd $HOME/.pyenv/bin && eval "$(./pyenv init -)" && ./pyenv global 2.7.9 && pip install http-prompt powerline-status powerline-gitstatus docker powerline-docker 
+#Install python and python tools
+RUN cd $HOME/.pyenv/bin && \
+	eval "$(./pyenv init -)" && \
+	./pyenv install 2.7.9 && \
+	./pyenv rehash && \
+	./pyenv global 2.7.9 && \
+	pip install \
+		http-prompt \
+		powerline-status \
+		powerline-gitstatus \
+		#docker \
+		powerline-docker 
+
+#RUN gem install lolcat sass
 
 ## Github + BitBucket
 RUN mkdir -m 700 $HOME/.ssh
-#RUN chmod 700 $HOME/.ssh
+
 RUN ssh-keyscan -H github.com >> $HOME/.ssh/known_hosts
 RUN ssh-keyscan -H bitbucket.com >> $HOME/.ssh/known_hosts
 
@@ -70,13 +104,14 @@ RUN git clone https://github.com/rbenv/rbenv.git .rbenv && \
 	git clone https://github.com/rbenv/ruby-build.git .rbenv/plugins/ruby-build && \
 	cd .rbenv && src/configure && make -C src
 
-RUN git clone https://github.com/rupa/z .z
+RUN git clone https://github.com/rupa/z .z && chmod +x .z/z.sh
 
 ## dotfiles
-ADD . .configuration
+ADD ./configuration .configuration
+ADD /install-docker.sh /tmp/install-docker.sh
 USER root
 #remote docker management
-RUN .configuration/docker/install-docker.sh
+RUN /tmp/install-docker.sh
 RUN chown -R $USER_NAME:$USER_NAME .configuration
 USER ${USER_NAME}
 

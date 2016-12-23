@@ -15,7 +15,7 @@ services:
          #for docker-compose volumes work while inside container, 
          # host and guest volume paths should match
          - /youzz-development:/youzz-development
-         - .:/home/$USER_NAME/.configuration
+         - ./configuration:/home/$USER_NAME/.configuration
          - ./docker:/home/$USER_NAME/.docker
       ports:
         - '2323:22'

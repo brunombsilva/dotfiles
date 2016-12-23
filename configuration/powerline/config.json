@@ -1,4 +1,5 @@
 {
+  "log_file": "~/powerline.log",
 	"ext": {
 		"shell": {
 			"colorscheme": "default",

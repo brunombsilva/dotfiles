@@ -1,3 +1,5 @@
+set -e
+
 CONFIG_DIR=`pwd`
 ./generate-docker-cert.sh
 cp -v {ca,cert,key}.pem ~/.docker
