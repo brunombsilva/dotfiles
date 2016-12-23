@@ -304,3 +304,15 @@
 [submodule "configuration/vim/_vim/bundle/phpcomplete.vim"]
 	path = configuration/vim/_vim/bundle/phpcomplete.vim
 	url = https://github.com/shawncplus/phpcomplete.vim.git
+[submodule "configuration/git-flow-completion"]
+	path = configuration/git-flow-completion
+	url = https://github.com/bobthecow/git-flow-completion.git
+[submodule "configuration/powerline-consolas"]
+	path = configuration/powerline-consolas
+	url = https://github.com/nicolalamacchia/powerline-consolas.git
+[submodule "configuration/powerline-fonts"]
+	path = configuration/powerline-fonts
+	url = https://github.com/Lokaltog/powerline-fonts.git
+[submodule "configuration/tmux-colors-solarized"]
+	path = configuration/tmux-colors-solarized
+	url = https://github.com/seebi/tmux-colors-solarized.git

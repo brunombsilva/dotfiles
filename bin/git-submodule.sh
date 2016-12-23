@@ -1,5 +1,7 @@
 #!/bin/sh
 
+#http://stackoverflow.com/a/11258810
+
 set -e
 
 git config -f .gitmodules --get-regexp '^submodule\..*\.path$' |
