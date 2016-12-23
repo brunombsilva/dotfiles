@@ -1,0 +1,33 @@
+version: '2'
+
+services:
+   dotfiles:
+      container_name: dotfiles
+      restart: always
+      build:
+        context: .
+        args:
+          USER_NAME: $USER_NAME
+      hostname: dotfiles
+      #environment:
+      volumes:
+         #for docker-compose volumes work while inside container, 
+         # host and guest volume paths should match
+         - /youzz-development:/youzz-development
+         - ./configuration:/home/$USER_NAME/.configuration
+         - ./docker:/home/$USER_NAME/.docker
+      ports:
+        - '2323:22'
+      networks:
+        - default
+
+networks:
+   default:
+      ipam:
+         config:
+             - subnet: 172.28.0.0/16
+               ip_range: 172.28.5.0/24
+               gateway: 172.28.5.254
+#TODO: remove hardcoded gateways dependencies from
+# - _bash.bashrc/docker.bash
+# - docker/generate-docker-cert.sh
