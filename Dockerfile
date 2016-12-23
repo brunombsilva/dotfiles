@@ -8,7 +8,7 @@ ARG USER_PASSWORD=123456
 
 RUN apt-get -y update 
 RUN apt-get -y install git wget tmux libncurses5-dev libncursesw5-dev htop exuberant-ctags ngrep \
-	ruby-full nodejs npm grc lnav git-extras wget unzip bash-completion man python-pip curl php5 php5-curl 
+	ruby-full nodejs npm grc lnav git-extras wget unzip bash-completion man curl php5 php5-curl # python-pip
 
 RUN apt-get -y install language-pack-EN
 	
@@ -33,8 +33,7 @@ RUN wget https://github.com/jonas/tig/releases/download/tig-2.2.1/tig-2.2.1.tar.
 
 #RUN gem install lolcat sass
 
-RUN pip install pip virtualenv virtualenvwrapper -U
-RUN pip install http-prompt powerline-status powerline-gitstatus docker powerline-docker 
+#RUN pip install pip virtualenv virtualenvwrapper -U
 
 RUN npm install js-yaml js-beautify
 
@@ -55,6 +54,12 @@ USER ${USER_NAME}
 
 WORKDIR /home/${USER_NAME}
 
+RUN git clone https://github.com/yyuu/pyenv.git $HOME/.pyenv
+RUN cd $HOME/.pyenv/bin && \
+	eval "$(./pyenv init -)" && ./pyenv install 2.7.9 && ./pyenv rehash
+
+RUN cd $HOME/.pyenv/bin && eval "$(./pyenv init -)" && ./pyenv global 2.7.9 && pip install http-prompt powerline-status powerline-gitstatus docker powerline-docker 
+
 ## Github + BitBucket
 RUN mkdir -m 700 $HOME/.ssh
 #RUN chmod 700 $HOME/.ssh
@@ -65,7 +70,7 @@ RUN git clone https://github.com/rbenv/rbenv.git .rbenv && \
 	git clone https://github.com/rbenv/ruby-build.git .rbenv/plugins/ruby-build && \
 	cd .rbenv && src/configure && make -C src
 
-RUN git clone https://github.com/rupa/z z
+RUN git clone https://github.com/rupa/z .z
 
 ## dotfiles
 ADD . .configuration

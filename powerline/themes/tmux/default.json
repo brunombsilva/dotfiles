@@ -10,7 +10,7 @@
 			},
 			{
 				"function": "powerline_docker.docker",
-				"priority": 30,
+				"priority": 50,
 			"args": {
 						"base_url": "tcp://172.28.5.254:2376",
 						"use_tls": true,

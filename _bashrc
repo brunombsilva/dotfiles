@@ -161,12 +161,17 @@ export LESS_TERMCAP_md="$GREEN"
 # After  a  short  learning  phase, z will take you to the most 'frecent'
 # directory that matches ALL of the regexes given on the command line, in order.
 # For example, z foo bar would match /foo/bar but not /bar/foo.
-if [ -f ~/z/z.sh ]; then
-    . ~/z/z.sh
+if [ -f ~/.z/z.sh ]; then
+    . ~/.z/z.sh
 fi
 
-export PATH="$HOME/.rbenv/bin:$PATH"
+export RBENV_ROOT="$HOME/.rbenv"
+export PATH="$RBENV_ROOT/bin:$PATH"
 eval "$(rbenv init -)"
+
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
 
 export PATH="$HOME/.composer/vendor/bin:$PATH"
 export PATH=$PATH:/usr/local/go/bin
@@ -182,4 +187,3 @@ export PATH="/usr/local/heroku/bin:$PATH"
 # uninstall by removing these lines or running `tabtab uninstall bower`
 [ -f /usr/lib/node_modules/bower-complete/node_modules/tabtab/.completions/bower.bash ] && . /usr/lib/node_modules/bower-complete/node_modules/tabtab/.completions/bower.bash
 
-source /usr/local/bin/virtualenvwrapper.sh
