@@ -2,7 +2,6 @@ FROM ubuntu:trusty
 
 ARG USER_NAME=ubuntu
 ARG USER_ID=1000
-ARG USER_PASSWORD=123456
 ARG DEBIAN_FRONTEND=noninteractive
 ARG VIM_VERSION=8.0.0134
 ARG TIG_VERSION=2.2.1
@@ -10,6 +9,8 @@ ARG DOTNETCORE_VERSION=1.0.0-preview2.1-003177
 ARG PYTHON_VERSION=2.7.9
 ARG RUBY_VERSION=2.3.3
 ARG NODE_VERSION=v6.9.2
+
+ENV USER_PUBLIC_KEY=
 
 #Update sources
 RUN apt-get -y update
@@ -70,15 +71,18 @@ RUN echo "deb [arch=amd64] https://apt-mo.trafficmanager.net/repos/dotnet-releas
 
 ## Add USER
 RUN useradd -u ${USER_ID} -m -s /bin/bash -U ${USER_NAME} && \
-    echo "${USER_NAME}:${USER_PASSWORD}"|chpasswd && \
+    echo "${USER_NAME}:`openssl rand -base64 32`"|chpasswd && \
     adduser ${USER_NAME} sudo && \
     echo ${USER_NAME}' ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers
 
 ## SSH
-#TODO: use only RSA
 RUN apt-get install -y openssh-server && \
     mkdir /var/run/sshd && \
-    sed -i 's/PermitRootLogin without-password/PermitRootLogin yes/' /etc/ssh/sshd_config && \
+    echo "PasswordAuthentication no" >> /etc/ssh/sshd_config && \
+    echo "AllowUsers ${USER_NAME}" >> /etc/ssh/sshd_config && \
+    echo "ChallengeResponseAuthentication no" >> /etc/ssh/sshd_config && \
+    echo "UsePAM no" >> /etc/ssh/sshd_config && \
+    sed -i 's/PermitRootLogin without-password/PermitRootLogin no/' /etc/ssh/sshd_config && \
     sed 's@session\s*required\s*pam_loginuid.so@session optional pam_loginuid.so@g' -i /etc/pam.d/sshd
 
 #Some dependecies as root, because switching to user
@@ -128,7 +132,7 @@ RUN git clone https://github.com/creationix/nvm.git .nvm && \
 
 ## Github + BitBucket
 RUN mkdir -m 700 $HOME/.ssh
-
+ 
 RUN ssh-keyscan -H github.com >> $HOME/.ssh/known_hosts
 RUN ssh-keyscan -H bitbucket.com >> $HOME/.ssh/known_hosts
 
@@ -151,10 +155,15 @@ RUN ln -s -f .configuration/vim/_vim .vim
 RUN mkdir -p .ssh && ln -s -f $HOME/.configuration/ssh/_config $HOME/.ssh/config
 RUN mkdir -p .config && ln -s -f $HOME/.configuration/powerline $HOME/.config/powerline
 
-USER root
+# USER root
 
 ## Run sshd
 
 #VOLUME /home/${USER_NAME}
-CMD ["/usr/sbin/sshd", "-D"]
+
+ADD ./docker-entrypoint.sh /docker-entrypoint.sh
+ENTRYPOINT /docker-entrypoint.sh
+
+#CMD ["/usr/sbin/sshd", "-D"]
+
 EXPOSE 22

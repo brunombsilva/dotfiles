@@ -9,11 +9,13 @@ services:
         args:
           USER_NAME: $USER_NAME
       hostname: dotfiles
-      #environment:
+      environment:
+          USER_PUBLIC_KEY: $USER_PUBLIC_KEY
       volumes:
          #for docker-compose volumes work while inside container, 
          # host and guest volume paths should match
          - /youzz-development:/youzz-development
+         - ./bin:/home/$USER_NAME/bin
          - ./configuration:/home/$USER_NAME/.configuration
          - ./docker:/home/$USER_NAME/.docker
       ports:
