@@ -119,6 +119,7 @@ RUN git clone https://github.com/rbenv/rbenv.git .rbenv && \
 	./rbenv global ${RUBY_VERSION} && \
 	gem install \
 		lolcat \
+		tmuxinator \
 		sass
 
 #Install npm and npm tools
