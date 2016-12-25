@@ -150,6 +150,7 @@ USER ${USER_NAME}
 
 RUN for file in .configuration/_*; do ln -s -f $file $(echo "$file" | sed 's/\.configuration\///; s/^_/./'); done 
 
+RUN ln -s -f .configuration/.tmuxinator .tmuxinator 
 RUN ln -s -f .configuration/vim/_vimrc .vimrc 
 RUN ln -s -f .configuration/vim/_gvimrc .gvimrc 
 RUN ln -s -f .configuration/vim/_vim .vim 
