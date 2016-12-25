@@ -10,24 +10,4 @@ Host github.com
      User brunombsilva
      #IdentityFile ~/.ssh/id_rsa
 
-Host dev01-lon.youzz.net
-    HostName dev01-lon.youzz.net
-    PreferredAuthentications publickey
-    IdentitiesOnly no
-    User root
-
-Host web01-ams.cloud.tilaa.com
-    HostName web01-ams.cloud.tilaa.com
-    PreferredAuthentications publickey
-    User bsilva
-
-Host mysql01-ams.cloud.tilaa.com
-    HostName mysql01-ams.cloud.tilaa.com
-    PreferredAuthentications publickey
-    User bsilva
-
-Host backup01-hrl.cloud.tilaa.com
-    HostName backup01-hrl.cloud.tilaa.com
-    PreferredAuthentications publickey
-    User bsilva
-
+Include config.d/*
