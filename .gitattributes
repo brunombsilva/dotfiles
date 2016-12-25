@@ -1,2 +1,2 @@
 #pattern  filter=crypt diff=crypt
-config/ssh/config.d/youzz  filter=crypt diff=crypt
+configuration/ssh/config.d/youzz  filter=crypt diff=crypt

@@ -1,22 +1,12 @@
-
-Host dev01-lon.youzz.net
-    HostName dev01-lon.youzz.net
-    PreferredAuthentications publickey
-    IdentitiesOnly no
-    User root
-
-Host web01-ams.cloud.tilaa.com
-    HostName web01-ams.cloud.tilaa.com
-    PreferredAuthentications publickey
-    User bsilva
-
-Host mysql01-ams.cloud.tilaa.com
-    HostName mysql01-ams.cloud.tilaa.com
-    PreferredAuthentications publickey
-    User bsilva
-
-Host backup01-hrl.cloud.tilaa.com
-    HostName backup01-hrl.cloud.tilaa.com
-    PreferredAuthentications publickey
-    User bsilva
-
+U2FsdGVkX18TckOc1sLPsE8h/UJ72aIBkBAqvoG8becU8OuKl9lzHOFdSUVCFK/9
+Y+rFsmaA5bi/yFLtnUvGCSrDlZKe8+VnpC8YFMlbIMdh2tjIz7oQ7hToqeKgUOMv
+KCFRsgtfUudIIqazybH/MJH2/lIeTIpzDRmGZaCQFB3Qpc8CTvj3rvLDeLumMa4m
+wbQ2nekC7BzHf+52vlk/1QT8kvjpJqKA4t1nBs06+TwSeRuallY4zB9VlwTfDmIv
+VIoCe1WuoiXys3rrGa4uV7pjLdh3+JMEew4pjmmKEb+1YHeBSz/B3yhjj6LkvVvU
+Fqbuzhty+D1gFE2k2smj/bFWYQxPJaBqpWqlTO6ahOdXnw+8jiE66NcJRDwtRPV8
+r7FGBnrwoaWic9DKMq5OUgNL42Mcwe1Qrg71zWngGJm0gFUdj1xaMS55+cjd9ub0
+4VITN4ul+MeqgwBiTkl+AGaknySU+9B3XYTkT2RVSxuI10CRI2jVSFaEwxjW4H6b
+HlL6/sCtIiMJgbo6scBltLOnfsu4QK02NVf1ZEuhQKVD/oG+UPOUDXQC8X2oFDpr
+VTgA801dzT9DZVQ8BHitZ8j5GmX/RJAsQ6sEWQEMhnvSVp9aVm94SyOR0DpGuejQ
+xioDUWQUkT1JrVL+AkXhDy1XVrQ9HsUSbIUOti891sRy17Pz0pPdOfR03QJ4lTiO
+2ISJwaiZi6dSS9GoWIx41A==
