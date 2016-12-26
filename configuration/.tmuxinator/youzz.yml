@@ -1,31 +1,20 @@
-# ~/.tmuxinator/youzz.yml
-
-name: youzz
-root: /youzz-development
-
-# Runs before everything. Use it to start daemons etc.
-# pre: sudo /etc/rc.d/mysqld start
-
-# Runs in each window and pane before window/pane specific commands. Useful for setting up interpreter versions.
-# pre_window: rbenv shell 2.0.0-p247
-
-# Specifies (by name or index) which window will be selected on project startup. If not set, the first window is used.
-# startup_window: editor
-
-# Specitifes (by index) which pane of the specified window will be selected on project startup. If not set, the first pane is used.
-# startup_pane: 1
-
-windows:
-    - frontend:
-        layout: main-vertical
-        root: /youzz-development/src/frontend
-        panes:
-            - vim
-            - cd vendor/youzz/website
-            -
-    - docker:
-        root: /youzz-development
-        panes:
-            - docker-compose -f docker.local.yml ps
-
-    - logs: tail -f data/logs/*/*.log
+U2FsdGVkX18x8DkurbHasJmb4OdfZ0eW0fUXu2rvd6PDy7OI6xRrFluWsCPE73Z7
+vWBZxc31A8JqyV2kKSorEt7B/YBOtZgyI6N1VMJMA3ExKfw5iT5BAE6MCmClx26a
+4KhKyH3achdoVOt7b+0Vv8BWOnnB9e8OXIOZ6GiX4AE7xZl3GmHxLKiHvi1akabr
+BfkmnWY1JbnsWAWiizGPxip2w0wx9HBiWOKNmgt8xJVXvzdGWh/bNjIoGN5hrDj/
+Jqq/wPSKKZdDkBr7X5KJplCq/XDyXcoAabDJJqzHhWNyXINu+UhuXvH/BAQEkatm
+ylACe1RxjuF62xNlBj9IMc6DzSlOo5z8TkZtGMYE8wG9LDqxN/ItQ+T9X25+vl7j
+a1OV55K8SLAqOyF/SEN7CW11tjD5NZHMGKG12GqhStXUIrbbqd/Rbe7KzlTiItrS
+gKeLU+rStYlVp0UQLodSNANEvESkNP2r7hYb0KuMkkgsEUHZNB407qfajuqsxzG2
+cFRDvF4XWJTG00ac4I3qGkngflw+tZhQiSOf9jweUv0hfws0Uw+YXxWJwB2b/CuP
+Sk0AXNOazzhZ/ppuN2HK9ddo86CG777xWg7ypkvD85u8lHfUyUG7uZz8mGreBqNA
+j3BsGU2pxEDIlQNdaJnxlKRFn70Mxvy13qVWGyBFmwYfqWOhowFGXa2wL7b9woCD
+hxsJs9QtOTDydfKMya6/NMtZeoVAFdajV10svNpgrPlUrElv+GtGPUatcKx0vtMk
+xdaf3vjtON6EwBojnVze3yA87E5k06CAUKA/i+dKHNnRDUgG56OFpiCyJXCNNXEl
+MsS+0lvhhuSKFvTleFTTbuToZOYFuN0a9QfFuBgBoXw/zehaGe4ZX/McUlW34s9d
+62zdZKq2d1leGmtKpSwOz3M5ydyRhUxJI34YmsFzimER0v3RXkY7wPWkhHz3Fbuh
+Hr6GaETDyHvmhDdcTbzXnjSFKBb+DtDEt5Yf7k9yhjhPI+OKigUALnbs2nl/tojD
+mBu+A3RKMcx5J7MxwdJLbmSsN62c5hdmWEWQRHJ3xDTLoETp2veCuDq1kmCQ9Qcs
+4QrwW9iQdHQhoJKAc6VYg5BHxDYQwfX3gJ+t19bZmeaJ2MedR0crJB2itmZNsbKF
+Ir+LX3DKe1fx+5VUnpg553x8Kd2Db8x+BnGRwD5Z5g7Qb8/0YhyQSMpHNKTXe5QB
+I5p4NjqFpAlS64tSg3+pehHIy1KmJGOqqB/jk+Cd4vC4BX3Lu5I3H478ctvZMg07
