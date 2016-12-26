@@ -4,7 +4,7 @@ if !exists('$PATHOGEN_PATH')
     let $PATHOGEN_PATH = '$HOME/.vim/bundle'
 endif
 
-let g:pathogen_disabled = ['DBGp-client']
+let g:pathogen_disabled = ['DBGp-client', 'omnisharp-vim']
 
 "set term=screen-256color
 
@@ -184,7 +184,7 @@ iab  previosu  previous
 nmap <leader>l :set list!<CR>
 
 "Use the same symbols as TextMate for tabstops and EOLs
-set listchars=tab:<.,eol:¬
+"set listchars=tab:<.,eol:¬
 
 "Invisible character colors
 highlight NonText guifg=#4a4a59
