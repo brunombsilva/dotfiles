@@ -4,25 +4,31 @@ services:
    dotfiles:
       container_name: dotfiles
       restart: always
+      # if you're using the image from docker hub, you'll get the default username (ubuntu) 
       build:
         context: .
         args:
           USER_NAME: $USER_NAME
       hostname: dotfiles
       environment:
+	  # get user public key from .env to setup ssh authentication
           USER_PUBLIC_KEY: $USER_PUBLIC_KEY
       volumes:
          #for docker-compose volumes work while inside container, 
          # host and guest volume paths should match
          - /youzz-development:/youzz-development
+	 # these volumes allow me to tweak configuration from within the container
          - ./bin:/home/$USER_NAME/bin
          - ./configuration:/home/$USER_NAME/.configuration
+	 # making docker certificates available in the container to allow me to remote manage docker daemon
          - ./docker:/home/$USER_NAME/.docker
+      # in my setup sshd port 22 is already taken and I want to enable remote access to the container
       ports:
         - '2323:22'
       networks:
         - default
 
+# I'm enforcing network settings do prevent fuck ups coming from defaults changing over time
 networks:
    default:
       ipam:
@@ -32,4 +38,4 @@ networks:
                gateway: 172.28.5.254
 #TODO: remove hardcoded gateways dependencies from
 # - _bash.bashrc/docker.bash
-# - docker/generate-docker-cert.sh
+# - bin/docker-generate-certificates

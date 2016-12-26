@@ -16,7 +16,7 @@ ln -s `pwd`/docker $HOME/.docker
 echo "add environment variables to .bashrc"
 
 set -x
-export DOCKER_HOST=tcp://`hostname`:2376 DOCKER_TLS_VERIFY=1
+export DOCKER_HOST=tcp://`hostname`:2376
 export DOCKER_TLS_VERIFY=1
-export DOCKER_CERT_PATH=`pwd`/docker
-export REQUESTS_CA_BUNDLE=`pwd`/docker/server-cert.pem
+export DOCKER_CERT_PATH=$HOME/.docker
+export REQUESTS_CA_BUNDLE=$HOME/.docker/server-cert.pem
