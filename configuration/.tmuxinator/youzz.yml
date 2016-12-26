@@ -1,0 +1,31 @@
+# ~/.tmuxinator/youzz.yml
+
+name: youzz
+root: /youzz-development
+
+# Runs before everything. Use it to start daemons etc.
+# pre: sudo /etc/rc.d/mysqld start
+
+# Runs in each window and pane before window/pane specific commands. Useful for setting up interpreter versions.
+# pre_window: rbenv shell 2.0.0-p247
+
+# Specifies (by name or index) which window will be selected on project startup. If not set, the first window is used.
+# startup_window: editor
+
+# Specitifes (by index) which pane of the specified window will be selected on project startup. If not set, the first pane is used.
+# startup_pane: 1
+
+windows:
+    - frontend:
+        layout: main-vertical
+        root: /youzz-development/src/frontend
+        panes:
+            - vim
+            - cd vendor/youzz/website
+            -
+    - docker:
+        root: /youzz-development
+        panes:
+            - docker-compose -f docker.local.yml ps
+
+    - logs: tail -f data/logs/*/*.log
