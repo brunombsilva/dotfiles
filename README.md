@@ -12,7 +12,7 @@ This repository includes all my non-confidential Linux development environment c
 
 ## Setup
 
-Though you can cherry pick what you want to your dotfiles, create symlinks or rename these files, I use a [Docker Image](hub.docker.com/r/brunombsilva/dotfiles/) to provision symlinks and software dependencies.
+Though you can cherry pick what you want to your dotfiles, create symlinks or rename these files, I use a [Docker Image](https://hub.docker.com/r/brunombsilva/dotfiles/) to provision symlinks and software dependencies.
 
 ### Quick start
 
