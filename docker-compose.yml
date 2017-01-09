@@ -11,18 +11,19 @@ services:
           USER_NAME: $USER_NAME
       hostname: dotfiles
       environment:
-	  # get user public key from .env to setup ssh authentication
+          # get user public key from .env to setup ssh authentication
           USER_PUBLIC_KEY: $USER_PUBLIC_KEY
       volumes:
          #for docker-compose volumes work while inside container, 
          # host and guest volume paths should match
          - /youzz-development:/youzz-development
-	 # these volumes allow me to tweak configuration from within the container
+         - .:/dotfiles
+         # these volumes allow me to tweak configuration from within the container
          - ./bin:/home/$USER_NAME/bin
          - ./configuration:/home/$USER_NAME/.configuration
-	 # making docker certificates available in the container to allow me to remote manage docker daemon
+         # making docker certificates available in the container to allow me to remote manage docker daemon
          - ./docker:/home/$USER_NAME/.docker
-      # in my setup sshd port 22 is already taken and I want to enable remote access to the container
+         # in my setup sshd port 22 is already taken and I want to enable remote access to the container
       ports:
         - '2323:22'
       networks:

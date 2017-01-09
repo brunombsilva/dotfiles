@@ -23,6 +23,7 @@ RUN apt-get -y install \
 	wget \
 	curl \
 	tmux \
+	locate \
 	libncurses5-dev \
 	libncursesw5-dev \
 	htop \

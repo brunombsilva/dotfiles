@@ -181,3 +181,9 @@
 [submodule "configuration/tmux-colors-solarized"]
 	path = configuration/tmux-colors-solarized
 	url = https://github.com/seebi/tmux-colors-solarized.git
+[submodule "configuration/vim/_vim/bundle/diffchar.vim"]
+	path = configuration/vim/_vim/bundle/diffchar.vim
+	url = https://github.com/rickhowe/diffchar.vim.git
+[submodule "configuration/vim/_vim/bundle/spotdiff.vim"]
+	path = configuration/vim/_vim/bundle/spotdiff.vim
+	url = https://github.com/rickhowe/spotdiff.vim.git
