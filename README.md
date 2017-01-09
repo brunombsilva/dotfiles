@@ -38,7 +38,7 @@ Though you can cherry pick what you want to your dotfiles, create symlinks or re
 	
 	```env
 	COMPOSE_PROJECT_NAME=dotfiles
-	USER_NAME=bsilva
+	USER_NAME=ubuntu
 	USER_PUBLIC_KEY=ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC3rsrIaNn/dwRBcWBDGuUiDYPtlDddtP2smUJFqmN0PdRzKed3Qbp8WctGC0E9Z5gpZWIfg7W41GTLwOGiXTLgigMMNTuLMbExjHvhq7AE4Cr321kbT6ZA+GwvZz5mOoHEfVvCJrBcvJNnhJsrfS2xdxFhC1buAbsCtNSvQqcdg+WzjsLqETASPcqu205UJ4qfCEUhVn9zOeXxbnIymXfffO2hUeEKXueHwDpb43sytTsEnIzJgd4AFZ7j5um4nPLxPIc4N3pBbnLtQQv/boKI77KoaGzCaKFCYBSUqkXmOwlN/9KyZe0m3wTWONUyKgV5E93STa14EianyDRANzQ7 vagrant@vagrant-ubuntu-trusty-64
 	```
 
@@ -65,7 +65,7 @@ Even if you break the encryption, you'll just get to know some details about the
 You'll be able to connect using a SSH Client. 
 
 ```bash
-ssh -i dotfiles_rsa -p 2323 bsilva@127.0.0.1
+ssh -i dotfiles_rsa -p 2323 ubuntu@127.0.0.1
 ```
 
 ## Customization
