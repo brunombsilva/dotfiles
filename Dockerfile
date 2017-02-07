@@ -9,6 +9,7 @@ ARG DOTNETCORE_VERSION=1.0.0-preview2.1-003177
 ARG PYTHON_VERSION=2.7.9
 ARG RUBY_VERSION=2.3.3
 ARG NODE_VERSION=v6.9.2
+ARG TMUX_VERSION=2.3
 
 ENV USER_PUBLIC_KEY=
 
@@ -22,7 +23,6 @@ RUN apt-get -y install \
 	git-extras \
 	wget \
 	curl \
-	tmux \
 	locate \
 	libncurses5-dev \
 	libncursesw5-dev \
@@ -60,6 +60,16 @@ RUN wget https://github.com/jonas/tig/releases/download/tig-${TIG_VERSION}/tig-$
 	tar -zxvf tig.tar.gz && \
 	cd tig-${TIG_VERSION} && \
 	make prefix=/usr/local && \
+	make install prefix=/usr/local && \
+	rm -fR /tmp/*
+
+#Install tmux
+RUN wget https://github.com/tmux/tmux/releases/download/${TMUX_VERSION}/tmux-${TMUX_VERSION}.tar.gz -O tmux.tar.gz && \
+	apt-get -y install libevent-dev && \
+	tar -zxvf tmux.tar.gz && \
+	cd tmux-${TMUX_VERSION} && \
+	./configure && \
+    make prefix=/usr/local && \
 	make install prefix=/usr/local && \
 	rm -fR /tmp/*
 
