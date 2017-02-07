@@ -37,7 +37,7 @@ RUN apt-get -y install \
 	bash-completion \
 	man \
 	php5 \
-	php5-curl 
+	php5-curl
 
 #Ensure locales
 RUN apt-get -y install language-pack-EN
@@ -108,7 +108,7 @@ RUN cd $HOME/.pyenv/bin && \
 		powerline-status \
 		powerline-gitstatus \
 		#docker \
-		powerline-docker 
+		powerline-docker
 
 #Install ruby and ruby tools
 RUN git clone https://github.com/rbenv/rbenv.git .rbenv && \
@@ -149,12 +149,13 @@ RUN /home/${USER_NAME}/bin/docker-install
 RUN chown -R $USER_NAME:$USER_NAME .configuration
 USER ${USER_NAME}
 
-RUN for file in .configuration/_*; do ln -s -f $file $(echo "$file" | sed 's/\.configuration\///; s/^_/./'); done 
+RUN for file in .configuration/_*; do ln -s -f $file $(echo "$file" | sed 's/\.configuration\///; s/^_/./'); done
 
-RUN ln -s -f .configuration/.tmuxinator .tmuxinator 
-RUN ln -s -f .configuration/vim/_vimrc .vimrc 
-RUN ln -s -f .configuration/vim/_gvimrc .gvimrc 
-RUN ln -s -f .configuration/vim/_vim .vim 
+RUN ln -s -f .configuration/.tmuxinator .tmuxinator
+RUN ln -s -f .configuration/vim/_vimrc .vimrc
+RUN ln -s -f .configuration/vim/_gvimrc .gvimrc
+RUN ln -s -f .configuration/vim/_vim .vim
+RUN ln -s -f .configuration/_tmux .tmux
 RUN mkdir -p .ssh && \
 	ln -s -f $HOME/.configuration/ssh/_config $HOME/.ssh/config
 RUN mkdir -p .config && ln -s -f $HOME/.configuration/powerline $HOME/.config/powerline

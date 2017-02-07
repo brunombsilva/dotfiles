@@ -229,7 +229,7 @@ set completeopt=longest,menu,preview
 autocmd FileType smarty let b:match_words = '<:>,<\@<=[ou]l\>[^>]*\%(>\|$\):<\@<=li\>:<\@<=/[ou]l>,<\@<=dl\>[^>]*\%(>\|$\):<\@<=d[td]\>:<\@<=/dl>,<\@<=\([^/][^ \t>]*\)[^>]*\%(>\|$\):<\@<=/\1>'
 
 " Show TagBar on the left
-let g:tagbar_left = 1
+"let g:tagbar_left = 1
 
 " TagBar & NERDTree keybindings support
 imap <leader>nt <Esc><leader>nt
@@ -263,12 +263,13 @@ au VimEnter * EC
 
 " Shortcuts to resize panes
 map - <C-W>-
-map + <C-W>+
+map + <c-W>+
 map º <C-W>>
 map ç <c-W><
 
 "disable vim-session plugin session auto-saving
 let g:session_autosave = 'no'
+"let g:session_autoload = 'no'
 
 " documentation lookup, for PHP
 "let g:investigate_use_command_for_php = 1
