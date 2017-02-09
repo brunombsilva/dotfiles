@@ -1,15 +1,87 @@
 
-" vim-pathogen (https://github.com/tpope/vim-pathogen) setup
-if !exists('$PATHOGEN_PATH')
-    let $PATHOGEN_PATH = '$HOME/.vim/bundle'
-endif
+filetype off
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+"Plugin 'VundleVim/Vundle.vim'
+"Plugin 'kablamo/vim-git-log'
+Plugin 'Lokaltog/vim-powerline'
+Plugin 'terryma/vim-multiple-cursors'
+"Plugin 'vim-scripts/git-time-lapse'
+Plugin 'tacahiroy/ctrlp-funky'
+Plugin 'goldfeld/vim-seek'
+Plugin 'Lokaltog/vim-easymotion'
+Plugin 'sjl/clam.vim'
+Plugin 'szw/vim-ctrlspace'
+Plugin 'evidens/vim-twig'
+"Plugin 'chrisbra/csv.vim'
+"Plugin 'alvan/vim-phpmanual'
+Plugin 'sgur/ctrlp-extensions.vim'
+Plugin 'xolox/vim-misc'
+Plugin 'Keithbsmiley/investigate.vim'
+Plugin 'luochen1990/rainbow'
+Plugin 'Raimondi/delimitMate'
+Plugin 'bling/vim-airline'
+Plugin 'Chiel92/vim-autoformat'
+Plugin 'lifepillar/vim-cheat40'
+Plugin 'evanmiller/nginx-vim-syntax'
+"Plugin 'OmniSharp/omnisharp-vim'
+Plugin 'tpope/vim-dispatch'
+Plugin 'ervandew/supertab'
+Plugin 'Shougo/echodoc.vim'
+Plugin 'ekalinin/Dockerfile.vim'
+Plugin 'mkusher/padawan.vim'
+Plugin 'jwalton512/vim-blade'
+Plugin 'skywind3000/asyncrun.vim'
+"Plugin 'vim-scripts/DBGp-client'
+Plugin 'vim-scripts/JavaScript-syntax'
+Plugin 'chrisbra/SudoEdit.vim'
+Plugin 'vim-scripts/SyntaxComplete'
+Plugin 'chrisbra/changesPlugin'
+Plugin 'vim-scripts/css3-mod'
+Plugin 'ctrlpvim/ctrlp.vim'
+Plugin 'vim-scripts/grep.vim'
+Plugin 'scrooloose/nerdcommenter'
+Plugin 'scrooloose/nerdtree'
+Plugin 'scrooloose/syntastic'
+Plugin 'majutsushi/tagbar'
+Plugin 'tomtom/tlib_vim'
+Plugin 'MarcWeber/vim-addon-mw-utils'
+Plugin 'altercation/vim-colors-solarized'
+Plugin 'tpope/vim-fugitive'
+Plugin 'airblade/vim-gitgutter'
+Plugin 'rogerz/vim-json'
+Plugin 'tpope/vim-pathogen'
+Plugin 'stephpy/vim-php-cs-fixer'
+Plugin 'xolox/vim-session'
+Plugin 'garbas/vim-snipmate'
+Plugin 'sukima/xmledit'
+Plugin 'troydm/zoomwintab.vim'
+Plugin 'vim-scripts/genutils'
+"Plugin 'g3orge/vim-voogle'
+Plugin 'shawncplus/phpcomplete.vim'
+Plugin 'bobthecow/git-flow-completion'
+Plugin 'rickhowe/diffchar.vim'
+Plugin 'rickhowe/spotdiff.vim'
+Plugin 'vim-ruby/vim-ruby'
+Plugin 'ntpeters/vim-better-whitespace'
+Plugin 'christoomey/vim-tmux-navigator'
+Plugin 'tpope/vim-bundler'
+Plugin 'nathanaelkane/vim-indent-guides'
+Plugin 'guns/xterm-color-table.vim'
+call vundle#end()
+filetype plugin indent on
 
-let g:pathogen_disabled = ['DBGp-client']
+" vim-pathogen (https://github.com/tpope/vim-pathogen) setup
+"if !exists('$PATHOGEN_PATH')
+    "let $PATHOGEN_PATH = '$HOME/.vim/bundle'
+"endif
+
+"let g:pathogen_disabled = ['DBGp-client']
 
 "set term=screen-256color
 
 runtime bundle/vim-pathogen/autoload/pathogen.vim
-call pathogen#infect($PATHOGEN_PATH.'/{}') 
+"call pathogen#infect($PATHOGEN_PATH.'/{}')
 
 set nocompatible                  " Must come first because it changes other options.
 
@@ -291,3 +363,13 @@ let g:SuperTabDefaultCompletionTypeDiscovery = ["&omnifunc:<c-x><c-o>","&complet
 let g:SuperTabClosePreviewOnPopupClose = 1
 
 let g:padawan#composer_command = "composer"
+
+"vim-indent-guides
+let g:indent_guides_guide_size = 1
+let g:indent_guides_start_level = 1
+let g:indent_guides_enable_on_vim_startup = 1
+let g:indent_guides_auto_colors = 0
+let g:indent_guides_exclude_filetypes = ['help', 'nerdtree']
+
+hi IndentGuidesOdd  ctermbg=233
+hi IndentGuidesEven ctermbg=235
