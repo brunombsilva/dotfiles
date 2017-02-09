@@ -165,10 +165,13 @@ RUN ln -s -f .configuration/.tmuxinator .tmuxinator
 RUN ln -s -f .configuration/vim/_vimrc .vimrc
 RUN ln -s -f .configuration/vim/_gvimrc .gvimrc
 RUN ln -s -f .configuration/vim/_vim .vim
+RUN ln -s -f .configuration/vim/_vimrc.d .vimrc.d
 RUN ln -s -f .configuration/_tmux .tmux
 RUN mkdir -p .ssh && \
 	ln -s -f $HOME/.configuration/ssh/_config $HOME/.ssh/config
 RUN mkdir -p .config && ln -s -f $HOME/.configuration/powerline $HOME/.config/powerline
+
+RUN vim +PluginInstall +qall
 
 # USER root
 
