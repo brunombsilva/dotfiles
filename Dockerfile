@@ -162,10 +162,10 @@ USER ${USER_NAME}
 RUN for file in .configuration/_*; do ln -s -f $file $(echo "$file" | sed 's/\.configuration\///; s/^_/./'); done
 
 RUN ln -s -f .configuration/.tmuxinator .tmuxinator
-RUN ln -s -f .configuration/vim/_vimrc .vimrc
-RUN ln -s -f .configuration/vim/_gvimrc .gvimrc
-RUN ln -s -f .configuration/vim/_vim .vim
-RUN ln -s -f .configuration/vim/_vimrc.d .vimrc.d
+RUN ln -s -f .configuration/_vimrc .vimrc
+RUN ln -s -f .configuration/_gvimrc .gvimrc
+RUN ln -s -f .configuration/_vim .vim
+RUN ln -s -f .configuration/_vimrc.d .vimrc.d
 RUN ln -s -f .configuration/_tmux .tmux
 RUN mkdir -p .ssh && \
 	ln -s -f $HOME/.configuration/ssh/_config $HOME/.ssh/config

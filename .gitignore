@@ -4,5 +4,5 @@
 *.swm
 *.pem
 docker/config.json
-configuration/vim/_vim/bundle/*
-!configuration/vim/_vim/bundle/Vundle.vim
+configuration/_vim/bundle/*
+!configuration/_vim/bundle/Vundle.vim/

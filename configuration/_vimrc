@@ -177,7 +177,7 @@ iab  previosu  previous
 nmap <leader>l :set list!<CR>
 
 "Use the same symbols as TextMate for tabstops and EOLs
-set listchars=tab:<.,eol:¬
+silent! set listchars=tab:<.,eol:¬
 
 "Invisible character colors
 highlight NonText guifg=#4a4a59
