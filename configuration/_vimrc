@@ -1,15 +1,15 @@
+"for f in split(glob('~/.vimrc.d/*.vim'), '\n')
+    "exe 'source' f
+"endfor
 
-" vim-pathogen (https://github.com/tpope/vim-pathogen) setup
-if !exists('$PATHOGEN_PATH')
-    let $PATHOGEN_PATH = '$HOME/.vim/bundle'
-endif
-
-let g:pathogen_disabled = ['DBGp-client', 'omnisharp-vim']
+source ~/.vimrc.d/_vundle.vim
+source ~/.vimrc.d/ctrlp.vim
+source ~/.vimrc.d/dotnet.vim
+source ~/.vimrc.d/mistypings.vim
+source ~/.vimrc.d/php.vim
+source ~/.vimrc.d/airline.vim
 
 "set term=screen-256color
-
-runtime bundle/vim-pathogen/autoload/pathogen.vim
-call pathogen#infect($PATHOGEN_PATH.'/{}') 
 
 set nocompatible                  " Must come first because it changes other options.
 
@@ -55,7 +55,7 @@ set clipboard=unnamed
 " Keep swap files in one location
 if has("win32") || has("win64")
     set directory=$TMP
-else    
+else
     set directory=/tmp
 end
 "set noswapfile
@@ -78,25 +78,7 @@ if has('win32') || has('win64')
 endif
 
 set background=dark
-colorscheme solarized 
-
-" https://github.com/bling/vim-airline configuration
-let g:airline_theme='powerlineish'
-let g:airline_powerline_fonts = 1
-
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#show_buffers = 1
-let g:airline#extensions#tabline#buffer_idx_mode = 1
-
-nmap <leader>1 <Plug>AirlineSelectTab1
-nmap <leader>2 <Plug>AirlineSelectTab2
-nmap <leader>3 <Plug>AirlineSelectTab3
-nmap <leader>4 <Plug>AirlineSelectTab4
-nmap <leader>5 <Plug>AirlineSelectTab5
-nmap <leader>6 <Plug>AirlineSelectTab6
-nmap <leader>7 <Plug>AirlineSelectTab7
-nmap <leader>8 <Plug>AirlineSelectTab8
-nmap <leader>9 <Plug>AirlineSelectTab9
+silent! colorscheme solarized
 
 " Tab mappings.
 map <leader>tt :tabnew<cr>
@@ -114,21 +96,11 @@ hi TabLineSel term=underline cterm=underline ctermfg=239 ctermbg=187 gui=bold
 hi TabNumSel term=underline cterm=underline ctermfg=239 ctermbg=187 gui=bold
 
 " Automatic fold settings for specific files.
-autocmd FileType php setlocal foldmethod=syntax
 autocmd FileType css  setlocal foldmethod=indent shiftwidth=2 tabstop=2
 autocmd FileType xml setlocal foldmethod=syntax
 
-" PHP Comments
-autocmd FileType php setlocal comments=s1:/**,mb:*,ex:*/,://,:#
-
-" Fold/unfold PHP classes, methods, functions, etc
-let g:php_folding=1
-
-" smarty files syntax highlighting
-au BufRead,BufNewFile *.tpl set filetype=smarty
-
 "xmledit plugin configuration
-let loaded_xmledit = 1
+"let loaded_xmledit = 1
 
 " Don't use vi compatibility mode
 set nocp
@@ -137,10 +109,10 @@ if version >= 600
     filetype plugin indent on
 endif
 
-set mouse=n   
+set mouse=n
 let g:spchkmouse   = 1
 let g:spchkautonext= 1
-let g:spchkdialect = "usa" 
+let g:spchkdialect = "usa"
 
 "let g:acp_behaviorSnipmateLength = 4
 let g:acp_behaviorKeywordLength = 5
@@ -167,33 +139,16 @@ nmap <silent> <BS> :nohlsearch <BAR> set nocursorcolumn<CR>
 " Use space to jump down a page (like browsers do)...
 noremap <Space> <PageDown>
 
-"=====[ Correct common mistypings in-the-fly ]=======================
-
-iab    retrun  return
-iab     pritn  print
-iab       teh  the
-iab      liek  like
-iab  liekwise  likewise
-iab      Pelr  Perl
-iab      pelr  perl
-iab        ;t  't
-iab      moer  more
-iab  previosu  previous
 
 "shortcut to rapidly toggle `set list`
 nmap <leader>l :set list!<CR>
 
 "Use the same symbols as TextMate for tabstops and EOLs
-"set listchars=tab:<.,eol:¬
+silent! set listchars=tab:<.,eol:¬
 
 "Invisible character colors
 highlight NonText guifg=#4a4a59
 highlight SpecialKey guifg=#4a4a59
-
-"DBGp-client configuration
-hi DbgCurrent term=reverse ctermfg=White ctermbg=Red gui=reverse
-hi DbgBreakPt term=reverse ctermfg=Red ctermbg=DarkGrey gui=reverse
-let g:debuggerMaxDepth = 2
 
 " Rainbow Parentheses Highlighting
 let g:rainbow_active=1
@@ -205,12 +160,6 @@ let g:syntastic_auto_loc_list=1
 
 "location-list size
 let g:syntastic_loc_list_height=3
-
-" PHP syntax checking configuration
-let g:syntastic_php_phpmd_post_args = 'design'
-let g:syntastic_php_phpcs_args = '--standard=~/.configuration/php/phpcs_ruleset.xml'
-
-let g:syntastic_twig_twiglint_exec='~/.composer/vendor/asm89/twig-lint/bin/twig-lint'
 
 " Let's always check PHP syntax and best practices
 let g:syntastic_mode_map = { 'mode': 'active', 'active_filetypes': ['php'], 'passive_filetypes': [''] }
@@ -225,11 +174,8 @@ imap <C-Space> <C-x><C-o>
 imap <C-@> <C-Space>
 set completeopt=longest,menu,preview
 
-" Smarty matching pairs support 
-autocmd FileType smarty let b:match_words = '<:>,<\@<=[ou]l\>[^>]*\%(>\|$\):<\@<=li\>:<\@<=/[ou]l>,<\@<=dl\>[^>]*\%(>\|$\):<\@<=d[td]\>:<\@<=/dl>,<\@<=\([^/][^ \t>]*\)[^>]*\%(>\|$\):<\@<=/\1>'
-
 " Show TagBar on the left
-let g:tagbar_left = 1
+"let g:tagbar_left = 1
 
 " TagBar & NERDTree keybindings support
 imap <leader>nt <Esc><leader>nt
@@ -240,53 +186,40 @@ map <leader>ide :NERDTreeClose<cr>:TagbarClose<cr>:NERDTree<cr>:TagbarOpen<cr><C
 map <leader>tb :TagbarToggle<cr>
 
 " Git file history navigation
-map <leader>gt :call TimeLapse() <cr>
-
-let g:ctrlp_working_path_mode = 'rw'
-
-" ctrlp extension used to navigate between current buffer function definitions
-let g:ctrlp_extensions = ['funky']
-let g:ctrlp_funky_syntax_highlight = 1
-let g:ctrlp_funky_matchtype = 'path'
-
-" ctrlp shortcuts
-nnoremap <C-y> :CtrlPYankring<cr>
-nnoremap <C-c>l :CtrlPCmdline<cr>
-nnoremap <C-c>b :CtrlPBuffer<cr>
-nnoremap <C-c>f :CtrlPFunky<cr>
-
-" narrow the list down with a word under cursor
-nnoremap <C-c>fU :execute 'CtrlPFunky ' . expand('<cword>')<Cr>
+"map <leader>gt :call TimeLapse() <cr>
 
 "changesPlugin, check for changes from filesystem when entering a buffer
 au VimEnter * EC
 
 " Shortcuts to resize panes
 map - <C-W>-
-map + <C-W>+
+map + <c-W>+
 map º <C-W>>
 map ç <c-W><
 
+"Forcing me to use https://github.com/christoomey/vim-tmux-navigator
+map <C-W><right> <nop>
+map <C-W><left> <nop>
+map <C-W><up> <nop>
+map <C-W><down> <nop>
+
 "disable vim-session plugin session auto-saving
 let g:session_autosave = 'no'
-
-" documentation lookup, for PHP
-"let g:investigate_use_command_for_php = 1
-"let g:investigate_command_for_php = '^i:call system(''midori "http://devdocs.io/#q=^s"'')'
-"let g:investigate_command_for_php = '^i:call system(''midori -a "http://php.net/search.php?show=quickref&pattern=^s"'')'
+"let g:session_autoload = 'no'
 
 "set splitbelow
-
-".net stuff
-let g:OmniSharp_server_path = '/home/vagrant/omnisharp-roslyn/src/OmniSharp/bin/Release/netcoreapp1.0/ubuntu.14.04-x64/OmniSharp'
-"let g:syntastic_cs_checkers = ['syntax', 'semantic', 'issues']
-let g:syntastic_cs_checkers = ['code_checker']
-let g:OmniSharp_server_type = 'roslyn'
-let g:omnicomplete_fetch_documentation=1
 
 let g:SuperTabDefaultCompletionType = 'context'
 let g:SuperTabContextDefaultCompletionType = "<c-x><c-o>"
 let g:SuperTabDefaultCompletionTypeDiscovery = ["&omnifunc:<c-x><c-o>","&completefunc:<c-x><c-n>"]
 let g:SuperTabClosePreviewOnPopupClose = 1
 
-let g:padawan#composer_command = "composer"
+"vim-indent-guides
+let g:indent_guides_guide_size = 1
+let g:indent_guides_start_level = 1
+let g:indent_guides_enable_on_vim_startup = 1
+let g:indent_guides_auto_colors = 0
+let g:indent_guides_exclude_filetypes = ['help', 'nerdtree']
+
+hi IndentGuidesOdd  ctermbg=233
+hi IndentGuidesEven ctermbg=235
