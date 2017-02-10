@@ -3,8 +3,9 @@ version: '2'
 services:
    dotfiles:
       container_name: dotfiles
+      image: brunombsilva/dotfiles
       restart: always
-      # if you're using the image from docker hub, you'll get the default username (ubuntu) 
+      # if you're using the image from docker hub, you'll get the default username (ubuntu)
       build:
         context: .
         args:
@@ -14,7 +15,7 @@ services:
           # get user public key from .env to setup ssh authentication
           USER_PUBLIC_KEY: $USER_PUBLIC_KEY
       volumes:
-         #for docker-compose volumes work while inside container, 
+         #for docker-compose volumes work while inside container,
          # host and guest volume paths should match
          - /youzz-development:/youzz-development
          - .:/dotfiles
