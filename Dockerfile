@@ -110,6 +110,13 @@ RUN apt-get install -y openssh-server && \
 USER ${USER_NAME}
 WORKDIR /home/${USER_NAME}
 
+## Github + BitBucket
+RUN mkdir -m 700 $HOME/.ssh
+RUN ssh-keyscan -H github.com >> $HOME/.ssh/known_hosts
+RUN ssh-keyscan -H bitbucket.com >> $HOME/.ssh/known_hosts
+
+RUN git clone https://github.com/rupa/z .rupa-z && chmod +x .rupa-z/z.sh
+
 #Install python and python tools
 RUN git clone https://github.com/yyuu/pyenv.git $HOME/.pyenv && \
     cd $HOME/.pyenv/bin && \
@@ -153,23 +160,17 @@ RUN git clone https://github.com/creationix/nvm.git .nvm && \
         js-yaml \
         js-beautify'
 
-## Github + BitBucket
-RUN mkdir -m 700 $HOME/.ssh
-RUN ssh-keyscan -H github.com >> $HOME/.ssh/known_hosts
-RUN ssh-keyscan -H bitbucket.com >> $HOME/.ssh/known_hosts
-
-RUN git clone https://github.com/rupa/z .rupa-z && chmod +x .rupa-z/z.sh
-
-## dotfiles
-ADD ./configuration .configuration
-ADD ./bin bin
+ADD ./bin .dotfiles/bin
 
 #remote docker management
-RUN sudo /home/${USER_NAME}/bin/docker-install
-RUN sudo chown -R $USER_NAME:$USER_NAME .configuration
+RUN sudo .dotfiles/bin/docker-install
+
+## dotfiles
+ADD ./configuration .dotfiles/configuration
+RUN sudo chown -R $USER_NAME:$USER_NAME .dotfiles/configuration
 
 #Ensure dotfiles symlinks
-RUN bin/dotfiles-symlinks -f
+RUN .dotfiles/bin/dotfiles-symlinks -f
 
 RUN vim +PluginInstall +qall
 
