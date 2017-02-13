@@ -168,13 +168,8 @@ ADD ./bin bin
 RUN sudo /home/${USER_NAME}/bin/docker-install
 RUN sudo chown -R $USER_NAME:$USER_NAME .configuration
 
-RUN for file in .configuration/_*; do ln -s -f $file $(echo "$file" | sed 's/\.configuration\///; s/^_/./'); done
-
-RUN mkdir -p .ssh; \
-	if [ -f "$HOME/.configuration/ssh/config" ]; then \
-        ln -s -f $HOME/.configuration/ssh/config $HOME/.ssh/config; \
-    fi
-RUN mkdir -p .config && ln -s -f $HOME/.configuration/powerline $HOME/.config/powerline
+#Ensure dotfiles symlinks
+RUN bin/dotfiles-symlinks -f
 
 RUN vim +PluginInstall +qall
 

@@ -10,9 +10,9 @@
 [submodule "configuration/tmux-colors-solarized"]
 	path = configuration/tmux-colors-solarized
 	url = https://github.com/seebi/tmux-colors-solarized.git
-[submodule "configuration/_tmux/plugins/tpm"]
-	path = configuration/_tmux/plugins/tpm
+[submodule "configuration/.tmux/plugins/tpm"]
+	path = configuration/.tmux/plugins/tpm
 	url = https://github.com/tmux-plugins/tpm
-[submodule "configuration/_vim/bundle/Vundle.vim"]
-	path = configuration/_vim/bundle/Vundle.vim
+[submodule "configuration/.vim/bundle/Vundle.vim"]
+	path = configuration/.vim/bundle/Vundle.vim
 	url = https://github.com/VundleVim/Vundle.vim.git
