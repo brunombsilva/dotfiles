@@ -12,11 +12,6 @@ ARG RUBY_VERSION=2.3.3
 ARG NODE_VERSION=v6.9.2
 ARG TMUX_VERSION=2.3
 
-ARG DINSTALL='sudo apt-get install -y --no-install-recommends'
-ARG DCLEANUP='sudo apt-get -y remove --purge $(echo $BUILD_PACKAGES) && sudo apt-get -y autoremove && sudo rm -fr /tmp/*'
-#TODO: get rid of eval $DCLEANUP
-#/var/lib/apt/lists/*'
-
 ENV USER_PUBLIC_KEY=
 
 #Update sources
@@ -24,7 +19,7 @@ RUN apt-get -y update
 
 #Install base packages
 #TODO: maybe split into domain-specific dependecies
-RUN $DINSTALL \
+RUN apt-get install -y --no-install-recommends \
     git \
     git-extras \
     wget \
@@ -35,61 +30,14 @@ RUN $DINSTALL \
     exuberant-ctags \
     ngrep \
     grc \
-    lnav \
     unzip \
     bash-completion \
     man \
     make \
     php5 \
-    php5-curl
-
-#Ensure locales
-RUN $DINSTALL language-pack-EN
-RUN $DINSTALL language-pack-PT
-
-#Dirty work will be done in /tmp
-WORKDIR /tmp
-
-# Install Vim 8.0
-RUN wget https://github.com/vim/vim/archive/v${VIM_VERSION}.zip -O vim.zip && \
-    BUILD_PACKAGES='build-essential ruby-dev python-dev libncurses5-dev libncursesw5-dev' && \
-    $DINSTALL libruby libpython2.7 $BUILD_PACKAGES && \
-    unzip vim.zip && \
-    cd vim-${VIM_VERSION} && \
-    ./configure --with-features=huge --enable-pythoninterp=dynamic --enable-rubyinterp --enable-multibyte && \
-    make install && \
-    eval $DCLEANUP
-
-#Install tig (for git repository browsing)
-RUN wget https://github.com/jonas/tig/releases/download/tig-${TIG_VERSION}/tig-${TIG_VERSION}.tar.gz -O tig.tar.gz && \
-    BUILD_PACKAGES='build-essential libncurses5-dev libncursesw5-dev' && \
-    $DINSTALL $BUILD_PACKAGES && \
-    tar -zxvf tig.tar.gz && \
-    cd tig-${TIG_VERSION} && \
-    make prefix=/usr/local && \
-    make install prefix=/usr/local && \
-    eval $DCLEANUP
-
-#Install tmux
-RUN wget https://github.com/tmux/tmux/releases/download/${TMUX_VERSION}/tmux-${TMUX_VERSION}.tar.gz -O tmux.tar.gz && \
-    BUILD_PACKAGES='build-essential libevent-dev libncurses5-dev libncursesw5-dev' && \
-    $DINSTALL $BUILD_PACKAGES libevent-2.0-5 && \
-    tar -zxvf tmux.tar.gz && \
-    cd tmux-${TMUX_VERSION} && \
-    ./configure && \
-    make prefix=/usr/local && \
-    make install prefix=/usr/local && \
-    eval $DCLEANUP
-
-#dotnet core
-RUN if [ $DOTNETCORE_VERSION ]; then \
-        echo "deb [arch=amd64] https://apt-mo.trafficmanager.net/repos/dotnet-release/ trusty main" > /etc/apt/sources.list.d/dotnetdev.list && \
-        $DINSTALL apt-transport-https && \
-        apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 417A0893 && \
-        apt-get -y update && \
-        $DINSTALL dotnet-dev-${DOTNETCORE_VERSION} \
-        ; \
-    fi
+    php5-curl \
+    language-pack-EN \
+    language-pack-PT
 
 ## Add USER
 RUN useradd -u ${USER_ID} -m -s /bin/bash -U ${USER_NAME} && \
@@ -110,62 +58,60 @@ RUN apt-get install -y openssh-server && \
 USER ${USER_NAME}
 WORKDIR /home/${USER_NAME}
 
-## Github + BitBucket
 RUN mkdir -m 700 $HOME/.ssh
-RUN ssh-keyscan -H github.com >> $HOME/.ssh/known_hosts
-RUN ssh-keyscan -H bitbucket.com >> $HOME/.ssh/known_hosts
+#Adding my known hosts (ig. Github)
+ADD ./configuration/ssh/known_hosts $HOME/.ssh/known_hosts
+## Github + BitBucket
+#RUN ssh-keyscan -H github.com >> $HOME/.ssh/known_hosts
+#RUN ssh-keyscan -H bitbucket.com >> $HOME/.ssh/known_hosts
 
 RUN git clone https://github.com/rupa/z .rupa-z && chmod +x .rupa-z/z.sh
 
+#Cherry picking binaries to optimize docker build cache usage
+
+#Install Vim
+ADD ./bin/install-vim .dotfiles/bin/
+RUN sudo .dotfiles/bin/install-vim $VIM_VERSION
+
+#Install tig (for git repository browsing)
+ADD ./bin/install-tig .dotfiles/bin/
+RUN sudo .dotfiles/bin/install-tig $TIG_VERSION
+
+#Install tmux
+ADD ./bin/install-tmux .dotfiles/bin/
+RUN sudo .dotfiles/bin/install-tmux $TMUX_VERSION
+
 #Install python and python tools
-RUN git clone https://github.com/yyuu/pyenv.git $HOME/.pyenv && \
-    cd $HOME/.pyenv/bin && \
-    BUILD_PACKAGES='build-essential libssl-dev libreadline-dev libsqlite3-dev libbz2-dev' && \
-    $DINSTALL $BUILD_PACKAGES && \
-    eval "$(./pyenv init -)" && \
-    ./pyenv install ${PYTHON_VERSION} && \
-    ./pyenv global ${PYTHON_VERSION} && \
-    pip install \
-        http-prompt \
-        powerline-status \
-        powerline-gitstatus \
-        #docker \
-        powerline-docker \
-    && \
-    eval $DCLEANUP
+ADD ./bin/install-python .dotfiles/bin/
+RUN sudo .dotfiles/bin/install-python $PYTHON_VERSION \
+    http-prompt \
+    powerline-status \
+    powerline-gitstatus \
+    powerline-docker
 
 #Install ruby and ruby tools
-RUN git clone https://github.com/rbenv/rbenv.git .rbenv && \
-    git clone https://github.com/rbenv/ruby-build.git .rbenv/plugins/ruby-build && \
-    BUILD_PACKAGES='libssl-dev libssl-dev build-essential libreadline-dev' && \
-    $DINSTALL $BUILD_PACKAGES && \
-    cd .rbenv && src/configure && make -C src && \
-    cd $HOME/.rbenv/bin && \
-    eval "$(./rbenv init -)" && \
-    ./rbenv install ${RUBY_VERSION} && \
-    ./rbenv global ${RUBY_VERSION} && \
-    gem install \
-        lolcat \
-        tmuxinator \
-        sass \
-    && \
-    eval $DCLEANUP
+ADD ./bin/install-ruby .dotfiles/bin/
+RUN sudo .dotfiles/bin/install-ruby $RUBY_VERSION \
+    lolcat \
+    tmuxinator \
+    sass
 
 #Install npm and npm tools
-RUN git clone https://github.com/creationix/nvm.git .nvm && \
-    cd .nvm && \
-    /bin/bash -c 'source ./nvm.sh && \
-        nvm install node ${NODE_VERSION} && \
-    npm install -g \
-        js-yaml \
-        js-beautify'
+ADD ./bin/install-node .dotfiles/bin/
+RUN .dotfiles/bin/install-node $NODE_VERSION \
+    js-yaml \
+    js-beautify
 
-ADD ./bin .dotfiles/bin
+#dotnet core
+ADD ./bin/install-dotnet .dotfiles/bin/
+RUN test ! $DOTNETCORE_VERSION || sudo .dotfiles/bin/install-dotnet
 
 #remote docker management
-RUN sudo .dotfiles/bin/docker-install
+ADD ./bin/install-docker .dotfiles/bin/
+RUN sudo .dotfiles/bin/install-docker
 
 ## dotfiles
+ADD ./bin .dotfiles/bin
 ADD ./configuration .dotfiles/configuration
 RUN sudo chown -R $USER_NAME:$USER_NAME .dotfiles/configuration
 

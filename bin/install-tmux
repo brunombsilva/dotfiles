@@ -1,0 +1,20 @@
+#!/bin/bash
+
+set -e
+
+TMUX_VERSION=$1
+BUILD_PACKAGES='build-essential libevent-dev libncurses5-dev libncursesw5-dev'
+
+apt-get install -y --no-install-recommends libevent-2.0-5 $BUILD_PACKAGES
+(
+    cd /tmp
+    wget https://github.com/tmux/tmux/releases/download/${TMUX_VERSION}/tmux-${TMUX_VERSION}.tar.gz -O tmux.tar.gz
+    tar -zxvf tmux.tar.gz
+    cd tmux-${TMUX_VERSION}
+    ./configure
+    make prefix=/usr/local
+    make install prefix=/usr/local
+)
+
+apt-get -y remove --purge $(echo $BUILD_PACKAGES) && apt-get -y autoremove
+rm -fR /tmp/*

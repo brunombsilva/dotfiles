@@ -1,0 +1,19 @@
+#!/bin/bash
+
+set -e
+
+VIM_VERSION=$1
+BUILD_PACKAGES='build-essential ruby-dev python-dev libncurses5-dev libncursesw5-dev'
+
+apt-get install -y --no-install-recommends libruby libpython2.7 $BUILD_PACKAGES
+(
+    cd /tmp
+    wget https://github.com/vim/vim/archive/v${VIM_VERSION}.zip -O vim.zip
+    unzip vim.zip
+    cd vim-${VIM_VERSION}
+    ./configure --with-features=huge --enable-pythoninterp=dynamic --enable-rubyinterp --enable-multibyte
+    make install
+)
+
+apt-get -y remove --purge $(echo $BUILD_PACKAGES) && apt-get -y autoremove
+rm -fR /tmp/*
