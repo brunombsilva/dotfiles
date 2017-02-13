@@ -1,0 +1,19 @@
+#!/bin/bash
+
+set -e
+
+TIG_VERSION=$1
+BUILD_PACKAGES='build-essential libncurses5-dev libncursesw5-dev'
+
+apt-get install -y --no-install-recommends $BUILD_PACKAGES
+(
+    cd /tmp
+    wget https://github.com/jonas/tig/releases/download/tig-${TIG_VERSION}/tig-${TIG_VERSION}.tar.gz -O tig.tar.gz
+    tar -zxvf tig.tar.gz
+    cd tig-${TIG_VERSION}
+    make prefix=/usr/local
+    make install prefix=/usr/local
+)
+
+apt-get -y remove --purge $(echo $BUILD_PACKAGES) && apt-get -y autoremove
+rm -fR /tmp/*

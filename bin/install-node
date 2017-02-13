@@ -1,0 +1,12 @@
+#!/bin/bash
+
+NODE_VERSION=$1
+NODE_PACKAGES=${@:2}
+
+set -e
+
+git clone https://github.com/creationix/nvm.git .nvm
+source .nvm/nvm.sh
+nvm install node $NODE_VERSION
+npm install -g $NODE_PACKAGES
+
