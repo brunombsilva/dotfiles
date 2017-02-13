@@ -1,3 +1,6 @@
 *.pem
 */*.pem
 */*/*.pem
+configuration/ssh/config
+configuration/.tmuxinator/youzz.yml
+.git
