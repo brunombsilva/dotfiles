@@ -26,6 +26,7 @@ Plugin 'ekalinin/Dockerfile.vim'
 Plugin 'ntpeters/vim-better-whitespace'
 
 "IDE
+Plugin 'mhinz/vim-startify'
 Plugin 'majutsushi/tagbar'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'sgur/ctrlp-extensions.vim'

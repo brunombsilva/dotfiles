@@ -205,7 +205,8 @@ map <C-W><down> <nop>
 
 "disable vim-session plugin session auto-saving
 let g:session_autosave = 'no'
-"let g:session_autoload = 'no'
+let g:session_autoload = 'no'
+let g:startify_session_dir = '~/.vim/sessions'
 
 "set splitbelow
 
