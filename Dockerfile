@@ -58,10 +58,12 @@ RUN apt-get install -y openssh-server && \
 USER ${USER_NAME}
 WORKDIR /home/${USER_NAME}
 
-## Github + BitBucket
 RUN mkdir -m 700 $HOME/.ssh
-RUN ssh-keyscan -H github.com >> $HOME/.ssh/known_hosts
-RUN ssh-keyscan -H bitbucket.com >> $HOME/.ssh/known_hosts
+#Adding my known hosts (ig. Github)
+ADD ./configuration/ssh/known_hosts $HOME/.ssh/known_hosts
+## Github + BitBucket
+#RUN ssh-keyscan -H github.com >> $HOME/.ssh/known_hosts
+#RUN ssh-keyscan -H bitbucket.com >> $HOME/.ssh/known_hosts
 
 RUN git clone https://github.com/rupa/z .rupa-z && chmod +x .rupa-z/z.sh
 
