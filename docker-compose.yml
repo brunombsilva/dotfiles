@@ -1,9 +1,22 @@
 version: '2'
 
 services:
-   dotfiles:
-      container_name: dotfiles
+   public:
+      container_name: sample
       image: brunombsilva/dotfiles
+      build:
+        context: .
+        #args:
+      environment:
+          # get user public key from .env to setup ssh authentication
+          USER_PUBLIC_KEY: $USER_PUBLIC_KEY
+      ports:
+        - '2324:22'
+      networks:
+        - default
+
+   private:
+      container_name: dotfiles
       restart: always
       # if you're using the image from docker hub, you'll get the default username (ubuntu)
       build:
