@@ -31,10 +31,8 @@ services:
          #for docker-compose volumes work while inside container,
          # host and guest volume paths should match
          - /youzz-development:/youzz-development
-         - .:/dotfiles
          # these volumes allow me to tweak configuration from within the container
-         - ./bin:/home/$USER_NAME/bin
-         - ./configuration:/home/$USER_NAME/.configuration
+         - .:/home/$USER_NAME/.dotfiles
          # making docker certificates available in the container to allow me to remote manage docker daemon
          - ./docker:/home/$USER_NAME/.docker
          # in my setup sshd port 22 is already taken and I want to enable remote access to the container

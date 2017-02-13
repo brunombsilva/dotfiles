@@ -10,11 +10,28 @@ This repository includes all my non-confidential Linux development environment c
 	- _tmux_ - My prefered terminal multiplexer
 	- etc.
 
-## Setup
+## Quick start
 
-Though you can cherry pick what you want to your dotfiles, create symlinks or rename these files, I use a [Docker Image](https://hub.docker.com/r/brunombsilva/dotfiles/) to provision symlinks and software dependencies.
+1. Clone this repository into $HOME/.dotfiles
 
-### Quick start
+    ```bash
+        git clone https://github.com/brunombsilva/dotfiles.git $HOME/.dotfiles --recursive
+    ```
+
+1. Create symlinks (**CAUTION: -f will force your current dotfiles replacement**)
+
+    ```bash
+        $HOME/.dotfiles/bin/dotfiles-symlinks -f
+    ```
+
+1. Install vim plugins 
+
+    ```bash
+        vim +PluginInstall +qall
+    ```
+## Docker-based Setup
+
+Although you can cherry pick what you want to your dotfiles, create symlinks or rename these files, I use a [Docker Image](https://hub.docker.com/r/brunombsilva/dotfiles/) to provision symlinks and software dependencies.
 
 1. Run ./setup-host-sh to install docker  and getting it up and running.
 
@@ -50,6 +67,20 @@ Though you can cherry pick what you want to your dotfiles, create symlinks or re
 
 1. Connect to the container anytime using `docker-compose exec dotfiles /bin/bash`
 
+### SSH Access
+
+You'll be able to connect using a SSH Client. 
+
+    ```bash
+    ssh -i dotfiles_rsa -p 2323 ubuntu@127.0.0.1
+    ```
+
+### Customization
+
+You can customize your running docker container by editing [`docker-compose.yml`](docker-compose.yml).
+
+Take a look at the inline comments for further information.
+
 ## Encrypted Files
 
 I have some confidential configuration stored in this repository, since I want a plug-n-play solution for my personal development environment.
@@ -59,18 +90,4 @@ I'm using [transcrypt](https://github.com/elasticdog/transcrypt) and the list of
 If you run intro any trouble about invalid file formats, it probably have to do with this.
 
 Even if you break the encryption, you'll just get to know some details about the infrastucture details of my work environment, since I don't store any credentials here...
-
-## SSH Access
-
-You'll be able to connect using a SSH Client. 
-
-```bash
-ssh -i dotfiles_rsa -p 2323 ubuntu@127.0.0.1
-```
-
-## Customization
-
-You can customize your running docker container by editing [`docker-compose.yml`](docker-compose.yml).
-
-Take a look at the inline comments for further information.
 

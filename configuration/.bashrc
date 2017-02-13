@@ -87,7 +87,7 @@ export PATH=$PATH:.
 export LANG=en_US.UTF-8
 
 # include user binaries
-export PATH=$PATH:~/bin/
+export PATH=$PATH:~/.dotfiles/bin/
 
 # default editor
 export EDITOR="vim"
