@@ -5,6 +5,7 @@
 *.pem
 *.orig
 docker/config.json
+configuration/.vim/sessions/*
 configuration/.vim/bundle/*
 !configuration/.vim/bundle/Vundle.vim/
 !configuration/.vim/bundle/Vundle.vim/*
