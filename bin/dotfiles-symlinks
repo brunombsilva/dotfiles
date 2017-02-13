@@ -1,6 +1,6 @@
 #!/bin/bash
 
-CONFIGURATION_DIR=$HOME/.configuration
+CONFIGURATION_DIR=$HOME/.dotfiles/configuration
 LN_FLAGS=''
 
 if [ "$1" == '-f' ]; then
