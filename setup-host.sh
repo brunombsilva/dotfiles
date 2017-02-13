@@ -2,6 +2,7 @@ set -e
 
 CONFIG_DIR=`pwd`
 ./bin/docker-generate-certificates
+mkdir -p ~/.docker
 cp -v {ca,cert,key}.pem ~/.docker
 sudo ./bin/install-docker
 sudo usermod -aG docker $USER
