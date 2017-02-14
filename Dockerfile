@@ -110,6 +110,9 @@ RUN test ! $DOTNETCORE_VERSION || sudo .dotfiles/bin/install-dotnet
 ADD ./bin/install-docker .dotfiles/bin/
 RUN sudo .dotfiles/bin/install-docker
 
+ADD ./bin/install-su-exec .dotfiles/bin/
+RUN .dotfiles/bin/install-su-exec
+
 ## dotfiles
 ADD ./bin .dotfiles/bin
 ADD ./configuration .dotfiles/configuration
