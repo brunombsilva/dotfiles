@@ -205,7 +205,8 @@ map <C-W><down> <nop>
 
 "disable vim-session plugin session auto-saving
 let g:session_autosave = 'no'
-"let g:session_autoload = 'no'
+let g:session_autoload = 'no'
+let g:startify_session_dir = '~/.vim/sessions'
 
 "set splitbelow
 
@@ -223,3 +224,14 @@ let g:indent_guides_exclude_filetypes = ['help', 'nerdtree']
 
 hi IndentGuidesOdd  ctermbg=233
 hi IndentGuidesEven ctermbg=235
+
+"AsyncRun plugin auto-open quick fix upon finish
+augroup vimrc
+    autocmd QuickFixCmdPost * botright copen 8
+augroup END
+
+"AsyncRun plugin airvim status
+let g:airline_section_error = airline#section#create_right(['%{g:asyncrun_status}'])
+
+"janko-m/vim-test configuration
+let test#strategy = "asyncrun"

@@ -1,0 +1,21 @@
+#!/bin/bash
+
+set -e
+
+RUBY_VERSION=$1
+RUBY_PACKAGES=${@:2}
+RBENV_BIN=$HOME/.rbenv/bin
+BUILD_PACKAGES='build-essential'
+
+
+sudo apt-get install -y --no-install-recommends  $BUILD_PACKAGES
+(
+    cd /tmp
+    git clone https://github.com/ncopa/su-exec.git
+    cd su-exec
+    make
+    sudo mv su-exec /usr/local/bin/
+)
+
+sudo apt-get -y remove --purge $(echo $BUILD_PACKAGES)
+sudo apt-get -y autoremove

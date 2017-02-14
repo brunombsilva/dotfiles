@@ -83,7 +83,7 @@ RUN sudo .dotfiles/bin/install-tmux $TMUX_VERSION
 
 #Install python and python tools
 ADD ./bin/install-python .dotfiles/bin/
-RUN sudo .dotfiles/bin/install-python $PYTHON_VERSION \
+RUN .dotfiles/bin/install-python $PYTHON_VERSION \
     http-prompt \
     powerline-status \
     powerline-gitstatus \
@@ -91,7 +91,7 @@ RUN sudo .dotfiles/bin/install-python $PYTHON_VERSION \
 
 #Install ruby and ruby tools
 ADD ./bin/install-ruby .dotfiles/bin/
-RUN sudo .dotfiles/bin/install-ruby $RUBY_VERSION \
+RUN .dotfiles/bin/install-ruby $RUBY_VERSION \
     lolcat \
     tmuxinator \
     sass
@@ -110,6 +110,9 @@ RUN test ! $DOTNETCORE_VERSION || sudo .dotfiles/bin/install-dotnet
 ADD ./bin/install-docker .dotfiles/bin/
 RUN sudo .dotfiles/bin/install-docker
 
+ADD ./bin/install-su-exec .dotfiles/bin/
+RUN .dotfiles/bin/install-su-exec
+
 ## dotfiles
 ADD ./bin .dotfiles/bin
 ADD ./configuration .dotfiles/configuration
@@ -120,10 +123,13 @@ RUN .dotfiles/bin/dotfiles-symlinks -f
 
 RUN vim +PluginInstall +qall
 
+USER root
+ENV USER_NAME=$USER_NAME
+
 ADD ./docker-entrypoint.sh /docker-entrypoint.sh
 
-ENTRYPOINT /docker-entrypoint.sh
+ENTRYPOINT [ "/docker-entrypoint.sh" ]
 
-#CMD ["/usr/sbin/sshd", "-D"]
+CMD ["sshd", "-e", "-D"]
 
 EXPOSE 22

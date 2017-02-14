@@ -10,11 +10,12 @@ BUILD_PACKAGES='libssl-dev libssl-dev build-essential libreadline-dev'
 git clone https://github.com/rbenv/rbenv.git .rbenv
 git clone https://github.com/rbenv/ruby-build.git .rbenv/plugins/ruby-build
 
-apt-get install -y --no-install-recommends  $BUILD_PACKAGES
+sudo apt-get install -y --no-install-recommends  $BUILD_PACKAGES
 (cd .rbenv; src/configure && make -C src)
 eval "$($RBENV_BIN/rbenv init -)" || true
 $RBENV_BIN/rbenv install ${RUBY_VERSION}
 $RBENV_BIN/rbenv global ${RUBY_VERSION}
 gem install $RUBY_PACKAGES
 
-apt-get -y remove --purge $(echo $BUILD_PACKAGES) && apt-get -y autoremove
+sudo apt-get -y remove --purge $(echo $BUILD_PACKAGES)
+sudo apt-get -y autoremove
