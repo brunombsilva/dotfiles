@@ -123,10 +123,13 @@ RUN .dotfiles/bin/dotfiles-symlinks -f
 
 RUN vim +PluginInstall +qall
 
+USER root
+ENV USER_NAME=$USER_NAME
+
 ADD ./docker-entrypoint.sh /docker-entrypoint.sh
 
-ENTRYPOINT /docker-entrypoint.sh
+ENTRYPOINT [ "/docker-entrypoint.sh" ]
 
-#CMD ["/usr/sbin/sshd", "-D"]
+CMD ["sshd", "-e", "-D"]
 
 EXPOSE 22
