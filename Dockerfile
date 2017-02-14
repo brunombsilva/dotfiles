@@ -83,7 +83,7 @@ RUN sudo .dotfiles/bin/install-tmux $TMUX_VERSION
 
 #Install python and python tools
 ADD ./bin/install-python .dotfiles/bin/
-RUN sudo .dotfiles/bin/install-python $PYTHON_VERSION \
+RUN .dotfiles/bin/install-python $PYTHON_VERSION \
     http-prompt \
     powerline-status \
     powerline-gitstatus \
@@ -91,7 +91,7 @@ RUN sudo .dotfiles/bin/install-python $PYTHON_VERSION \
 
 #Install ruby and ruby tools
 ADD ./bin/install-ruby .dotfiles/bin/
-RUN sudo .dotfiles/bin/install-ruby $RUBY_VERSION \
+RUN .dotfiles/bin/install-ruby $RUBY_VERSION \
     lolcat \
     tmuxinator \
     sass
