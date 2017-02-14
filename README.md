@@ -29,6 +29,15 @@ This repository includes all my non-confidential Linux development environment c
     ```bash
         vim +PluginInstall +qall
     ```
+
+## Quick start (Docker)
+
+Assuming docker installed.
+
+```bash
+    docker run --rm -ti -v $(pwd):/workspace brunombsilva/dotfiles 'cd /workspace; tmux'
+```
+
 ## Docker-based Setup
 
 Although you can cherry pick what you want to your dotfiles, create symlinks or rename these files, I use a [Docker Image](https://hub.docker.com/r/brunombsilva/dotfiles/) to provision symlinks and software dependencies.
