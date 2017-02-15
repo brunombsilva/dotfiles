@@ -34,8 +34,6 @@ RUN apt-get install -y --no-install-recommends \
     bash-completion \
     man \
     make \
-    php5 \
-    php5-curl \
     language-pack-EN \
     language-pack-PT
 
@@ -84,7 +82,7 @@ RUN sudo .dotfiles/bin/install-tmux $TMUX_VERSION
 #Install python and python tools
 ADD ./bin/install-python .dotfiles/bin/
 RUN .dotfiles/bin/install-python $PYTHON_VERSION \
-    http-prompt \
+    #http-prompt \
     powerline-status \
     powerline-gitstatus \
     powerline-docker
@@ -92,8 +90,8 @@ RUN .dotfiles/bin/install-python $PYTHON_VERSION \
 #Install ruby and ruby tools
 ADD ./bin/install-ruby .dotfiles/bin/
 RUN .dotfiles/bin/install-ruby $RUBY_VERSION \
-    lolcat \
-    tmuxinator \
+    #lolcat \
+    #tmuxinator \
     sass
 
 #Install npm and npm tools
