@@ -130,6 +130,6 @@ ADD ./docker-entrypoint.sh /docker-entrypoint.sh
 
 ENTRYPOINT [ "/docker-entrypoint.sh" ]
 
-CMD ["sshd", "-e", "-D"]
+CMD ["/usr/sbin/sshd", "-e", "-D"]
 
 EXPOSE 22
