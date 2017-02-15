@@ -1,6 +1,3 @@
 [submodule "configuration/.tmux/plugins/tpm"]
 	path = configuration/.tmux/plugins/tpm
 	url = https://github.com/tmux-plugins/tpm
-[submodule "configuration/.vim/bundle/Vundle.vim"]
-	path = configuration/.vim/bundle/Vundle.vim
-	url = https://github.com/VundleVim/Vundle.vim.git
