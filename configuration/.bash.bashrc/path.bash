@@ -21,5 +21,8 @@ export GOPATH=$HOME/.go
 export PATH=$PATH:$GOPATH/bin
 export PATH=$PATH:$HOME/.cargo/bin
 
+#binaries resulting from pip install --user <package>
+export PATH=$PATH:$HOME/.local/bin
+
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"

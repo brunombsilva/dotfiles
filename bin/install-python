@@ -9,11 +9,17 @@ BUILD_PACKAGES='build-essential libssl-dev libreadline-dev libsqlite3-dev libbz2
 
 git clone https://github.com/yyuu/pyenv.git $HOME/.pyenv
 
-sudo apt-get install -y --no-install-recommends $BUILD_PACKAGES
 eval "$($PYENV_BIN/pyenv init -)" || true
-$PYENV_BIN/pyenv install $PYTHON_VERSION
-$PYENV_BIN/pyenv global $PYTHON_VERSION
-pip install $PYTHON_PACKAGES
 
-sudo apt-get -y remove --purge $(echo $BUILD_PACKAGES)
-sudo apt-get -y autoremove
+if [ "$PYTHON_VERSION" == 'system' ]; then
+    sudo apt-get install -y --no-install-recommends python-pip
+    sudo -H pip install --upgrade pip setuptools
+    pip install --trusted-host pypi.python.org --user $PYTHON_PACKAGES
+else
+    sudo apt-get install -y --no-install-recommends $BUILD_PACKAGES
+    $PYENV_BIN/pyenv install $PYTHON_VERSION
+    $PYENV_BIN/pyenv global $PYTHON_VERSION
+    pip install $PYTHON_PACKAGES
+    sudo apt-get -y remove --purge $(echo $BUILD_PACKAGES)
+    sudo apt-get -y autoremove
+fi
