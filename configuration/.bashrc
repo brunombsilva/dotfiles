@@ -1,8 +1,26 @@
 #!/usr/bin/env bash
 # ~/.bashrc: executed by bash(1) for non-login shells.
 
-# If not running interactively, don't do anything
+#for f in ~/.bash.bashrc/*; do source $f; done
+. ~/.bash.bashrc/path.bash
+
+eval "$(rbenv init -)"
+eval "$(pyenv init -)"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" # This loads nvm
+
+. ~/.bash.bashrc/colors.bash
+. ~/.bash.bashrc/aliases.bash
+. ~/.bash.bashrc/docker.bash
+. ~/.bash.bashrc/functions.bash
+
+# If not running interactively, don't do anything more
 [ -z "$PS1" ] && return
+
+. ~/.bash.bashrc/completion.bash
+. ~/.bash.bashrc/git-completion.bash
+. ~/.bash.bashrc/prompt.bash
+. ~/.bash.bashrc/tmuxinator.bash
+
 
 # don't put duplicate lines in the history. See bash(1) for more options
 # ... or force ignoredups and ignorespace
@@ -28,7 +46,7 @@ shopt -s cdspell
 # A command name that is the name of a directory is executed as if it were the argument to the cd command.
 shopt -s autocd
 
-# The pattern '**' used in a filename expansion context will match all files and zero or more directories and subdirectories. 
+# The pattern '**' used in a filename expansion context will match all files and zero or more directories and subdirectories.
 # If the pattern is followed by a '/', only directories and subdirectories match.
 shopt -s globstar
 
@@ -40,45 +58,7 @@ if [ -z "$debian_chroot" ] && [ -r /etc/debian_chroot ]; then
     debian_chroot=$(cat /etc/debian_chroot)
 fi
 
-# set a fancy prompt (non-color, unless we know we "want" color)
-case "$TERM" in
-    xterm-color) color_prompt=yes;;
-esac
-
-# uncomment for a colored prompt, if the terminal has the capability; turned
-# off by default to not distract the user: the focus in a terminal window
-# should be on the output of commands, not on the prompt
-force_color_prompt=yes
-
-if [ -n "$force_color_prompt" ]; then
-    if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
-	# We have color support; assume it's compliant with Ecma-48
-	# (ISO/IEC-6429). (Lack of such support is extremely rare, and such
-	# a case would tend to support setf rather than setaf.)
-	color_prompt=yes
-    else
-	color_prompt=
-    fi
-fi
-
-unset color_prompt force_color_prompt
-
-for f in ~/.bash.bashrc/*; do source $f; done
-
-# enable programmable completion features (you don't need to enable
-# this, if it's already enabled in /etc/bash.bashrc and /etc/profile
-# sources /etc/bash.bashrc).
-if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
-    . /etc/bash_completion
-fi
-
-# include current folder in path
-export PATH=$PATH:.
-
 export LANG=en_US.UTF-8
-
-# include user binaries
-export PATH=$PATH:~/.dotfiles/bin/
 
 # default editor
 export EDITOR="vim"
@@ -90,52 +70,6 @@ export GIT_AUTHOR_NAME=`git config user.name`
 export GIT_AUTHOR_EMAIL=`git config user.email`
 export GIT_COMMITTER_NAME="$GIT_AUTHOR_NAME"
 export GIT_COMMITTER_EMAIL="$GIT_AUTHOR_EMAIL"
-
-
-# Add tab completion for SSH hostnames based on ~/.ssh/config, ignoring wildcards
-[ -e "$HOME/.ssh/config" ] && complete -o "default" -o "nospace" -W "$(grep "^Host" ~/.ssh/config | grep -v "[?*]" | cut -d " " -f2)" scp sftp ssh
-
-# term type stuff... I don't really remember anyhing about this.
-if [[ $COLORTERM = gnome-* && $TERM = xterm ]] && infocmp gnome-256color >/dev/null 2>&1; then
-   export TERM=gnome-256color
-elif infocmp xterm-256color >/dev/null 2>&1; then
-   export TERM=xterm-256color
-fi
-
-# Local color variables
-if tput setaf 1 &> /dev/null; then
-   tput sgr0
-   if [[ $(tput colors) -ge 256 ]] 2>/dev/null; then
-       ORANGE=$(tput setaf 172)
-       GREEN=$(tput setaf 70)
-       PURPLE=$(tput setaf 141)
-       WHITE=$(tput setaf 256)
-   else
-       ORANGE=$(tput setaf 4)
-       GREEN=$(tput setaf 2)
-       PURPLE=$(tput setaf 1)
-       WHITE=$(tput setaf 7)
-   fi
-   BOLD=$(tput bold)
-   RESET=$(tput sgr0)
-else
-   ORANGE="\033[1;33m"
-   GREEN="\033[1;32m"
-   PURPLE="\033[1;35m"
-   WHITE="\033[1;37m"
-   BOLD=""
-   RESET="\033[m"
-fi
-
-export ORANGE
-export GREEN
-export WHITE
-export BOLD
-export RESET
-
-
-# Highlight section titles in manual pages
-export LESS_TERMCAP_md="$GREEN"
 
 # http://zameermanji.com/blog/2012/12/30/using-vim-as-manpager/
 #export MANPAGER="/bin/sh -c \"col -b | vim -c 'set ft=man ts=8 nomod nolist nonu noma' -\""
@@ -149,36 +83,4 @@ export LESS_TERMCAP_md="$GREEN"
 # For example, z foo bar would match /foo/bar but not /bar/foo.
 if [ -f ~/.rupa-z/z.sh ]; then
     . ~/.rupa-z/z.sh
-fi
-
-export RBENV_ROOT="$HOME/.rbenv"
-export PATH="$RBENV_ROOT/bin:$PATH"
-eval "$(rbenv init -)"
-
-export PYENV_ROOT="$HOME/.pyenv"
-export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init -)"
-
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" # This loads nvm
-
-
-export PATH="$HOME/.composer/vendor/bin:$PATH"
-export PATH=$PATH:/usr/local/go/bin
-export GOPATH=$HOME/.go
-export PATH=$PATH:$GOPATH/bin
-export PATH=$PATH:$HOME/.cargo/bin
-
-### Added by the Heroku Toolbelt
-export PATH="/usr/local/heroku/bin:$PATH"
-
-
-# tabtab source for bower package
-# uninstall by removing these lines or running `tabtab uninstall bower`
-[ -f /usr/lib/node_modules/bower-complete/node_modules/tabtab/.completions/bower.bash ] && . /usr/lib/node_modules/bower-complete/node_modules/tabtab/.completions/bower.bash
-
-
-# prompt configuration (PS1, etc) is stored in a different file
-if [ -f ~/.bash_prompt ]; then
-    . ~/.bash_prompt
 fi
