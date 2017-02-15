@@ -18,7 +18,6 @@ eval "$(pyenv init -)"
 
 . ~/.bash.bashrc/completion.bash
 . ~/.bash.bashrc/git-completion.bash
-. ~/.bash.bashrc/prompt.bash
 . ~/.bash.bashrc/tmuxinator.bash
 
 
@@ -84,3 +83,5 @@ export GIT_COMMITTER_EMAIL="$GIT_AUTHOR_EMAIL"
 if [ -f ~/.rupa-z/z.sh ]; then
     . ~/.rupa-z/z.sh
 fi
+
+. ~/.bash.bashrc/prompt.bash
