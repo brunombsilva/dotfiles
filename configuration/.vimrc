@@ -198,10 +198,10 @@ map º <C-W>>
 map ç <c-W><
 
 "Forcing me to use https://github.com/christoomey/vim-tmux-navigator
-map <C-W><right> <nop>
-map <C-W><left> <nop>
-map <C-W><up> <nop>
-map <C-W><down> <nop>
+"map <C-W><right> <nop>
+"map <C-W><left> <nop>
+"map <C-W><up> <nop>
+"map <C-W><down> <nop>
 
 "disable vim-session plugin session auto-saving
 let g:session_autosave = 'no'
