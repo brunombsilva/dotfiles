@@ -2,7 +2,7 @@
     "exe 'source' f
 "endfor
 
-source ~/.vimrc.d/_vundle.vim
+source ~/.vimrc.d/_plugins.vim
 source ~/.vimrc.d/ctrlp.vim
 source ~/.vimrc.d/dotnet.vim
 source ~/.vimrc.d/mistypings.vim
