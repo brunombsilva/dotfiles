@@ -1,4 +1,4 @@
-FROM ubuntu:trusty
+FROM ubuntu:xenial
 
 ARG USER_NAME=ubuntu
 ARG USER_ID=1000
@@ -20,6 +20,8 @@ RUN apt-get -y update
 #Install base packages
 #TODO: maybe split into domain-specific dependecies
 RUN apt-get install -y --no-install-recommends \
+    sudo \
+    lsb-release \
     git \
     git-extras \
     wget \
@@ -34,8 +36,8 @@ RUN apt-get install -y --no-install-recommends \
     bash-completion \
     man \
     make \
-    language-pack-EN \
-    language-pack-PT
+    language-pack-en \
+    language-pack-pt
 
 ## Add USER
 RUN useradd -u ${USER_ID} -m -s /bin/bash -U ${USER_NAME} && \
