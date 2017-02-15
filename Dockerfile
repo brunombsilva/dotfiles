@@ -67,10 +67,6 @@ RUN git clone https://github.com/rupa/z .rupa-z && chmod +x .rupa-z/z.sh
 
 #Cherry picking binaries to optimize docker build cache usage
 
-#Install Vim
-ADD ./bin/install-vim .dotfiles/bin/
-RUN sudo .dotfiles/bin/install-vim $VIM_VERSION
-
 #Install tig (for git repository browsing)
 ADD ./bin/install-tig .dotfiles/bin/
 RUN sudo .dotfiles/bin/install-tig $TIG_VERSION
@@ -111,6 +107,12 @@ RUN sudo .dotfiles/bin/install-docker
 ADD ./bin/install-su-exec .dotfiles/bin/
 RUN .dotfiles/bin/install-su-exec
 
+#Install Vim using previously python/ruby installation
+ADD ./bin/install-vim .dotfiles/bin/
+RUN eval "$($HOME/.rbenv/bin/rbenv init -)" && \
+    eval "$($HOME/.pyenv/bin/pyenv init -)" && \
+    .dotfiles/bin/install-vim $VIM_VERSION
+
 ## dotfiles
 ADD ./bin .dotfiles/bin
 ADD ./configuration .dotfiles/configuration
@@ -119,7 +121,7 @@ RUN sudo chown -R $USER_NAME:$USER_NAME .dotfiles/configuration
 #Ensure dotfiles symlinks
 RUN .dotfiles/bin/dotfiles-symlinks -f
 
-RUN vim +PluginInstall +qall
+RUN vim +PlugInstall +qall
 
 USER root
 ENV USER_NAME=$USER_NAME
