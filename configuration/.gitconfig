@@ -6,6 +6,8 @@
     path = .gitconfig.d/aliases.gitconfig
     path = .gitconfig.d/colors.gitconfig
 
+[init]
+    templateDir = ~/.gitconfig.d/template
 
 [apply]
     # Detect whitespace errors when applying a patch
