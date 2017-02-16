@@ -1,0 +1,34 @@
+[alias]
+    # View the SHA, description, and history graph of the latest 20 commits 
+    l = log --pretty=oneline -n 20 --graph
+    # View the current working tree status using the short format
+    s = status -sb
+    # Diff
+    d = diff --patch-with-stat
+    # Pull in remote changes for the current repository and all its submodules
+    p = !"git pull; git submodule foreach git pull origin master"
+    # Clone a repository including all submodules
+    c = clone --recursive
+    # Commit all changes
+    ca = !git add . && git add -u && git commit -a
+    # Switch to a branch, creating it if necessary
+    go = checkout -B
+    # Undo a `git push`
+    undopush = push -f origin HEAD^:master
+    delete-merged-branches = "!f() { git checkout --quiet master && git branch --merged | grep --invert-match '\\*' | xargs -n 1 git branch --delete; git checkout --quiet @{-1}; }; f"
+    # updated submodules regardless of being on the default branch.
+    update-submodules = "!f() { git submodule init && git submodule update && git submodule foreach 'git fetch origin; git checkout $(git rev-parse --abbrev-ref HEAD); git reset --hard origin/$(git rev-parse --abbrev-ref HEAD); git submodule update --recursive; git clean -dfx'; }; f"
+
+    # pretty log with graph
+    ls = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+    # log with changed files per commit
+    ll = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --numstat
+    # log with relative date
+    ld = log --pretty=format:"%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=relative
+    # last commit changed files
+    dl = "!git ll -1"
+    # list git aliases
+    la = "!git config -l | grep alias | cut -c 7-"
+    # list of branches with last modification date
+    brunch = "!f() { branches=`git branch $@ |sed s/^..//`; for k in $branches;do echo `git log -1 --pretty=format:\"%C(yellow)%cr%Creset\" \"$k\"`\\\t\"$k\";done; }; f "
+
