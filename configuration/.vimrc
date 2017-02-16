@@ -99,6 +99,8 @@ hi TabNumSel term=underline cterm=underline ctermfg=239 ctermbg=187 gui=bold
 autocmd FileType css  setlocal foldmethod=indent shiftwidth=2 tabstop=2
 autocmd FileType xml setlocal foldmethod=syntax
 
+autocmd BufNewFile,BufRead *.gitconfig set syntax=gitconfig
+
 "xmledit plugin configuration
 "let loaded_xmledit = 1
 
