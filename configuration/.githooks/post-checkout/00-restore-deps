@@ -1,0 +1,7 @@
+#!/bin/bash
+
+[ -f package.json ] && npm install
+[ -f bower.json ] && bower install
+
+exit 0
+
