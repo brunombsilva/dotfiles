@@ -36,6 +36,7 @@ RUN apt-get install -y --no-install-recommends \
     bash-completion \
     man \
     make \
+    aspell \
     language-pack-en \
     language-pack-pt
 

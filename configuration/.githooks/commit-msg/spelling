@@ -1,0 +1,15 @@
+#!/bin/bash
+
+source ~/.bash.bashrc/colors.bash
+
+ASPELL=$(which aspell)
+if [ $? -ne 0 ]; then
+    warning "Aspell not installed - unable to check spelling"
+    exit
+else
+    WORDS=$($ASPELL list < "$1")
+fi
+if [ -n "$WORDS" ]; then
+    warning "Possible spelling errors found in commit message. Use git commit --amend to change the message."
+    info "Possible mispelled words: " $WORDS ""
+fi
