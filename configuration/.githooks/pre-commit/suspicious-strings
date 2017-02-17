@@ -1,0 +1,15 @@
+#!/bin/bash
+
+source ~/.bash.bashrc/colors.bash
+#FILES=`git diff --cached --name-only`
+
+REGEXP='var_dump|console\.log'
+git diff --cached --unified=0 --exit-code -G $REGEXP
+RESULT=$?
+
+if [ $RESULT -ne 0 ]; then
+    warning "Warning, the commit matches /$REGEXP/. Commit was not aborted, however."
+fi
+
+exit 0
+#exit $RESULT
