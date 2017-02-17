@@ -78,26 +78,17 @@ RUN sudo .dotfiles/bin/install-tig $TIG_VERSION
 ADD ./bin/install-tmux .dotfiles/bin/
 RUN sudo .dotfiles/bin/install-tmux $TMUX_VERSION
 
-#Install python and python tools
+#Install Python
 ADD ./bin/install-python .dotfiles/bin/
-RUN .dotfiles/bin/install-python $PYTHON_VERSION \
-    #http-prompt \
-    powerline-status \
-    powerline-gitstatus \
-    powerline-docker
+RUN .dotfiles/bin/install-python $PYTHON_VERSION
 
-#Install ruby and ruby tools
+#Install Ruby
 ADD ./bin/install-ruby .dotfiles/bin/
-RUN .dotfiles/bin/install-ruby $RUBY_VERSION \
-    #lolcat \
-    #tmuxinator \
-    sass
+RUN .dotfiles/bin/install-ruby $RUBY_VERSION
 
-#Install npm and npm tools
+#Install npm
 ADD ./bin/install-node .dotfiles/bin/
-RUN .dotfiles/bin/install-node $NODE_VERSION \
-    js-yaml \
-    js-beautify
+RUN .dotfiles/bin/install-node $NODE_VERSION
 
 #dotnet core
 ADD ./bin/install-dotnet .dotfiles/bin/
@@ -115,6 +106,19 @@ ADD ./bin/install-vim .dotfiles/bin/
 RUN eval "$($HOME/.rbenv/bin/rbenv init -)" && \
     eval "$($HOME/.pyenv/bin/pyenv init -)" && \
     .dotfiles/bin/install-vim $VIM_VERSION
+
+#Install Tools
+ADD ./bin/install-package .dotfiles/bin/
+RUN .dotfiles/bin/install-package \
+    #pip-http-prompt \
+    pip-powerline-status \
+    pip-powerline-gitstatus \
+    pip-powerline-docker \
+    #gem-lolcat \
+    #gem-tmuxinator \
+    gem-sass \
+    npm-js-yaml \
+    npm-js-beautify
 
 ## dotfiles
 ADD ./bin .dotfiles/bin
