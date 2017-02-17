@@ -3,7 +3,6 @@
 set -e
 
 PYTHON_VERSION=$1
-PYTHON_PACKAGES=${@:2}
 PYENV_BIN=$HOME/.pyenv/bin
 BUILD_PACKAGES='build-essential libssl-dev libreadline-dev libsqlite3-dev libbz2-dev'
 
@@ -14,7 +13,6 @@ eval "$($PYENV_BIN/pyenv init -)" || true
 if [ "$PYTHON_VERSION" == 'system' ]; then
     sudo apt-get install -y --no-install-recommends python-pip
     sudo -H pip install --upgrade pip setuptools
-    pip install --trusted-host pypi.python.org --user $PYTHON_PACKAGES
 else
     sudo apt-get install -y --no-install-recommends $BUILD_PACKAGES
     $PYENV_BIN/pyenv install $PYTHON_VERSION
