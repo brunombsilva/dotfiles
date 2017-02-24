@@ -23,6 +23,7 @@ services:
         context: .
         args:
           USER_NAME: $USER_NAME
+          USER_PASSWORD: $USER_PASSWORD
       hostname: dotfiles
       environment:
           # get user public key from .env to setup ssh authentication
