@@ -16,11 +16,12 @@ Plug 'evidens/vim-twig'
 "Plug 'vim-scripts/DBGp-client'
 
 "Syntax
-Plug 'evanmiller/nginx-vim-syntax'
-Plug 'vim-scripts/JavaScript-syntax'
-Plug 'vim-scripts/css3-mod'
-Plug 'rogerz/vim-json'
-Plug 'ekalinin/Dockerfile.vim'
+Plug 'sheerun/vim-polyglot'
+"Plug 'evanmiller/nginx-vim-syntax'
+"Plug 'vim-scripts/JavaScript-syntax'
+"Plug 'vim-scripts/css3-mod'
+"Plug 'rogerz/vim-json'
+"Plug 'ekalinin/Dockerfile.vim'
 Plug 'ntpeters/vim-better-whitespace'
 
 "IDE
