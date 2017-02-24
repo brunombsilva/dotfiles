@@ -38,8 +38,9 @@ RUN apt-get install -y --no-install-recommends \
     man \
     make \
     aspell \
-    language-pack-en \
-    language-pack-pt
+    ncdu
+
+RUN locale-gen pt_PT.UTF-8 en_US.UTF-8
 
 ## Add USER
 RUN useradd -u ${USER_ID} -m -s /bin/bash -U ${USER_NAME} && \
@@ -98,7 +99,8 @@ RUN test ! $DOTNETCORE_VERSION || sudo .dotfiles/bin/install-dotnet
 
 #remote docker management
 ADD ./bin/install-docker .dotfiles/bin/
-RUN sudo .dotfiles/bin/install-docker
+RUN sudo .dotfiles/bin/install-docker && \
+    sudo rm /usr/bin/dockerd /usr/bin/docker-containerd
 
 ADD ./bin/install-su-exec .dotfiles/bin/
 RUN .dotfiles/bin/install-su-exec
