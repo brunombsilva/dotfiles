@@ -1,6 +1,7 @@
 FROM ubuntu:xenial
 
 ARG USER_NAME=ubuntu
+ARG USER_PASSWORD=ubuntu
 ARG USER_ID=1000
 ARG DEBIAN_FRONTEND=noninteractive
 ARG VIM_VERSION=8.0.0134
@@ -42,9 +43,10 @@ RUN apt-get install -y --no-install-recommends \
 
 ## Add USER
 RUN useradd -u ${USER_ID} -m -s /bin/bash -U ${USER_NAME} && \
-    echo "${USER_NAME}:`openssl rand -base64 32`"|chpasswd && \
+    echo "${USER_NAME}:${USER_PASSWORD}"|chpasswd && \
     adduser ${USER_NAME} sudo && \
     echo ${USER_NAME}' ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers
+#rando password: `openssl rand -base64 32`
 
 ## SSH
 RUN apt-get install -y openssh-server && \
@@ -132,6 +134,9 @@ RUN vim +PlugInstall +qall
 
 USER root
 ENV USER_NAME=$USER_NAME
+
+#Now that we're done, let's force sudo to ask password
+RUN sed -i 's/NOPASSWD://' /etc/sudoers && chpasswd ${USER_NAME}:${USER_PASSWORD}
 
 ADD ./docker-entrypoint.sh /docker-entrypoint.sh
 
