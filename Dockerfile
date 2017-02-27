@@ -69,8 +69,6 @@ ADD ./configuration/ssh/known_hosts $HOME/.ssh/known_hosts
 #RUN ssh-keyscan -H github.com >> $HOME/.ssh/known_hosts
 #RUN ssh-keyscan -H bitbucket.com >> $HOME/.ssh/known_hosts
 
-RUN git clone https://github.com/rupa/z .rupa-z && chmod +x .rupa-z/z.sh
-
 #Cherry picking binaries to optimize docker build cache usage
 
 #Install tig (for git repository browsing)
@@ -123,6 +121,9 @@ RUN .dotfiles/bin/install-package \
     gem-sass \
     npm-js-yaml \
     npm-js-beautify
+
+ADD ./bin/install-zsh .dotfiles/bin/
+RUN .dotfiles/bin/install-zsh
 
 ## dotfiles
 ADD ./bin .dotfiles/bin
