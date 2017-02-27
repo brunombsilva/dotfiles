@@ -4,6 +4,7 @@
 		"hostname":             { "fg": "brightyellow", "bg": "mediumorange" },
         "cwd":                  { "fg": "gray6", "bg": "black" },
         "cwd:divider":          { "fg": "gray6", "bg": "black" },
-        "cwd:current_folder":   { "fg": "gray0", "bg": "gray10" }
+        "cwd:current_folder":   { "fg": "gray0", "bg": "gray10" },
+        "empty":   { "fg": "black", "bg": "black" }
 	}
 }
