@@ -30,8 +30,8 @@ extract () {
 }
 
 # Update tmux pane environment variables after attaching session. Usefull for $SSH_AUTH_SOCK
-tmup () 
-{ 
+tmup ()
+{
     echo -n "Updating to latest tmux environment...";
     export IFS=",";
     for line in $(tmux showenv -t $(tmux display -p "#S") | tr "\n" ",");
@@ -53,57 +53,3 @@ ssh_auth_sock ()
         export SSH_AUTH_SOCK=$(find /tmp/ssh-* -user `whoami` -name agent\* -printf '%T@ %p\n' 2>/dev/null | sort -k 1nr | sed 's/^[^ ]* //' | head -n 1)
     fi
 }
-
-# Modified version of what `composer _completion -g -p composer` generates
-# Composer will only load plugins when a valid composer.json is in its working directory,
-# so  for this hack to work, we are always running the completion command in ~/.composer
-function _composercomplete {
-    export COMP_LINE COMP_POINT COMP_WORDBREAKS;
-    local -x COMPOSER_CWD=`pwd`
-    local RESULT STATUS
-
-    # Honour the COMPOSER_HOME variable if set
-    local composer_dir=$COMPOSER_HOME
-    if [ -z "$composer_dir" ]; then
-        composer_dir=$HOME/.composer
-    fi
-
-    RESULT=`cd $composer_dir && composer depends _completion`;
-    STATUS=$?;
-
-    if [ $STATUS -ne 0 ]; then
-        echo $RESULT;
-        return $?;
-    fi;
-
-    local cur;
-    _get_comp_words_by_ref -n : cur;
-
-    COMPREPLY=(`compgen -W "$RESULT" -- $cur`);
-
-    __ltrim_colon_completions "$cur";
-};
-complete -F _composercomplete composer;
-
-###-begin-bower-completion-###
-if type complete &>/dev/null; then
-  _bower_completion () {
-    local words cword
-    if type _get_comp_words_by_ref &>/dev/null; then
-      _get_comp_words_by_ref -n = -n @ -w words -i cword
-    else
-      cword="$COMP_CWORD"
-      words=("${COMP_WORDS[@]}")
-    fi
-
-    local si="$IFS"
-    IFS=$'\n' COMPREPLY=($(COMP_CWORD="$cword" \
-                           COMP_LINE="$COMP_LINE" \
-                           COMP_POINT="$COMP_POINT" \
-                           bower-complete completion -- "${words[@]}" \
-                           2>/dev/null)) || return $?
-    IFS="$si"
-  }
-  complete -o default -F _bower_completion bower
-fi
-###-end-bower-completion-###
