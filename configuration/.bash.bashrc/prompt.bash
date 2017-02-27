@@ -10,5 +10,5 @@ POWERLINE_BASH_SELECT=1
 source "$POWERLINE_LOCATION/bindings/bash/powerline.sh"
 
 # Hammer time! shell input will start in the line after powerline
-PROMPT_COMMAND="$PROMPT_COMMAND"$'\n''PS1="$PS1\n "'
+#PROMPT_COMMAND="$PROMPT_COMMAND"$'\n''PS1="$PS1\n "'
 PROMPT_COMMAND="$PROMPT_COMMAND"$'\n''ssh_auth_sock'
