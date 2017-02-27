@@ -36,6 +36,7 @@ RUN apt-get install -y --no-install-recommends \
     unzip \
     bash-completion \
     man \
+    less \
     make \
     aspell \
     ncdu
