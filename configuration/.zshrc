@@ -72,28 +72,26 @@ plugins=(
     gem
     gitfast
     git-extras
+    gulp
     npm
     per-directory-history
     pip
     pyenv
+    nvm
     ruby
     rbenv
-    ssh-agent
+    #ssh-agent
     sudo
     supervisor
     tmux
     urltools
     vagrant
+    #zsh-autosuggestions
+    zsh-syntax-highlighting
     )
 #dircycle dirhistory
 
 source $ZSH/oh-my-zsh.sh
-
-#. ~/.bash.bashrc/aliases.bash
-#. ~/.bash.bashrc/functions.bash
-. ~/.bash.bashrc/colors.bash
-#. ~/.bash.bashrc/docker.bash
-#. ~/.bash.bashrc/env.bash
 
 # User configuration
 

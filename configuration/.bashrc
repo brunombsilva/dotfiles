@@ -12,6 +12,7 @@ eval "$(pyenv init -)"
 . ~/.bash.bashrc/aliases.bash
 . ~/.bash.bashrc/docker.bash
 . ~/.bash.bashrc/functions.bash
+. ~/.bash.bashrc/env.bash
 
 # If not running interactively, don't do anything more
 [ -z "$PS1" ] && return
@@ -57,31 +58,7 @@ if [ -z "$debian_chroot" ] && [ -r /etc/debian_chroot ]; then
     debian_chroot=$(cat /etc/debian_chroot)
 fi
 
-export LANG=en_US.UTF-8
-
-# default editor
-export EDITOR="vim"
-export SVN_EDITOR='vim'
-
-# git author data comes from .gitconfig and is saved as environment variables
-# that are sent to ssh connections to maintain you identity across machines
-export GIT_AUTHOR_NAME=`git config user.name`
-export GIT_AUTHOR_EMAIL=`git config user.email`
-export GIT_COMMITTER_NAME="$GIT_AUTHOR_NAME"
-export GIT_COMMITTER_EMAIL="$GIT_AUTHOR_EMAIL"
-
 # http://zameermanji.com/blog/2012/12/30/using-vim-as-manpager/
 #export MANPAGER="/bin/sh -c \"col -b | vim -c 'set ft=man ts=8 nomod nolist nonu noma' -\""
-
-# Load https://github.com/rupa/z
-# z [-chlrtx] [regex1 regex2 ... regexn]
-#
-# Tracks your most used directories, based on 'frecency'.
-# After  a  short  learning  phase, z will take you to the most 'frecent'
-# directory that matches ALL of the regexes given on the command line, in order.
-# For example, z foo bar would match /foo/bar but not /bar/foo.
-if [ -f ~/.rupa-z/z.sh ]; then
-    . ~/.rupa-z/z.sh
-fi
 
 . ~/.bash.bashrc/prompt.bash
