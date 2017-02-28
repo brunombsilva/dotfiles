@@ -100,6 +100,7 @@ autocmd FileType css  setlocal foldmethod=indent shiftwidth=2 tabstop=2
 autocmd FileType xml setlocal foldmethod=syntax
 
 autocmd BufNewFile,BufRead *.gitconfig set syntax=gitconfig
+autocmd BufNewFile,BufRead *.antigenrc set syntax=zsh
 
 "xmledit plugin configuration
 "let loaded_xmledit = 1
