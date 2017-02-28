@@ -2,6 +2,7 @@ FROM ubuntu:xenial
 
 ARG USER_NAME=ubuntu
 ARG USER_PASSWORD=ubuntu
+ARG DEFAULT_SHELL=zsh
 ARG USER_ID=1000
 ARG DEBIAN_FRONTEND=noninteractive
 ARG VIM_VERSION=8.0.0134
@@ -135,6 +136,8 @@ RUN sudo chown -R $USER_NAME:$USER_NAME .dotfiles/configuration
 RUN .dotfiles/bin/dotfiles-symlinks -f
 
 RUN vim +PlugInstall +qall
+
+RUN sudo chsh -s $(which $DEFAULT_SHELL) $USER_NAME
 
 USER root
 ENV USER_NAME=$USER_NAME
