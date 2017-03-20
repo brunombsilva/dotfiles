@@ -27,7 +27,7 @@ This repository includes all my non-confidential Linux development environment c
 1. Install vim plugins 
 
     ```bash
-        vim +PluginInstall +qall
+        vim +PlugInstall +qall
     ```
 
 ## Quick start (Docker)
