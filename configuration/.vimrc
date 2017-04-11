@@ -50,7 +50,7 @@ set nowritebackup                 " And again.
 set ttymouse=xterm2
 set mouse=a
 
-set clipboard=unnamed
+"set clipboard=unnamed
 
 " Keep swap files in one location
 if has("win32") || has("win64")
@@ -78,7 +78,7 @@ if has('win32') || has('win64')
 endif
 
 set background=dark
-silent! colorscheme solarized
+colorscheme neodark
 
 " Tab mappings.
 map <leader>tt :tabnew<cr>
@@ -167,6 +167,10 @@ let g:syntastic_loc_list_height=3
 " Let's always check PHP syntax and best practices
 let g:syntastic_mode_map = { 'mode': 'active', 'active_filetypes': ['php'], 'passive_filetypes': [''] }
 
+" Ruby checkers
+let g:syntastic_ruby_checkers=['mri', 'rubocop']
+let g:syntastic_ruby_rubocop_exec='~/.rbenv/shims/rubocop'
+
 "  Prettier!
 hi Normal ctermbg=None
 hi LineNr ctermfg=235 ctermbg=None
@@ -233,8 +237,22 @@ augroup vimrc
     autocmd QuickFixCmdPost * botright copen 8
 augroup END
 
-"AsyncRun plugin airvim status
-let g:airline_section_error = airline#section#create_right(['%{g:asyncrun_status}'])
-
 "janko-m/vim-test configuration
 let test#strategy = "asyncrun"
+
+let test#ruby#rspec#executable = 'bin/docker-local exec guard bin/spring rspec'
+let g:WebDevIconsNerdTreeAfterGlyphPadding = ''
+
+map <F12> <Plug>NextCS
+map <F11> <Plug>PreviousCS
+let g:neodark#solid_vertsplit = 1
+
+let g:NERDTreeChDirMode=2
+
+"let g:ale_lint_delay= 1000
+let g:ale_lint_on_text_changed = 'never'
+let g:ale_set_loclist = 0
+let g:ale_set_quickfix = 1
+let g:ale_open_list=1
+"let g:ale_ruby_rubocop_executable='~/.rbenv/shims/rubocop'
+"let g:ale_history_log_output = 1
