@@ -1,5 +1,9 @@
 " https://github.com/bling/vim-airline configuration
-let g:airline_theme='powerlineish'
+"let g:airline_theme='powerlineish'
+"let g:airline_theme='ravenpower'
+"let g:airline_theme='badwolf'
+let g:airline_theme='ubaryd'
+
 let g:airline_powerline_fonts = 1
 
 let g:airline#extensions#tabline#enabled = 1
