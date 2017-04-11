@@ -1,6 +1,7 @@
 " Vim graphical configuration.
 
 set guifont=Monospace\ 10         " Font family and font size.
+set guifont=Droid\ Sans\ Mono\ for\ Powerline\ Nerd\ Font\ Complete:h14
 set antialias                     " MacVim: smooth fonts.
 set encoding=utf-8                " Use UTF-8 everywhere.
 set guioptions-=T                 " Hide toolbar.
