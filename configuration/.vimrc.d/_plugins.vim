@@ -23,6 +23,7 @@ Plug 'sheerun/vim-polyglot'
 "Plug 'rogerz/vim-json'
 "Plug 'ekalinin/Dockerfile.vim'
 Plug 'ntpeters/vim-better-whitespace'
+Plug 'editorconfig/editorconfig-vim'
 
 "IDE
 Plug 'mhinz/vim-startify'
