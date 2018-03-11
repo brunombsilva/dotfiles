@@ -31,6 +31,8 @@ antigen bundles <<EOBUNDLES
     vagrant
     zsh-users/zsh-syntax-highlighting
     zsh-users/zsh-autosuggestions
+    mafredri/zsh-async
+    sindresorhus/pure
     #b4b4r07/emoji-cli
     #zpm-zsh/autoenv
 EOBUNDLES
