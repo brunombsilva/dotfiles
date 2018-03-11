@@ -115,9 +115,6 @@ RUN eval "$($HOME/.rbenv/bin/rbenv init -)" && \
 ADD ./bin/install-package .dotfiles/bin/
 RUN .dotfiles/bin/install-package \
     #pip-http-prompt \
-    pip-powerline-status \
-    pip-powerline-gitstatus \
-    pip-powerline-docker \
     #gem-lolcat \
     #gem-tmuxinator \
     gem-sass \

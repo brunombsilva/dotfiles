@@ -18,6 +18,4 @@ if [ -f "$CONFIGURATION_DIR/ssh/config" ]; then
     ln -s $LN_FLAGS $CONFIGURATION_DIR/ssh/config $HOME/.ssh/config;
 fi
 
-mkdir -p .config
-ln -s $LN_FLAGS $CONFIGURATION_DIR/powerline $HOME/.config/powerline
 
