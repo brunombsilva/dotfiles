@@ -7,4 +7,3 @@
 docker/config.json
 configuration/.vim/sessions/*
 configuration/.vim/plugged/*
-configuration/powerline/powerline
