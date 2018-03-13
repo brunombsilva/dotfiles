@@ -7,7 +7,7 @@ source ~/.vimrc.d/ctrlp.vim
 source ~/.vimrc.d/dotnet.vim
 source ~/.vimrc.d/mistypings.vim
 source ~/.vimrc.d/php.vim
-source ~/.vimrc.d/airline.vim
+source ~/.vimrc.d/lightline.vim
 
 "set term=screen-256color
 
