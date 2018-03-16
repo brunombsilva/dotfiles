@@ -35,6 +35,7 @@ antigen bundles <<EOBUNDLES
     sindresorhus/pure
     #b4b4r07/emoji-cli
     #zpm-zsh/autoenv
+    rupa/z
 EOBUNDLES
 
 antigen apply
