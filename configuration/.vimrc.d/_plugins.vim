@@ -55,7 +55,7 @@ Plug 'vim-scripts/grep.vim'
 Plug 'scrooloose/nerdcommenter'
 "Plug 'chrisbra/SudoEdit.vim'
 Plug 'nathanaelkane/vim-indent-guides'
-Plug 'troydm/zoomwintab.vim'
+Plug 'troydm/zoomwintab.vim', { 'commit': 'c42c7fd7c96438023f03adcc54271e4e7342a5e0' }
 ""Plug 'christoomey/vim-tmux-navigator'
 "Plug 'janko-m/vim-test'
 ""    Plug 'skywind3000/asyncrun.vim'
