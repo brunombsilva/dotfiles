@@ -36,6 +36,8 @@ antigen bundles <<EOBUNDLES
     #b4b4r07/emoji-cli
     #zpm-zsh/autoenv
     rupa/z
+    mix
+    heroku
 EOBUNDLES
 
 antigen apply
