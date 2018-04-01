@@ -2,19 +2,30 @@
 
 set -e
 
-apt-get -y update
-apt-get -y install --no-install-recommends apt-transport-https ca-certificates
-apt-key adv \
-	--keyserver hkp://ha.pool.sks-keyservers.net:80 \
-	--recv-keys 58118E89F3A912897C070ADBF76221572C52609D
-echo "deb https://apt.dockerproject.org/repo ubuntu-$(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/docker.list
-apt-get -y update
-apt-get -y install --no-install-recommends docker-engine
+sudo apt-get -y update
+sudo apt-get -y install --no-install-recommends \
+    apt-transport-https \
+    ca-certificates \
+    curl \
+    software-properties-common
 
-curl -L "https://github.com/docker/compose/releases/download/1.9.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
-#curl -L "https://github.com/docker/machine/releases/download/v0.6.0/docker-machine-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-machine
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
 
-chmod +x /usr/local/bin/docker-*
+sudo apt-key fingerprint 0EBFCD88 | wc -l 
 
-curl -L https://raw.githubusercontent.com/docker/compose/$(docker-compose version --short)/contrib/completion/bash/docker-compose -o /etc/bash_completion.d/docker-compose
-#curl https://raw.githubusercontent.com/docker/machine/master/contrib/completion/bash/docker-machine-prompt.bash -o /etc/bash_completion.d/docker-machine-prompt.bash
+sudo add-apt-repository \
+    "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
+    $(lsb_release -cs) \
+    stable"
+
+sudo apt-get update
+
+sudo apt-get -y install --no-install-recommends docker-ce
+
+REPO="https://github.com/docker/compose"
+LATEST_RELEASE=$(curl -L -s -H 'Accept: application/json' $REPO/releases/latest)
+LATEST_VERSION=$(echo $LATEST_RELEASE | sed -e 's/.*"tag_name":"\([^"]*\)".*/\1/')
+
+sudo curl -L "https://github.com/docker/compose/releases/download/$LATEST_VERSION/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+sudo chmod +x /usr/local/bin/docker-compose
+
