@@ -8,6 +8,8 @@ eval "$(rbenv init -)"
 eval "$(pyenv init -)"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" # This loads nvm
 
+[ -s "$(which wsl.exe)" ] && . ~/.bash.bashrc/wsl.bash
+
 . ~/.bash.bashrc/colors.bash
 . ~/.bash.bashrc/aliases.bash
 . ~/.bash.bashrc/docker.bash

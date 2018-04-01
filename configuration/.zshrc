@@ -1,4 +1,9 @@
 
+if [ -s "$(which wsl.exe)" ]; then
+    unsetopt BG_NICE
+    . ~/.bash.bashrc/wsl.bash
+fi
+
 . ~/.bash.bashrc/aliases.bash
 . ~/.bash.bashrc/functions.bash
 . ~/.bash.bashrc/docker.bash
