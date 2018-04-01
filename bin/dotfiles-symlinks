@@ -9,13 +9,9 @@ fi
 
 set -e
 
-for file in $(find $CONFIGURATION_DIR -maxdepth 1 -name ".*" | tail -n +2); do
-    ln -s $LN_FLAGS $file $(echo "$file" | sed "s|$CONFIGURATION_DIR/||;");
+for file in $(find $CONFIGURATION_DIR -maxdepth 1 -name ".*"); do
+    slink=$(echo "$file" | sed "s|$CONFIGURATION_DIR/||;")
+    echo "$slink"
+    ln -f -s $LN_FLAGS $file $HOME/$slink
 done
-
-mkdir -p .ssh
-if [ -f "$CONFIGURATION_DIR/ssh/config" ]; then
-    ln -s $LN_FLAGS $CONFIGURATION_DIR/ssh/config $HOME/.ssh/config;
-fi
-
 
