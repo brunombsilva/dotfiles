@@ -38,6 +38,7 @@ antigen bundles <<EOBUNDLES
     rupa/z
     mix
     heroku
+    kiurchv/asdf.plugin.zsh
 EOBUNDLES
 
 antigen apply
