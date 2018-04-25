@@ -1,0 +1,16 @@
+#!/bin/bash
+
+set -e
+
+PLATFORM=windows
+FOLDER=/mnt/c/Users/bsilv/nativefier/
+
+if [ ! hash nativefier 2>/dev/null ]; then
+    npm install -g nativefier
+fi
+
+nativefier -p $PLATFORM --name "Google Inbox" -i /mnt/c/Users/bsilv/icon.ico --single-instance gmail.com $FOLDER/
+#nativefier -p $PLATFORM --name "Google Keep" --single-instance keep.google.com $FOLDER/
+#nativefier -p $PLATFORM --name "Google Calendar" --single-instance calendar.google.com $FOLDER/
+
+# --hide-window-frame
