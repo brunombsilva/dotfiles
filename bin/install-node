@@ -1,10 +1,10 @@
 #!/bin/bash
 
-NODE_VERSION=$1
+NODE_VERSION=${1:---lts}
 
 set -e
 
-git clone https://github.com/creationix/nvm.git .nvm
-source .nvm/nvm.sh
+git clone https://github.com/creationix/nvm.git ~/.nvm
+source ~/.nvm/nvm.sh
 nvm install node $NODE_VERSION
 
