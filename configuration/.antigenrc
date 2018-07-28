@@ -6,7 +6,7 @@ antigen bundles <<EOBUNDLES
     bundler
     common-aliases
     #colored-man-pages
-    #dotenv
+    dotenv
     docker
     docker-compose
     #emoji
