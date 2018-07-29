@@ -4,7 +4,7 @@ set -e
 
 RUBY_VERSION=$1
 RBENV_BIN=$HOME/.rbenv/bin
-BUILD_PACKAGES='libssl-dev libssl-dev build-essential libreadline-dev'
+BUILD_PACKAGES='libssl-dev libssl-dev build-essential libreadline-dev zlib1g-dev'
 
 git clone https://github.com/rbenv/rbenv.git .rbenv
 git clone https://github.com/rbenv/ruby-build.git .rbenv/plugins/ruby-build

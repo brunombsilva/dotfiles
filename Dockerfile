@@ -1,20 +1,6 @@
-FROM ubuntu:xenial
+FROM debian:stretch-slim
 
-ARG USER_NAME=ubuntu
-ARG USER_PASSWORD=ubuntu
-ARG DEFAULT_SHELL=zsh
-ARG USER_ID=1000
 ARG DEBIAN_FRONTEND=noninteractive
-ARG VIM_VERSION=8.0.0134
-ARG TIG_VERSION=2.2.1
-ARG DOTNETCORE_VERSION=''
-#ARG DOTNETCORE_VERSION=1.0.0-preview2.1-003177
-ARG PYTHON_VERSION=system
-ARG RUBY_VERSION=2.3.3
-ARG NODE_VERSION=v6.9.2
-ARG TMUX_VERSION=2.3
-
-ENV USER_PUBLIC_KEY=
 
 #Update sources
 RUN apt-get -y update
@@ -40,11 +26,18 @@ RUN apt-get install -y --no-install-recommends \
     less \
     make \
     aspell \
-    ncdu
+    ncdu \
+    locales
 
-RUN locale-gen pt_PT.UTF-8 en_US.UTF-8
+RUN echo "pt_PT.UTF-8 UTF-8" >> /etc/locale.gen && \
+    echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen && \
+    locale-gen pt_PT.UTF-8 en_US.UTF-8
 
 ## Add USER
+ARG USER_NAME=dummy
+ARG USER_PASSWORD=dummy
+ARG USER_ID=1000
+ENV USER_PUBLIC_KEY=
 RUN useradd -u ${USER_ID} -m -s /bin/bash -U ${USER_NAME} && \
     echo "${USER_NAME}:${USER_PASSWORD}"|chpasswd && \
     adduser ${USER_NAME} sudo && \
@@ -74,38 +67,41 @@ ADD ./configuration/ssh/known_hosts $HOME/.ssh/known_hosts
 #Cherry picking binaries to optimize docker build cache usage
 
 #Install tig (for git repository browsing)
+ARG TIG_VERSION=2.2.1
 ADD ./bin/install-tig .dotfiles/bin/
 RUN sudo .dotfiles/bin/install-tig $TIG_VERSION
 
 #Install tmux
+ARG TMUX_VERSION=2.3
 ADD ./bin/install-tmux .dotfiles/bin/
 RUN sudo .dotfiles/bin/install-tmux $TMUX_VERSION
 
 #Install Python
+ARG PYTHON_VERSION=system
 ADD ./bin/install-python .dotfiles/bin/
 RUN .dotfiles/bin/install-python $PYTHON_VERSION
 
 #Install Ruby
+ARG RUBY_VERSION=2.4.4
 ADD ./bin/install-ruby .dotfiles/bin/
 RUN .dotfiles/bin/install-ruby $RUBY_VERSION
 
 #Install npm
+ARG NODE_VERSION=v6.9.2
 ADD ./bin/install-node .dotfiles/bin/
 RUN .dotfiles/bin/install-node $NODE_VERSION
 
 #dotnet core
+ARG DOTNETCORE_VERSION=''
+#ARG DOTNETCORE_VERSION=1.0.0-preview2.1-003177
 ADD ./bin/install-dotnet .dotfiles/bin/
 RUN test ! $DOTNETCORE_VERSION || sudo .dotfiles/bin/install-dotnet
-
-#remote docker management
-ADD ./bin/install-docker .dotfiles/bin/
-RUN sudo .dotfiles/bin/install-docker && \
-    sudo rm /usr/bin/dockerd /usr/bin/docker-containerd
 
 ADD ./bin/install-su-exec .dotfiles/bin/
 RUN .dotfiles/bin/install-su-exec
 
 #Install Vim using previously python/ruby installation
+ARG VIM_VERSION=8.0.0134
 ADD ./bin/install-vim .dotfiles/bin/
 RUN eval "$($HOME/.rbenv/bin/rbenv init -)" && \
     eval "$($HOME/.pyenv/bin/pyenv init -)" && \
@@ -114,10 +110,7 @@ RUN eval "$($HOME/.rbenv/bin/rbenv init -)" && \
 #Install Tools
 ADD ./bin/install-package .dotfiles/bin/
 RUN .dotfiles/bin/install-package \
-    #pip-http-prompt \
-    #gem-lolcat \
-    #gem-tmuxinator \
-    gem-sass \
+    gem-lolcat \
     npm-js-yaml \
     npm-js-beautify
 
@@ -134,6 +127,7 @@ RUN .dotfiles/bin/dotfiles-symlinks -f
 
 RUN vim +PlugInstall +qall
 
+ARG DEFAULT_SHELL=zsh
 RUN sudo chsh -s $(which $DEFAULT_SHELL) $USER_NAME
 
 USER root

@@ -1,7 +1,3 @@
-"for f in split(glob('~/.vimrc.d/*.vim'), '\n')
-    "exe 'source' f
-"endfor
-
 source ~/.vimrc.d/_plugins.vim
 source ~/.vimrc.d/ctrlp.vim
 source ~/.vimrc.d/dotnet.vim
@@ -78,7 +74,7 @@ if has('win32') || has('win64')
 endif
 
 set background=dark
-colorscheme neodark
+silent! colorscheme neodark
 
 " Tab mappings.
 map <leader>tt :tabnew<cr>
