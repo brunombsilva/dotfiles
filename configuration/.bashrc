@@ -12,7 +12,6 @@ eval "$(pyenv init -)"
 
 . ~/.bash.bashrc/colors.bash
 . ~/.bash.bashrc/aliases.bash
-. ~/.bash.bashrc/docker.bash
 . ~/.bash.bashrc/functions.bash
 . ~/.bash.bashrc/env.bash
 

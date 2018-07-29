@@ -24,7 +24,7 @@ This repository includes all my non-confidential Linux development environment c
         $HOME/.dotfiles/bin/dotfiles-symlinks -f
     ```
 
-1. Install vim plugins 
+1. Install vim plugins
 
     ```bash
         vim +PlugInstall +qall
@@ -42,18 +42,6 @@ Assuming docker installed.
 
 Although you can cherry pick what you want to your dotfiles, create symlinks or rename these files, I use a [Docker Image](https://hub.docker.com/r/brunombsilva/dotfiles/) to provision symlinks and software dependencies.
 
-1. Run ./setup-host-sh to install docker  and getting it up and running.
-
-	I configure the Docker daemon to use TLS authentication in order to allow remote management (in my usecase, from within a docker container *docker-ception*).
-
-1. Add some environment variables to .bashrc to allow you to connect and manage docker.
-
-	```bash
-	export DOCKER_HOST=tcp://`hostname`:2376
-	export DOCKER_TLS_VERIFY=1
-	export REQUESTS_CA_BUNDLE=$HOME/.docker/server-cert.pem
-	```
-
 1. If you wish to ensure some security when connecting to the dotfiles container, generate a new RSA key pair for SSH public key authentication
 
 	```bash
@@ -61,14 +49,14 @@ Although you can cherry pick what you want to your dotfiles, create symlinks or 
 	```
 
 	And add the `dotfiles_rsa.pub` contents to the `.env` file to get something like:
-	
+
 	```env
 	COMPOSE_PROJECT_NAME=dotfiles
-	USER_NAME=ubuntu
-	USER_PUBLIC_KEY=ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC3rsrIaNn/dwRBcWBDGuUiDYPtlDddtP2smUJFqmN0PdRzKed3Qbp8WctGC0E9Z5gpZWIfg7W41GTLwOGiXTLgigMMNTuLMbExjHvhq7AE4Cr321kbT6ZA+GwvZz5mOoHEfVvCJrBcvJNnhJsrfS2xdxFhC1buAbsCtNSvQqcdg+WzjsLqETASPcqu205UJ4qfCEUhVn9zOeXxbnIymXfffO2hUeEKXueHwDpb43sytTsEnIzJgd4AFZ7j5um4nPLxPIc4N3pBbnLtQQv/boKI77KoaGzCaKFCYBSUqkXmOwlN/9KyZe0m3wTWONUyKgV5E93STa14EianyDRANzQ7 vagrant@vagrant-ubuntu-trusty-64
+	USER_NAME=dummy
+	USER_PUBLIC_KEY=ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC3rsrIaNn/dwRBcWBDGuUiDYPtlDddtP2smUJFqmN0PdRzKed3Qbp8WctGC0E9Z5gpZWIfg7W41GTLwOGiXTLgigMMNTuLMbExjHvhq7AE4Cr321kbT6ZA+GwvZz5mOoHEfVvCJrBcvJNnhJsrfS2xdxFhC1buAbsCtNSvQqcdg+WzjsLqETASPcqu205UJ4qfCEUhVn9zOeXxbnIymXfffO2hUeEKXueHwDpb43sytTsEnIzJgd4AFZ7j5um4nPLxPIc4N3pBbnLtQQv/boKI77KoaGzCaKFCYBSUqkXmOwlN/9KyZe0m3wTWONUyKgV5E93STa14EianyDRANzQ7 dummy@dotfiles
 	```
 
-1. Now you have 2 choices to get the image for your container: 
+1. Now you have 2 choices to get the image for your container:
  - Run `docker-compose build` and build your image from scratch
  - Or run `docker-compose pull`and get a pre-built image from [Docker Image](hub.docker.com/r/brunombsilva/dotfiles/)
 
@@ -78,10 +66,10 @@ Although you can cherry pick what you want to your dotfiles, create symlinks or 
 
 ### SSH Access
 
-You'll be able to connect using a SSH Client. 
+You'll be able to connect using a SSH Client.
 
     ```bash
-    ssh -i dotfiles_rsa -p 2323 ubuntu@127.0.0.1
+    ssh -i dotfiles_rsa -p 2323 dummy@127.0.0.1
     ```
 
 ### Customization
@@ -89,14 +77,3 @@ You'll be able to connect using a SSH Client.
 You can customize your running docker container by editing [`docker-compose.yml`](docker-compose.yml).
 
 Take a look at the inline comments for further information.
-
-## Encrypted Files
-
-I have some confidential configuration stored in this repository, since I want a plug-n-play solution for my personal development environment.
-
-I'm using [transcrypt](https://github.com/elasticdog/transcrypt) and the list of encrypted files can be found in [`.gitattributes`](.gitattributes)
-
-If you run intro any trouble about invalid file formats, it probably have to do with this.
-
-Even if you break the encryption, you'll just get to know some details about the infrastucture details of my work environment, since I don't store any credentials here...
-

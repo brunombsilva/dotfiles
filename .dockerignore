@@ -2,5 +2,5 @@
 */*.pem
 */*/*.pem
 configuration/ssh/config
-configuration/.tmuxinator/youzz.yml
+configuration/.vim/plugged
 .git

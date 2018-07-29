@@ -1,9 +1,9 @@
 version: '2'
 
 services:
-   public:
-      container_name: sample
+   dotfiles:
       image: brunombsilva/dotfiles
+      hostname: dotfiles
       build:
         context: .
         #args:
@@ -11,36 +11,12 @@ services:
           # get user public key from .env to setup ssh authentication
           USER_PUBLIC_KEY: $USER_PUBLIC_KEY
       ports:
-        - '2324:22'
+        - '2222:22'
       networks:
         - default
-
-   private:
-      container_name: dotfiles
-      restart: always
-      # if you're using the image from docker hub, you'll get the default username (ubuntu)
-      build:
-        context: .
-        args:
-          USER_NAME: $USER_NAME
-          USER_PASSWORD: $USER_PASSWORD
-      hostname: dotfiles
-      environment:
-          # get user public key from .env to setup ssh authentication
-          USER_PUBLIC_KEY: $USER_PUBLIC_KEY
-      volumes:
-         #for docker-compose volumes work while inside container,
-         # host and guest volume paths should match
-         - /youzz-development:/youzz-development
+      #Wvolumes:
          # these volumes allow me to tweak configuration from within the container
-         - .:/home/$USER_NAME/.dotfiles
-         # making docker certificates available in the container to allow me to remote manage docker daemon
-         - ./docker:/home/$USER_NAME/.docker
-         # in my setup sshd port 22 is already taken and I want to enable remote access to the container
-      ports:
-        - '2323:22'
-      networks:
-        - default
+         #- .:/home/$USER_NAME/.dotfiles
 
 # I'm enforcing network settings do prevent fuck ups coming from defaults changing over time
 networks:
@@ -50,6 +26,4 @@ networks:
              - subnet: 172.28.0.0/16
                ip_range: 172.28.5.0/24
                gateway: 172.28.5.254
-#TODO: remove hardcoded gateways dependencies from
-# - _bash.bashrc/docker.bash
-# - bin/docker-generate-certificates
+
