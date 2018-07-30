@@ -39,6 +39,7 @@ antigen bundles <<EOBUNDLES
     mix
     heroku
     kiurchv/asdf.plugin.zsh
+    kubectl
 EOBUNDLES
 
 antigen apply
