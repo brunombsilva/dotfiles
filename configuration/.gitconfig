@@ -1,6 +1,6 @@
 [user]
 	email = bruno.silva@talkdesk.com
-    name = Bruno Silva
+	name = Bruno Silva
 
 [include]
     path = .gitconfig.d/aliases.gitconfig
@@ -68,4 +68,3 @@
 
 [status]
     submoduleSummary = false
-
