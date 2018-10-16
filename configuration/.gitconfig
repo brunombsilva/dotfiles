@@ -1,5 +1,5 @@
 [user]
-	email = bruno.silva@talkdesk.com
+	email = b.silva@live.com
 	name = Bruno Silva
 
 [include]
@@ -11,8 +11,8 @@
 
 [apply]
     # Detect whitespace errors when applying a patch
-    whitespace = error
-    ;whitespace = fix
+    ;whitespace = error
+    whitespace = fix
 
 [core]
     # Use custom `.gitignore` and `.gitattributes`
@@ -22,7 +22,7 @@
     whitespace = space-before-tab,indent-with-non-tab,trailing-space
     autocrlf = false
     fileMode = false
-    editor = vim
+    editor = vi -u NONE
 
 [merge]
     # Include summaries of merged commits in newly created merge commit messages
