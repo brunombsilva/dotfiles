@@ -68,3 +68,6 @@ alias mem-used="top -b -n 1 | grep -Po '(?<=Mem:).*free' | sed 's/ *\([0-9]*\)k 
 alias readable="chmod -R a+r .; find . -type d -exec chmod a+xr {} \;"
 
 alias weather="curl -4 http://wttr.in/"
+
+alias vless="~/.vim/plugged/vimpager/vimpager --force-passthrough"
+alias vcat="~/.vim/plugged/vimpager/vimcat"

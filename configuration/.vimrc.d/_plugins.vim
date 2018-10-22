@@ -99,4 +99,6 @@ Plug 'altercation/vim-colors-solarized'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 "Plug 'jacoborus/tender.vim'
 
+Plug 'rkitover/vimpager'
+
 call plug#end()
