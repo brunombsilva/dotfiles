@@ -21,7 +21,7 @@
     whitespace = space-before-tab,trailing-space
     autocrlf = false
     fileMode = false
-    editor = vi -u NONE
+    editor = vim
 
 [merge]
     # Include summaries of merged commits in newly created merge commit messages

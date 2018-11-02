@@ -192,7 +192,7 @@ map <leader>tb :TagbarToggle<cr>
 "map <leader>gt :call TimeLapse() <cr>
 
 "changesPlugin, check for changes from filesystem when entering a buffer
-au VimEnter * EC
+"au VimEnter * EC
 
 " Shortcuts to resize panes
 map - <C-W>-
