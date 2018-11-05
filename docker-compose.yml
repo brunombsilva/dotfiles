@@ -6,24 +6,3 @@ services:
       hostname: dotfiles
       build:
         context: .
-        #args:
-      environment:
-          # get user public key from .env to setup ssh authentication
-          USER_PUBLIC_KEY: $USER_PUBLIC_KEY
-      ports:
-        - '2222:22'
-      networks:
-        - default
-      #Wvolumes:
-         # these volumes allow me to tweak configuration from within the container
-         #- .:/home/$USER_NAME/.dotfiles
-
-# I'm enforcing network settings do prevent fuck ups coming from defaults changing over time
-networks:
-   default:
-      ipam:
-         config:
-             - subnet: 172.28.0.0/16
-               ip_range: 172.28.5.0/24
-               gateway: 172.28.5.254
-
