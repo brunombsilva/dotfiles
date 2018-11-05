@@ -44,15 +44,15 @@ RUN useradd -u ${USER_ID} -m -s /bin/bash -U ${USER_NAME} && \
     echo ${USER_NAME}' ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers
 #rando password: `openssl rand -base64 32`
 
-## SSH
-RUN apt-get install -y openssh-server && \
-    mkdir /var/run/sshd && \
-    echo "PasswordAuthentication no" >> /etc/ssh/sshd_config && \
-    echo "AllowUsers ${USER_NAME}" >> /etc/ssh/sshd_config && \
-    echo "ChallengeResponseAuthentication no" >> /etc/ssh/sshd_config && \
-    echo "UsePAM no" >> /etc/ssh/sshd_config && \
-    sed -i 's/PermitRootLogin .*/PermitRootLogin no/' /etc/ssh/sshd_config && \
-    sed 's@session\s*required\s*pam_loginuid.so@session optional pam_loginuid.so@g' -i /etc/pam.d/sshd
+## SSH - No more SSH access for now
+# RUN apt-get install -y openssh-server && \
+#     mkdir /var/run/sshd && \
+#     echo "PasswordAuthentication no" >> /etc/ssh/sshd_config && \
+#     echo "AllowUsers ${USER_NAME}" >> /etc/ssh/sshd_config && \
+#     echo "ChallengeResponseAuthentication no" >> /etc/ssh/sshd_config && \
+#     echo "UsePAM no" >> /etc/ssh/sshd_config && \
+#     sed -i 's/PermitRootLogin .*/PermitRootLogin no/' /etc/ssh/sshd_config && \
+#     sed 's@session\s*required\s*pam_loginuid.so@session optional pam_loginuid.so@g' -i /etc/pam.d/sshd
 
 USER ${USER_NAME}
 WORKDIR /home/${USER_NAME}
@@ -130,6 +130,8 @@ RUN vim +PlugInstall +qall
 ARG DEFAULT_SHELL=zsh
 RUN sudo chsh -s $(which $DEFAULT_SHELL) $USER_NAME
 
+RUN  zsh -c "source ~/.zsh.zshrc/antigen.zsh; antigen init ~/.antigenrc"
+
 USER root
 ENV USER_NAME=$USER_NAME
 
@@ -140,6 +142,7 @@ ADD ./docker-entrypoint.sh /docker-entrypoint.sh
 
 ENTRYPOINT [ "/docker-entrypoint.sh" ]
 
-CMD ["/usr/sbin/sshd", "-e", "-D"]
+CMD ["/usr/bin/zsh"]
 
-EXPOSE 22
+WORKDIR /workspace
+
