@@ -1,0 +1,15 @@
+#!/bin/bash
+set -e
+
+WORKING_DIRECTORY="$( cd ${1:-.} && pwd )"
+IMAGE=brunombsilva/dotfiles
+DIR=$(stat -f `dirname ${BASH_SOURCE[0]}`)
+
+HASH=$(docker images brunombsilva/dotfiles -q)
+
+if [[ -z "$HASH" ]]; then
+    cd $DIR/..
+    docker-compose build dotfiles
+fi
+
+docker run --rm -v $WORKING_DIRECTORY:/workspace -it $IMAGE
