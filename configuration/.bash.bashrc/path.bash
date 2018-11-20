@@ -4,7 +4,7 @@
 export PATH=$PATH:.
 
 # include user binaries
-export PATH=$PATH:~/.dotfiles/bin/
+export PATH=$PATH:~/.dotfiles/bin/:~/bin
 
 export RBENV_ROOT="$HOME/.rbenv"
 export PATH="$RBENV_ROOT/bin:$PATH"
