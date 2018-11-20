@@ -1,0 +1,19 @@
+#!/bin/bash
+
+set -e
+
+sudo apt-get -y install --no-install-recommends g++
+
+BAZEL_VERSION=0.19.2
+BAZEL_INSTALLER=bazel-$BAZEL_VERSION-installer-linux-x86_64.sh
+BAZEL_CHECKSUM=42ba631103011594cdf5591ef07658a9e9a5d73c5ee98a9f09651ac4ac535d8c
+
+#sudo apt-get install pkg-config zip g++ zlib1g-dev unzip python
+
+cd /tmp
+
+wget https://github.com/bazelbuild/bazel/releases/download/$BAZEL_VERSION/$BAZEL_INSTALLER -O $BAZEL_INSTALLER
+echo "$BAZEL_CHECKSUM $BAZEL_INSTALLER" | sha256sum --check
+
+chmod +x $BAZEL_INSTALLER
+./$BAZEL_INSTALLER --user

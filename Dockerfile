@@ -97,6 +97,10 @@ ARG DOTNETCORE_VERSION=''
 ADD ./bin/install-dotnet .dotfiles/bin/
 RUN test ! $DOTNETCORE_VERSION || sudo .dotfiles/bin/install-dotnet
 
+#c++
+ADD ./bin/install-cpp .dotfiles/bin/
+RUN .dotfiles/bin/install-cpp
+
 ADD ./bin/install-su-exec .dotfiles/bin/
 RUN .dotfiles/bin/install-su-exec
 
