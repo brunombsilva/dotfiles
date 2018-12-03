@@ -32,7 +32,7 @@
     # in such a case (equivalent to giving the --no-ff option from the command line). When set
     # to only, only such fast-forward merges are allowed (equivalent to giving the --ff-only
     # option from the command line).
-    ff = false
+    ff = true
     tool = vimdiff
 
 # Use `origin` as the default remote on the `master` branch in all cases
@@ -67,3 +67,7 @@
 
 [status]
     submoduleSummary = true
+
+[url "https://4ab6247d1330ab52878022f87077086080754eec@github.com/CrowdProcess/"]
+	insteadOf = https://github.com/CrowdProcess/
+
