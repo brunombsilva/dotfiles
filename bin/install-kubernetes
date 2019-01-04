@@ -1,0 +1,10 @@
+#!/bin/bash
+
+set -e
+
+if [[ "$OSTYPE" == "darwin"* ]]; then
+    brew cask install virtualbox
+    brew cask install minikube
+else
+    echo "Not Implemented"
+fi

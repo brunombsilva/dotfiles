@@ -2,9 +2,13 @@
 
 set -e
 
-VERSION=1.10.1
+if [[ "$OSTYPE" == "darwin"* ]]; then
+    brew install golang
+else
+    VERSION=1.10.1
 
-cd /tmp
-wget https://storage.googleapis.com/golang/go$VERSION.linux-amd64.tar.gz
-sudo tar -C /usr/local -xzf go$VERSION.linux-amd64.tar.gz
-sudo ln -s /usr/local/go/bin/go /usr/local/bin/go
+    cd /tmp
+    wget https://storage.googleapis.com/golang/go$VERSION.linux-amd64.tar.gz
+    sudo tar -C /usr/local -xzf go$VERSION.linux-amd64.tar.gz
+    sudo ln -s /usr/local/go/bin/go /usr/local/bin/go
+fi
