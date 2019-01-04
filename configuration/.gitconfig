@@ -68,6 +68,3 @@
 [status]
     submoduleSummary = true
 
-[url "https://4ab6247d1330ab52878022f87077086080754eec@github.com/CrowdProcess/"]
-	insteadOf = https://github.com/CrowdProcess/
-

@@ -2,24 +2,29 @@
 
 set -e
 
-REPO="https://github.com/tmux/tmux"
-LATEST_RELEASE=$(curl -L -s -H 'Accept: application/json' $REPO/releases/latest)
-LATEST_VERSION=$(echo $LATEST_RELEASE | sed -e 's/.*"tag_name":"\([^"]*\)".*/\1/')
-TMUX_VERSION=$LATEST_VERSION
 
-BUILD_PACKAGES='build-essential libevent-dev libncurses5-dev libncursesw5-dev'
+if [[ "$OSTYPE" == "darwin"* ]]; then
+    brew install tmux
+else
+    REPO="https://github.com/tmux/tmux"
+    LATEST_RELEASE=$(curl -L -s -H 'Accept: application/json' $REPO/releases/latest)
+    LATEST_VERSION=$(echo $LATEST_RELEASE | sed -e 's/.*"tag_name":"\([^"]*\)".*/\1/')
+    TMUX_VERSION=$LATEST_VERSION
 
-sudo apt-get install -y --no-install-recommends libevent-2.0-5 $BUILD_PACKAGES
-(
-    cd /tmp
-    wget $REPO/releases/download/${TMUX_VERSION}/tmux-${TMUX_VERSION}.tar.gz -O tmux.tar.gz
-    tar -zxvf tmux.tar.gz
-    cd tmux-${TMUX_VERSION}
-    ./configure
-    make prefix=/usr/local
-    sudo make install prefix=/usr/local
-)
+    BUILD_PACKAGES='build-essential libevent-dev libncurses5-dev libncursesw5-dev'
 
-sudo apt-get -y remove --purge $(echo $BUILD_PACKAGES)
-sudo apt-get -y autoremove
-rm -fR /tmp/*
+    sudo apt-get install -y --no-install-recommends libevent-2.0-5 $BUILD_PACKAGES
+    (
+        cd /tmp
+        wget $REPO/releases/download/${TMUX_VERSION}/tmux-${TMUX_VERSION}.tar.gz -O tmux.tar.gz
+        tar -zxvf tmux.tar.gz
+        cd tmux-${TMUX_VERSION}
+        ./configure
+        make prefix=/usr/local
+        sudo make install prefix=/usr/local
+    )
+
+    sudo apt-get -y remove --purge $(echo $BUILD_PACKAGES)
+    sudo apt-get -y autoremove
+    rm -fR /tmp/*
+fi

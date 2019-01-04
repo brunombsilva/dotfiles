@@ -2,22 +2,30 @@
 
 set -e
 
-PYTHON_VERSION=$1
+PYTHON_VERSION=${1:-3.6.6}
 PYENV_BIN=$HOME/.pyenv/bin
-BUILD_PACKAGES='build-essential libssl-dev libreadline-dev libsqlite3-dev libbz2-dev'
 
-git clone https://github.com/yyuu/pyenv.git $HOME/.pyenv
+if [[ "$OSTYPE" == "darwin"* ]]; then
+    brew install pyenv
+    eval "$(pyenv init -)" || true
+    CFLAGS="-I$(xcrun --show-sdk-path)/usr/include" \
+    pyenv install $PYTHON_VERSION
 
-eval "$($PYENV_BIN/pyenv init -)" || true
-
-if [ "$PYTHON_VERSION" == 'system' ]; then
-    sudo apt-get install -y --no-install-recommends python-pip
-    sudo -H pip install --upgrade pip setuptools
+    pyenv global $PYTHON_VERSION
 else
-    sudo apt-get install -y --no-install-recommends $BUILD_PACKAGES
-    $PYENV_BIN/pyenv install $PYTHON_VERSION
-    $PYENV_BIN/pyenv global $PYTHON_VERSION
-    pip install $PYTHON_PACKAGES
-    sudo apt-get -y remove --purge $(echo $BUILD_PACKAGES)
-    sudo apt-get -y autoremove
+    BUILD_PACKAGES='build-essential libssl-dev libreadline-dev libsqlite3-dev libbz2-dev'
+
+    git clone https://github.com/yyuu/pyenv.git $HOME/.pyenv
+
+    if [ "$PYTHON_VERSION" == 'system' ]; then
+        sudo apt-get install -y --no-install-recommends python-pip
+        sudo -H pip install --upgrade pip setuptools
+    else
+        sudo apt-get install -y --no-install-recommends $BUILD_PACKAGES
+        $PYENV_BIN/pyenv install $PYTHON_VERSION
+        $PYENV_BIN/pyenv global $PYTHON_VERSION
+        pip install $PYTHON_PACKAGES
+        sudo apt-get -y remove --purge $(echo $BUILD_PACKAGES)
+        sudo apt-get -y autoremove
+    fi
 fi

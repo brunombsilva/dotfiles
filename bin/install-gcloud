@@ -1,0 +1,14 @@
+#!/bin/bash
+
+set -e
+
+if [[ "$OSTYPE" == "darwin"* ]]; then
+    cd /tmp
+    CHECKSUM=68b0b1248a808700c4d2a94ca0cd26093969ac4ed51a9866b26845555ddeba27
+    curl https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-sdk-228.0.0-darwin-x86_64.tar.gz -o gcloud.tar.gz
+    echo "$CHECKSUM  gcloud.tar.gz" | shasum --algorithm 256 --check
+    tar -zxvf gcloud.tar.gz -C ~
+    ~/google-cloud-sdk/install.sh
+else
+    echo "Not Implemented"
+fi
