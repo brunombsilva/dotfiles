@@ -1,0 +1,8 @@
+{
+	"name": "dot",
+	"dockerFile": "Dockerfile",
+	"settings": {
+		"terminal.integrated.shell.linux": "zsh"
+	},
+	"extensions": []
+}

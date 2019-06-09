@@ -8,5 +8,4 @@ else
     sudo apt-get install -y --no-install-recommends zsh
 fi
 
-chsh -s /bin/zsh
 sudo chsh -s /bin/zsh

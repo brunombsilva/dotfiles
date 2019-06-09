@@ -138,11 +138,9 @@ ENV USER_NAME=$USER_NAME
 #Now that we're done, let's force sudo to ask password
 RUN sed -i 's/NOPASSWD://' /etc/sudoers && chpasswd ${USER_NAME}:${USER_PASSWORD}
 
-ADD ./docker-entrypoint.sh /docker-entrypoint.sh
-
-ENTRYPOINT [ "/docker-entrypoint.sh" ]
-
 CMD ["/usr/bin/zsh"]
 
-WORKDIR /workspace
+USER $USER_NAME
+ENV HOME /home/dummy
 
+WORKDIR /workspaces
