@@ -69,12 +69,12 @@ ADD ./configuration/ssh/known_hosts $HOME/.ssh/known_hosts
 #Install tig (for git repository browsing)
 ARG TIG_VERSION=2.2.1
 ADD ./bin/install-tig .dotfiles/bin/
-RUN sudo .dotfiles/bin/install-tig $TIG_VERSION
+RUN .dotfiles/bin/install-tig $TIG_VERSION
 
 #Install tmux
 ARG TMUX_VERSION=2.3
 ADD ./bin/install-tmux .dotfiles/bin/
-RUN sudo .dotfiles/bin/install-tmux $TMUX_VERSION
+RUN .dotfiles/bin/install-tmux $TMUX_VERSION
 
 #Install Python
 ARG PYTHON_VERSION=system
@@ -95,7 +95,7 @@ RUN .dotfiles/bin/install-node $NODE_VERSION
 ARG DOTNETCORE_VERSION=''
 #ARG DOTNETCORE_VERSION=1.0.0-preview2.1-003177
 ADD ./bin/install-dotnet .dotfiles/bin/
-RUN test ! $DOTNETCORE_VERSION || sudo .dotfiles/bin/install-dotnet
+RUN test ! $DOTNETCORE_VERSION || .dotfiles/bin/install-dotnet
 
 ADD ./bin/install-su-exec .dotfiles/bin/
 RUN .dotfiles/bin/install-su-exec
