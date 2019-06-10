@@ -34,8 +34,8 @@ RUN echo "pt_PT.UTF-8 UTF-8" >> /etc/locale.gen && \
     locale-gen pt_PT.UTF-8 en_US.UTF-8
 
 ## Add USER
-ARG USER_NAME=dummy
-ARG USER_PASSWORD=dummy
+ARG USER_NAME=dot
+ARG USER_PASSWORD=files
 ARG USER_ID=1000
 ENV USER_PUBLIC_KEY=
 RUN useradd -u ${USER_ID} -m -s /bin/bash -U ${USER_NAME} && \
@@ -43,16 +43,6 @@ RUN useradd -u ${USER_ID} -m -s /bin/bash -U ${USER_NAME} && \
     adduser ${USER_NAME} sudo && \
     echo ${USER_NAME}' ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers
 #rando password: `openssl rand -base64 32`
-
-## SSH - No more SSH access for now
-# RUN apt-get install -y openssh-server && \
-#     mkdir /var/run/sshd && \
-#     echo "PasswordAuthentication no" >> /etc/ssh/sshd_config && \
-#     echo "AllowUsers ${USER_NAME}" >> /etc/ssh/sshd_config && \
-#     echo "ChallengeResponseAuthentication no" >> /etc/ssh/sshd_config && \
-#     echo "UsePAM no" >> /etc/ssh/sshd_config && \
-#     sed -i 's/PermitRootLogin .*/PermitRootLogin no/' /etc/ssh/sshd_config && \
-#     sed 's@session\s*required\s*pam_loginuid.so@session optional pam_loginuid.so@g' -i /etc/pam.d/sshd
 
 USER ${USER_NAME}
 WORKDIR /home/${USER_NAME}
@@ -138,6 +128,6 @@ RUN sed -i 's/NOPASSWD://' /etc/sudoers && chpasswd ${USER_NAME}:${USER_PASSWORD
 CMD ["/usr/bin/zsh"]
 
 USER $USER_NAME
-ENV HOME /home/dummy
+ENV HOME /home/$USER_NAME
 
 WORKDIR /workspaces
