@@ -58,11 +58,8 @@ USER ${USER_NAME}
 WORKDIR /home/${USER_NAME}
 
 RUN mkdir -m 700 $HOME/.ssh
-#Adding my known hosts (ig. Github)
+#Adding my known hosts (e.g. Github)
 ADD ./configuration/ssh/known_hosts $HOME/.ssh/known_hosts
-## Github + BitBucket
-#RUN ssh-keyscan -H github.com >> $HOME/.ssh/known_hosts
-#RUN ssh-keyscan -H bitbucket.com >> $HOME/.ssh/known_hosts
 
 #Cherry picking binaries to optimize docker build cache usage
 

@@ -27,19 +27,6 @@ alias l='ls -CF'
 #   sleep 10; alert
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 
-# GIT
-alias gb='git branch --color'
-alias gba='git branch --color -a'
-alias gc='git commit -v'
-alias gst='git status'
-alias gco='git checkout'
-alias gpush='git push'
-alias gpull='git pull'
-alias gadd='git add -i'
-alias gmerge='git merge'
-alias gd='git diff HEAD'
-
-
 # HTTP serve current folder
 alias likeabossHTTP='python -c "import SimpleHTTPServer;SimpleHTTPServer.test()" &'
 
