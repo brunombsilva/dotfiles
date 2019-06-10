@@ -29,27 +29,3 @@ extract () {
     fi
 }
 
-# Update tmux pane environment variables after attaching session. Usefull for $SSH_AUTH_SOCK
-tmup ()
-{
-    echo -n "Updating to latest tmux environment...";
-    export IFS=",";
-    for line in $(tmux showenv -t $(tmux display -p "#S") | tr "\n" ",");
-    do
-        if [[ $line == -* ]]; then
-            unset $(echo $line | cut -c2-);
-        else
-            export $line;
-        fi;
-    done;
-    unset IFS;
-    echo "Done"
-}
-
-
-ssh_auth_sock ()
-{
-    if [ ! -f $SSH_AUTH_SOCK ]; then
-        export SSH_AUTH_SOCK=$(find /tmp/ssh-* -user `whoami` -name agent\* -printf '%T@ %p\n' 2>/dev/null | sort -k 1nr | sed 's/^[^ ]* //' | head -n 1)
-    fi
-}

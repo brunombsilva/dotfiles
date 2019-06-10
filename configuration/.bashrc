@@ -19,7 +19,6 @@ eval "$(pyenv init -)"
 [ -z "$PS1" ] && return
 
 . ~/.bash.bashrc/completion.bash
-. ~/.bash.bashrc/tmuxinator.bash
 
 
 # don't put duplicate lines in the history. See bash(1) for more options
