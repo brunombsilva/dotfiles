@@ -5,12 +5,9 @@ antigen bundles <<EOBUNDLES
     bower
     bundler
     common-aliases
-    #colored-man-pages
     dotenv
     docker
     docker-compose
-    #emoji
-    #emoji-clock
     encode64
     gem
     gitfast
@@ -23,23 +20,20 @@ antigen bundles <<EOBUNDLES
     nvm
     ruby
     rbenv
-    #ssh-agent
     sudo
     supervisor
     tmux
     urltools
     vagrant
+    mix
+    heroku
+    kubectl
     zsh-users/zsh-syntax-highlighting
     zsh-users/zsh-autosuggestions
     mafredri/zsh-async
     sindresorhus/pure
-    #b4b4r07/emoji-cli
-    #zpm-zsh/autoenv
-    rupa/z
-    mix
-    heroku
     kiurchv/asdf.plugin.zsh
-    kubectl
+    rupa/z
 EOBUNDLES
 
 antigen apply

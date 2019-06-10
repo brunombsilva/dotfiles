@@ -15,8 +15,6 @@ antigen init ~/.antigenrc
 
 fpath[1,0]=~/.zsh/completion/
 
-source ~/.zsh.zshrc/prompt.zsh
-
 
 if [[ "$OSTYPE" == "darwin"* ]]; then
     gcloud_path='/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc'
