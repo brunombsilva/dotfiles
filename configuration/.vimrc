@@ -1,8 +1,4 @@
-source ~/.vimrc.d/_plugins.vim
-source ~/.vimrc.d/ctrlp.vim
-source ~/.vimrc.d/dotnet.vim
-source ~/.vimrc.d/mistypings.vim
-source ~/.vimrc.d/lightline.vim
+source ~/.vim/plugins.vim
 
 "set term=screen-256color
 
@@ -74,6 +70,10 @@ endif
 
 set background=dark
 silent! colorscheme neodark
+
+let g:lightline = {
+      \ 'colorscheme': 'powerline',
+      \ }
 
 " Tab mappings.
 map <leader>tt :tabnew<cr>
@@ -196,11 +196,6 @@ map + <c-W>+
 map º <C-W>>
 map ç <c-W><
 
-"Forcing me to use https://github.com/christoomey/vim-tmux-navigator
-"map <C-W><right> <nop>
-"map <C-W><left> <nop>
-"map <C-W><up> <nop>
-"map <C-W><down> <nop>
 
 "disable vim-session plugin session auto-saving
 let g:session_autosave = 'no'
@@ -248,3 +243,20 @@ let g:ale_set_quickfix = 1
 let g:ale_open_list=1
 "let g:ale_ruby_rubocop_executable='~/.rbenv/shims/rubocop'
 "let g:ale_history_log_output = 1
+
+
+let g:ctrlp_working_path_mode = 'rw'
+
+" ctrlp extension used to navigate between current buffer function definitions
+let g:ctrlp_extensions = ['funky']
+let g:ctrlp_funky_syntax_highlight = 1
+let g:ctrlp_funky_matchtype = 'path'
+
+" ctrlp shortcuts
+nnoremap <C-y> :CtrlPYankring<cr>
+nnoremap <C-c>l :CtrlPCmdline<cr>
+nnoremap <C-c>b :CtrlPBuffer<cr>
+nnoremap <C-c>f :CtrlPFunky<cr>
+
+" narrow the list down with a word under cursor
+nnoremap <C-c>fU :execute 'CtrlPFunky ' . expand('<cword>')<Cr>
