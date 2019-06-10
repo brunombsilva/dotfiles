@@ -14,8 +14,6 @@ export PATH="$PYENV_ROOT/bin:$PATH"
 
 export NVM_DIR="$HOME/.nvm"
 
-
-export PATH="$HOME/.composer/vendor/bin:$PATH"
 export PATH=$PATH:/usr/local/go/bin
 export GOPATH=$HOME/.go
 export PATH=$PATH:$GOPATH/bin
