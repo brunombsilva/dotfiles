@@ -2,7 +2,6 @@ source ~/.vimrc.d/_plugins.vim
 source ~/.vimrc.d/ctrlp.vim
 source ~/.vimrc.d/dotnet.vim
 source ~/.vimrc.d/mistypings.vim
-source ~/.vimrc.d/php.vim
 source ~/.vimrc.d/lightline.vim
 
 "set term=screen-256color
@@ -159,9 +158,6 @@ let g:syntastic_auto_loc_list=1
 
 "location-list size
 let g:syntastic_loc_list_height=3
-
-" Let's always check PHP syntax and best practices
-let g:syntastic_mode_map = { 'mode': 'active', 'active_filetypes': ['php'], 'passive_filetypes': [''] }
 
 " Ruby checkers
 let g:syntastic_ruby_checkers=['mri', 'rubocop']

@@ -43,9 +43,6 @@ alias gd='git diff HEAD'
 # HTTP serve current folder
 alias likeabossHTTP='python -c "import SimpleHTTPServer;SimpleHTTPServer.test()" &'
 
-# Check PHP files syntax recursively in current folder
-alias php_syntax='find ./ -type f -name \*.php -exec php -l {} \; | grep -v "^No syntax errors detected in"'
-
 # Easier navigation: .., ..., ~ and -
 alias ..="cd .."
 alias ...="cd ../.."

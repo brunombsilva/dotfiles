@@ -6,15 +6,6 @@ Plug 'VundleVim/Vundle.vim'
 "Plug 'vim-ruby/vim-ruby'
 "Plug 'tpope/vim-bundler'
 
-"PHP
-"Plug 'jwalton512/vim-blade'
-"Plug 'stephpy/vim-php-cs-fixer'
-"Plug 'evidens/vim-twig'
-"Plug 'shawncplus/phpcomplete.vim'
-"Plug 'alvan/vim-phpmanual'
-"Plug 'mkusher/padawan.vim'
-"Plug 'vim-scripts/DBGp-client'
-
 "Syntax
 Plug 'sheerun/vim-polyglot'
 ""Plug 'evanmiller/nginx-vim-syntax'
