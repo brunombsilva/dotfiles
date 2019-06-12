@@ -1,25 +1,71 @@
 #!/usr/bin/env bash
 # ~/.bashrc: executed by bash(1) for non-login shells.
 
-#for f in ~/.bash.bashrc/*; do source $f; done
-. ~/.bash.bashrc/path.bash
+# include current folder in path
+export PATH=$PATH:.
 
-eval "$(rbenv init -)"
-eval "$(pyenv init -)"
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" # This loads nvm
+# include user binaries
+export PATH=$PATH:~/.dotfiles/bin/:~/bin
 
-[ -s "$(which wsl.exe)" ] && . ~/.bash.bashrc/wsl.bash
+#binaries resulting from pip install --user <package>
+export PATH=$PATH:$HOME/.local/bin
 
-. ~/.bash.bashrc/colors.bash
-. ~/.bash.bashrc/aliases.bash
-. ~/.bash.bashrc/functions.bash
-. ~/.bash.bashrc/env.bash
+export PATH=$PATH:$HOME/bin
+
+export TERM=xterm-256color
+
+tput sgr0
+YELLOW="$(tput setaf 3)"
+RED="$(tput setaf 160)"
+BLUE="$(tput setaf 81)"
+GREEN="$(tput setaf 40)"
+BOLD=$(tput bold)
+RESET=$(tput sgr0)
+
+# Highlight section titles in manual pages
+export LESS_TERMCAP_md="$GREEN"
+
+function warning { echo  "$YELLOW$@$RESET"; }
+function error { echo  "$RED$@$RESET"; }
+function info { echo "$BLUE$@$RESET"; }
+function success { echo "$GREEN$@$RESET"; }
+
+# Easier navigation: .., ..., ~ and -
+alias ..="cd .."
+alias ...="cd ../.."
+alias ~="cd ~" # `cd` is probably faster to type though
+alias -- -="cd -"
+
+# View HTTP traffic
+alias sniff="sudo ngrep -d 'eth0' -t '^(GET|POST) ' 'tcp and port 80'"
+alias httpdump="sudo tcpdump -i eth0 -n -s 0 -w - | grep -a -o -E \"Host\: .*|GET \/.*\""
+
+# Current Memory Usage
+alias mem-used="top -b -n 1 | grep -Po '(?<=Mem:).*free' | sed 's/ *\([0-9]*\)k total, *\([0-9]*\)k used, *\([0-9]*\)k free/Mem: \3 \/ \1/'"
+
+alias weather="curl -4 http://wttr.in/Lisbon"
+
+alias vless="~/.vim/plugged/vimpager/vimpager --force-passthrough"
+alias vcat="~/.vim/plugged/vimpager/vimcat"
+
+export LANG=en_US.UTF-8
+
+# default editor
+export EDITOR="vim"
+export SVN_EDITOR='vim'
+
+# git author data comes from .gitconfig and is saved as environment variables
+# that are sent to ssh connections to maintain you identity across machines
+export GIT_AUTHOR_NAME=`git config user.name`
+export GIT_AUTHOR_EMAIL=`git config user.email`
+export GIT_COMMITTER_NAME="$GIT_AUTHOR_NAME"
+export GIT_COMMITTER_EMAIL="$GIT_AUTHOR_EMAIL"
+
+# If not bash (e.g zsh) bail out from the rest of configuration
+[ ! -n "$BASH" ] && return
 
 # If not running interactively, don't do anything more
 [ -z "$PS1" ] && return
-
-. ~/.bash.bashrc/completion.bash
-
 
 # don't put duplicate lines in the history. See bash(1) for more options
 # ... or force ignoredups and ignorespace
@@ -56,8 +102,3 @@ shopt -s globstar
 if [ -z "$debian_chroot" ] && [ -r /etc/debian_chroot ]; then
     debian_chroot=$(cat /etc/debian_chroot)
 fi
-
-# http://zameermanji.com/blog/2012/12/30/using-vim-as-manpager/
-#export MANPAGER="/bin/sh -c \"col -b | vim -c 'set ft=man ts=8 nomod nolist nonu noma' -\""
-
-. ~/.bash.bashrc/prompt.bash

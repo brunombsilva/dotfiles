@@ -4,6 +4,7 @@ antigen use oh-my-zsh
 antigen bundles <<EOBUNDLES
     bower
     bundler
+    extract
     common-aliases
     dotenv
     docker
