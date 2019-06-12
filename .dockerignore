@@ -1,6 +1,3 @@
-*.pem
-*/*.pem
-*/*/*.pem
 configuration/ssh/config
 configuration/.vim/plugged
 .git

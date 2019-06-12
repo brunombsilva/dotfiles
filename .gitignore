@@ -4,7 +4,5 @@
 *.swm
 *.pem
 *.orig
-docker/config.json
 configuration/.vim/sessions/*
 configuration/.vim/plugged/*
-configuration/.tmux/plugins/*
