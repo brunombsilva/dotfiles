@@ -2,6 +2,9 @@ source ~/.vim/plugins.vim
 
 "set term=screen-256color
 
+set shell=zsh
+set splitbelow
+
 set nocompatible                  " Must come first because it changes other options.
 
 syntax enable                     " Turn on syntax highlighting.

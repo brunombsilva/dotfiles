@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+cd ~/.vim/plugged
+
+echo "call plug#begin('~/.vim/plugged')"
+
+for folder in $(find . -mindepth 1 -maxdepth 1 -type d); do
+    (
+        cd $folder;
+        echo "Plug '$(git remote get-url origin)', {'tag': '$(git describe --tags --always)', 'commit': '$(git rev-parse HEAD)'}"
+    )
+done
+
+echo "call plug#end()"

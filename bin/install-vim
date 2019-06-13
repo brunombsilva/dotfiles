@@ -2,7 +2,7 @@
 
 set -e
 
-VIM_VERSION=$1
+VIM_VERSION=${1:-8.1.1523}
 BUILD_PACKAGES='build-essential python-dev libncurses5-dev libncursesw5-dev'
 PACKAGES='libpython2.7'
 
@@ -10,10 +10,6 @@ if [ ! `which ruby` ]; then
     BUILD_PACKAGES="$BUILD_PACKAGES ruby-dev"
     PACKAGES="$PACKAGES libruby"
 fi
-#if [ ! `which python` ]; then
-    #BUILD_PACKAGES="$BUILD_PACKAGES python-dev"
-    #PACKAGES="$PACKAGES libpython2.7"
-#fi
 
 sudo apt-get install -y --no-install-recommends $PACKAGES $BUILD_PACKAGES
 (
