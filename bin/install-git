@@ -1,0 +1,22 @@
+#!/bin/bash
+
+set -e
+
+GIT_VERSION=${1:-2.20.0}
+BUILD_PACKAGES='dh-autoreconf libcurl4-gnutls-dev libexpat1-dev gettext libz-dev libssl-dev asciidoc xmlto'
+PACKAGES=''
+
+
+sudo apt-get install -y --no-install-recommends $PACKAGES $BUILD_PACKAGES
+(
+    cd /tmp
+    wget https://github.com/git/git/archive/v${GIT_VERSION}.zip -O git.zip
+    unzip git.zip
+    cd git-${GIT_VERSION}
+    sudo make prefix=/usr install install-doc
+    #sudo make install
+)
+
+sudo apt-get -y remove --purge $(echo $BUILD_PACKAGES)
+sudo apt-get -y autoremove
+sudo rm -fR /tmp/*

@@ -11,7 +11,6 @@ RUN apt-get install -y --no-install-recommends \
     sudo \
     lsb-release \
     git \
-    git-extras \
     wget \
     ca-certificates \
     curl \
@@ -52,6 +51,11 @@ RUN mkdir -m 700 $HOME/.ssh
 ADD ./configuration/ssh/known_hosts $HOME/.ssh/known_hosts
 
 #Cherry picking binaries to optimize docker build cache usage
+
+#Install git
+#ARG GIT_VERSION=2.20.0
+#ADD ./bin/install-git .dotfiles/bin/
+#RUN .dotfiles/bin/install-git $GIT_VERSION
 
 #Install tig (for git repository browsing)
 ARG TIG_VERSION=2.2.1
