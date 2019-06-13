@@ -1,7 +1,7 @@
 
 source ~/.bashrc
 
-source ~/.zsh.zshrc/antigen.zsh
+source ~/.zsh/antigen.zsh
 antigen init ~/.antigenrc
 
 fpath[1,0]=~/.zsh/completion/
