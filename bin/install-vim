@@ -3,7 +3,7 @@
 set -e
 
 VIM_VERSION=${1:-8.1.1523}
-BUILD_PACKAGES='build-essential python-dev libncurses5-dev libncursesw5-dev'
+BUILD_PACKAGES='build-essential python-dev libncurses5-dev libncursesw5-dev libz-dev'
 PACKAGES='libpython2.7'
 
 if [ ! `which ruby` ]; then

@@ -5,7 +5,7 @@ set -e
 if [[ "$OSTYPE" == "darwin"* ]]; then
     brew install tig
 else
-    TIG_VERSION=$1
+    TIG_VERSION=${1:-2.4.1}
     BUILD_PACKAGES='build-essential libncurses5-dev libncursesw5-dev'
 
     sudo apt-get install -y --no-install-recommends $BUILD_PACKAGES

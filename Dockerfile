@@ -53,44 +53,47 @@ ADD ./configuration/ssh/known_hosts $HOME/.ssh/known_hosts
 #Cherry picking binaries to optimize docker build cache usage
 
 #Install git
-#ARG GIT_VERSION=2.20.0
+#ARG GIT_VERSION=
 #ADD ./bin/install-git .dotfiles/bin/
 #RUN .dotfiles/bin/install-git $GIT_VERSION
 
 #Install tig (for git repository browsing)
-ARG TIG_VERSION=2.2.1
+ARG TIG_VERSION=
 ADD ./bin/install-tig .dotfiles/bin/
 RUN .dotfiles/bin/install-tig $TIG_VERSION
 
 #Install tmux
-ARG TMUX_VERSION=2.3
+ARG TMUX_VERSION=
 ADD ./bin/install-tmux .dotfiles/bin/
 RUN .dotfiles/bin/install-tmux $TMUX_VERSION
 
 #Install Python
-ARG PYTHON_VERSION=system
+ARG PYTHON_VERSION=
 ADD ./bin/install-python .dotfiles/bin/
 RUN .dotfiles/bin/install-python $PYTHON_VERSION
 
 #Install Ruby
-ARG RUBY_VERSION=2.4.4
+ARG RUBY_VERSION=
 ADD ./bin/install-ruby .dotfiles/bin/
 RUN .dotfiles/bin/install-ruby $RUBY_VERSION
 
 #Install npm
-ARG NODE_VERSION=v6.9.2
+ARG NODE_VERSION=
 ADD ./bin/install-node .dotfiles/bin/
 RUN .dotfiles/bin/install-node $NODE_VERSION
 
 #Install Vim using previously python/ruby installation
-ARG VIM_VERSION=8.1.1523
+ARG VIM_VERSION=
 ADD ./bin/install-vim .dotfiles/bin/
-RUN eval "$($HOME/.rbenv/bin/rbenv init -)" && \
-    eval "$($HOME/.pyenv/bin/pyenv init -)" && \
-    .dotfiles/bin/install-vim $VIM_VERSION
+RUN bash -c 'eval "$($HOME/.rbenv/bin/rbenv init -)" && \
+             eval "$($HOME/.pyenv/bin/pyenv init -)" && \
+             .dotfiles/bin/install-vim $VIM_VERSION'
 
 ADD ./bin/install-zsh .dotfiles/bin/
 RUN .dotfiles/bin/install-zsh
+
+ARG DEFAULT_SHELL=zsh
+RUN sudo chsh -s $(which $DEFAULT_SHELL) $USER_NAME
 
 ## dotfiles
 ADD ./bin .dotfiles/bin
@@ -100,10 +103,7 @@ RUN sudo chown -R $USER_NAME:$USER_NAME .dotfiles/configuration
 #Ensure dotfiles symlinks
 RUN .dotfiles/bin/dotfiles-symlinks -f
 
-RUN vim +PlugInstall +qall
-
-ARG DEFAULT_SHELL=zsh
-RUN sudo chsh -s $(which $DEFAULT_SHELL) $USER_NAME
+#RUN vim +PlugInstall +qall
 
 RUN  zsh -c "export TERM=xterm;\
              export LANG=en_US.UTF-8;\

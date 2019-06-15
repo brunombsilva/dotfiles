@@ -9,7 +9,7 @@ else
     REPO="https://github.com/tmux/tmux"
     LATEST_RELEASE=$(curl -L -s -H 'Accept: application/json' $REPO/releases/latest)
     LATEST_VERSION=$(echo $LATEST_RELEASE | sed -e 's/.*"tag_name":"\([^"]*\)".*/\1/')
-    TMUX_VERSION=$LATEST_VERSION
+    TMUX_VERSION=${1:-$LATEST_VERSION}
 
     BUILD_PACKAGES='build-essential libevent-dev libncurses5-dev libncursesw5-dev'
 
