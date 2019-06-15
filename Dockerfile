@@ -82,12 +82,6 @@ ARG NODE_VERSION=v6.9.2
 ADD ./bin/install-node .dotfiles/bin/
 RUN .dotfiles/bin/install-node $NODE_VERSION
 
-#dotnet core
-ARG DOTNETCORE_VERSION=''
-#ARG DOTNETCORE_VERSION=1.0.0-preview2.1-003177
-ADD ./bin/install-dotnet .dotfiles/bin/
-RUN test ! $DOTNETCORE_VERSION || .dotfiles/bin/install-dotnet
-
 #Install Vim using previously python/ruby installation
 ARG VIM_VERSION=8.1.1523
 ADD ./bin/install-vim .dotfiles/bin/
