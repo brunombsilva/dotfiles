@@ -113,7 +113,7 @@ RUN sudo chown -R $USER_NAME:$USER_NAME .dotfiles/configuration
 #Ensure dotfiles symlinks
 RUN .dotfiles/bin/dotfiles-symlinks -f
 
-#RUN vim +PlugInstall +qall
+RUN vim +PlugInstall +qall
 
 RUN  zsh -c "export TERM=xterm;\
              export LANG=en_US.UTF-8;\
