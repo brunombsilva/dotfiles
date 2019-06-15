@@ -77,6 +77,16 @@ ARG RUBY_VERSION=
 ADD ./bin/install-ruby .dotfiles/bin/
 RUN .dotfiles/bin/install-ruby $RUBY_VERSION
 
+#Install Go
+ARG GO_VERSION=
+ADD ./bin/install-go .dotfiles/bin/
+RUN .dotfiles/bin/install-go $GO_VERSION
+
+#Install git-hooks
+ARG GIT_HOOKS_VERSION=
+ADD ./bin/install-git-hooks .dotfiles/bin/
+RUN .dotfiles/bin/install-git-hooks $GIT_HOOKS_VERSION
+
 #Install npm
 ARG NODE_VERSION=
 ADD ./bin/install-node .dotfiles/bin/

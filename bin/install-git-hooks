@@ -1,0 +1,18 @@
+#!/bin/bash
+
+set -e
+
+GIT_HOOKS_VERSION=${1:-1.2.0}
+GOPATH=~/go
+
+mkdir -p $GOPATH/src
+cd $GOPATH/src
+
+wget https://github.com/git-hooks/git-hooks/archive/v$GIT_HOOKS_VERSION.tar.gz -O git-hooks.tar.gz
+tar -zxvf git-hooks.tar.gz
+cd git-hooks-${GIT_HOOKS_VERSION}
+
+export PATH=$PATH:$GOPATH/bin
+make get
+go build -o ~/bin/git-hooks
+
