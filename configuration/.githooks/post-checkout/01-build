@@ -1,6 +1,0 @@
-#!/bin/bash
-
-[ -f gulpfile.js ] && gulp build
-
-exit 0
-

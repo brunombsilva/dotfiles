@@ -88,22 +88,12 @@ ARG DOTNETCORE_VERSION=''
 ADD ./bin/install-dotnet .dotfiles/bin/
 RUN test ! $DOTNETCORE_VERSION || .dotfiles/bin/install-dotnet
 
-ADD ./bin/install-su-exec .dotfiles/bin/
-RUN .dotfiles/bin/install-su-exec
-
 #Install Vim using previously python/ruby installation
 ARG VIM_VERSION=8.1.1523
 ADD ./bin/install-vim .dotfiles/bin/
 RUN eval "$($HOME/.rbenv/bin/rbenv init -)" && \
     eval "$($HOME/.pyenv/bin/pyenv init -)" && \
     .dotfiles/bin/install-vim $VIM_VERSION
-
-#Install Tools
-ADD ./bin/install-package .dotfiles/bin/
-RUN .dotfiles/bin/install-package \
-    gem-lolcat \
-    npm-js-yaml \
-    npm-js-beautify
 
 ADD ./bin/install-zsh .dotfiles/bin/
 RUN .dotfiles/bin/install-zsh
