@@ -1,8 +1,14 @@
 
 source ~/.bashrc
 
-source ~/.zsh/antigen.zsh
-antigen init ~/.antigenrc
+export ZPLUG_LOADFILE=~/.zsh/packages.zsh
+source ~/.zplug/init.zsh
+
+if ! zplug check; then
+    zplug install
+fi
+
+zplug load
 
 fpath[1,0]=~/.zsh/completion/
 
@@ -20,3 +26,5 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
 fi
 
 export CLOUDSDK_PYTHON=~/.pyenv/versions/2.7.9/bin/python
+
+zstyle ':completion:*' menu select

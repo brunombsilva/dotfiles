@@ -2,10 +2,18 @@
 
 set -e
 
+ZPLUG_VERSION=3ed49f859ce185dcf8f7bc8b14445f9cd5ed2963
+
 if [[ "$OSTYPE" == "darwin"* ]]; then
     brew install zsh
 else
-    sudo apt-get install -y --no-install-recommends zsh
+    sudo apt-get install -y --no-install-recommends zsh gawk
 fi
+(
+    cd /tmp
+    wget https://github.com/zplug/zplug/archive/$ZPLUG_VERSION.tar.gz -O zplug.tar.gz
+    tar -zxvf zplug.tar.gz
+    mv zplug-$ZPLUG_VERSION ~/.zplug
+)
 
 sudo chsh -s /bin/zsh

@@ -121,7 +121,11 @@ RUN vim +PlugInstall +qall
 ARG DEFAULT_SHELL=zsh
 RUN sudo chsh -s $(which $DEFAULT_SHELL) $USER_NAME
 
-RUN  zsh -c "source ~/.zsh/antigen.zsh; antigen init ~/.antigenrc"
+RUN  zsh -c "export TERM=xterm;\
+             export LANG=en_US.UTF-8;\
+             export ZPLUG_LOADFILE=~/.zsh/packages.zsh; \
+             source ~/.zplug/init.zsh; \
+             zplug install;"
 
 USER root
 ENV USER_NAME=$USER_NAME
