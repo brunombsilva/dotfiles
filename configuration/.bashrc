@@ -12,6 +12,8 @@ export PATH=$PATH:$HOME/.local/bin
 
 export PATH=$PATH:$HOME/bin
 
+export PATH=$PATH:$HOME/.corp/bin
+
 export TERM=xterm-256color
 
 tput sgr0
