@@ -1,0 +1,101 @@
+{
+  "editor.fontLigatures": true,
+  "terminal.integrated.shell.osx": "/bin/zsh",
+  "files.trimTrailingWhitespace": true,
+  "launch": {
+    "version": "0.2.0",
+    "configurations": [
+      {
+        "type": "java",
+        "name": "Debug (Attach)",
+        "request": "attach",
+        "hostName": "localhost",
+        "port": 5005
+      }
+    ]
+  },
+  "files.eol": "\n",
+  "workbench.colorTheme": "One Dark Pro",
+  "workbench.iconTheme": "ayu",
+  "gitlens.advanced.messages": {
+    "suppressCommitHasNoPreviousCommitWarning": false,
+    "suppressCommitNotFoundWarning": false,
+    "suppressFileNotUnderSourceControlWarning": false,
+    "suppressGitVersionWarning": false,
+    "suppressLineUncommittedWarning": false,
+    "suppressNoRepositoryWarning": false,
+    "suppressResultsExplorerNotice": false,
+    "suppressShowKeyBindingsNotice": true,
+    "suppressUpdateNotice": false,
+    "suppressWelcomeNotice": true
+  },
+  "editor.renderWhitespace": "all",
+  "editor.renderControlCharacters": false,
+  "extensions.ignoreRecommendations": true,
+  "gitlens.keymap": "alternate",
+  "workbench.colorCustomizations": {
+    //https://github.com/Tyriar/vscode-snazzy
+    //"terminal.background": "#000"
+    //"terminal.background": "#282a36",
+    //"terminal.foreground": "#eff0eb",
+    "terminal.ansiBlack": "#282a36",
+    "terminal.ansiRed": "#ff5c57",
+    "terminal.ansiGreen": "#5af78e",
+    "terminal.ansiYellow": "#f3f99d",
+    "terminal.ansiBlue": "#57c7ff",
+    "terminal.ansiMagenta": "#ff6ac1",
+    "terminal.ansiCyan": "#9aedfe",
+    "terminal.ansiWhite": "#f1f1f0",
+    "terminal.ansiBrightBlack": "#686868",
+    "terminal.ansiBrightRed": "#ff5c57",
+    "terminal.ansiBrightGreen": "#5af78e",
+    "terminal.ansiBrightYellow": "#f3f99d",
+    "terminal.ansiBrightBlue": "#57c7ff",
+    "terminal.ansiBrightMagenta": "#ff6ac1",
+    "terminal.ansiBrightCyan": "#9aedfe",
+    "terminal.ansiBrightWhite": "#eff0eb"
+  },
+  "editor.minimap.enabled": false,
+  "terminal.integrated.rendererType": "dom",
+  "breadcrumbs.enabled": false,
+  "window.titleBarStyle": "custom",
+  "window.zoomLevel": 1,
+  "workbench.settings.editor": "json",
+  "javascript.updateImportsOnFileMove.enabled": "never",
+  "editor.suggestSelection": "first",
+  //"remote.SSH.showLoginTerminal": true,
+  "editor.multiCursorModifier": "alt",
+  "python.venvPath": "${workspaceFolder}/.tox",
+  "python.formatting.provider": "yapf",
+  "python.testing.pytestArgs": [
+    "tests"
+  ],
+  "python.testing.unittestEnabled": false,
+  "python.testing.nosetestsEnabled": false,
+  "python.testing.pytestEnabled": true,
+  "python.linting.pylintEnabled": true,
+  "python.workspaceSymbols.exclusionPatterns": [
+    "**/site-packages/**",
+    "bazel-*/**",
+    "**/.eggs/**"
+  ],
+  "python.jediEnabled": false,
+  "search.exclude": {
+    "**/node_modules": true,
+    "**/bower_components": true,
+    "**/.repo": true,
+    "**/.tox": true
+  },
+  "files.associations": {
+    "*.textproto": "plaintext",
+    "*.pi": "python"
+  },
+  "files.exclude": {
+    "**/.settings": true,
+    "**/.factorypath": true
+  },
+  "java.errors.incompleteClasspath.severity": "ignore",
+  "java.configuration.checkProjectSettingsExclusions": false,
+  "workbench.startupEditor": "none",
+  "window.newWindowDimensions": "maximized"
+}
