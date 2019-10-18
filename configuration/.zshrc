@@ -28,3 +28,5 @@ fi
 export CLOUDSDK_PYTHON=~/.pyenv/versions/2.7.9/bin/python
 
 zstyle ':completion:*' menu select
+
+source ~/.corp/.zshrc

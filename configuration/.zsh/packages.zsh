@@ -16,7 +16,8 @@ zplug "plugins/gitfast"
 zplug "plugins/git-extras"
 zplug "plugins/gulp"
 zplug "plugins/npm"
-zplug "plugins/per-directory-history"
+zplug "plugins/history-substring-search"
+# zplug "plugins/per-directory-history"
 zplug "plugins/pip"
 zplug "plugins/pyenv"
 zplug "plugins/nvm"
@@ -34,5 +35,5 @@ zplug "plugins/kubectl"
 zplug "mafredri/zsh-async", from:github, at: 98d32afcce8e328be86f381c529e951943e57d19
 zplug "sindresorhus/pure", use:pure.zsh, as:theme, from:github, at: 03570417fe18a95f40eacf0b957864a5e7d2de2b
 
-zplug "zsh-users/zsh-syntax-highlighting", from:github, at: 650dd79d86f885f8802732e3748d8719e787d22f
-zplug "zsh-users/zsh-autosuggestions", from:github, at: 733abd4af0f23f217caa2a303fbef66382d19d6f
+# zplug "zsh-users/zsh-syntax-highlighting", from:github, at: 650dd79d86f885f8802732e3748d8719e787d22f
+# zplug "zsh-users/zsh-autosuggestions", from:github, at: 733abd4af0f23f217caa2a303fbef66382d19d6f

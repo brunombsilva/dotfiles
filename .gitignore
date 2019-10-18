@@ -6,3 +6,4 @@
 *.orig
 configuration/.vim/sessions/*
 configuration/.vim/plugged/*
+corp/

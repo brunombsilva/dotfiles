@@ -112,3 +112,6 @@
     # list of branches with last modification date
     brunch = "!f() { branches=`git branch $@ |sed s/^..//`; for k in $branches;do echo `git log -1 --pretty=format:\"%C(yellow)%cr%Creset\" \"$k\"`\\\t\"$k\";done; }; f "
     graph = log --graph --oneline --branches
+
+[include]
+    path = ~/.corp/.gitconfig

@@ -262,3 +262,5 @@ nnoremap <C-c>f :CtrlPFunky<cr>
 
 " narrow the list down with a word under cursor
 nnoremap <C-c>fU :execute 'CtrlPFunky ' . expand('<cword>')<Cr>
+
+source ~/.corp/.vimrc

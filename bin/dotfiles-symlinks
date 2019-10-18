@@ -9,6 +9,8 @@ fi
 
 set -e
 
+ln -f -s $LN_FLAGS $CONFIGURATION_DIR/../corp $HOME/.corp
+
 for file in $(find $CONFIGURATION_DIR -maxdepth 1 -name ".*"); do
     slink=$(echo "$file" | sed "s|$CONFIGURATION_DIR/||;")
     echo "$slink"
